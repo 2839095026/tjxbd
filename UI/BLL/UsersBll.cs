@@ -34,5 +34,10 @@ namespace BLL
         {
             return dao.FindAll();
         }
+
+        public users Login(users u)
+        {
+            return dao.Login(u);
+        }
     }
 }

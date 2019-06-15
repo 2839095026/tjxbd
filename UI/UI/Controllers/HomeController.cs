@@ -15,9 +15,7 @@ namespace UI.Controllers
         public ActionResult Index()
         {
             //ISalaryStandardBll
-
-            IBLL.IUsersBll bll = IocContainer.IocCreate.CreateBll<IBLL.IUsersBll>("UsersBll");
-            return View(bll.FindAll().FirstOrDefault());
+            return View();
         }
     }
 }

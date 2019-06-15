@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,6 @@ namespace IDAO
         int Add(T t);
         int Del(T t);
         int Change(T t);
-
+        users Login(users u);
     }
 }

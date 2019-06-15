@@ -13,6 +13,6 @@ namespace IBLL
         int Add(users t);
         int Del(users t);
         int Change(users t);
-
+        users Login(users u);
     }
 }
