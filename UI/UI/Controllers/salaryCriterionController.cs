@@ -14,6 +14,10 @@ namespace UI.Controllers
             return View();
         }
 
+        public ActionResult test()
+        {
+            return View();
+        }
         // GET: salaryCriterion/Details/5
         public ActionResult Details(int id)
         {
