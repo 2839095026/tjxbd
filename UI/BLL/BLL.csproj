@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{32F10828-3589-4C1E-B52E-45ADEC5F5E96}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BLL</RootNamespace>
+    <AssemblyName>BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BonusBll.cs" />
+    <Compile Include="ConfigFileFirstKindBll.cs" />
+    <Compile Include="ConfigFileSecondKindBll.cs" />
+    <Compile Include="ConfigFileThirdKindBll.cs" />
+    <Compile Include="ConfigMajorBll.cs" />
+    <Compile Include="ConfigMajorKindBll.cs" />
+    <Compile Include="ConfigPrimaryKeyBll.cs" />
+    <Compile Include="ConfigPublicCharBll.cs" />
+    <Compile Include="ConfigQuestionFirstKindBll.cs" />
+    <Compile Include="ConfigQuestionSecondKindBll.cs" />
+    <Compile Include="EngageAnswerBll.cs" />
+    <Compile Include="EngageAnswerDetailsBll.cs" />
+    <Compile Include="EngageExamBll.cs" />
+    <Compile Include="EngageExamDetailsBll.cs" />
+    <Compile Include="EngageInterviewBll.cs" />
+    <Compile Include="EngageMajorReleaseBll.cs" />
+    <Compile Include="EngageResumeBll.cs" />
+    <Compile Include="EngageSubjectsBll.cs" />
+    <Compile Include="HumanFileBll.cs" />
+    <Compile Include="HumanFileDigBll.cs" />
+    <Compile Include="MajorChangeBll.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SalaryGrantBll.cs" />
+    <Compile Include="SalaryGrantDetailsBll.cs" />
+    <Compile Include="SalaryStandardBll.cs" />
+    <Compile Include="SalaryStandardDetailsBll.cs" />
+    <Compile Include="TrainingBll.cs" />
+    <Compile Include="UsersBll.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAO\DAO.csproj">
+      <Project>{6669f596-89a5-48e5-aab2-5981cb23f1d9}</Project>
+      <Name>DAO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entity\Entity.csproj">
+      <Project>{4f95eabb-2dfc-4ec8-9b91-ecb9acfb18fa}</Project>
+      <Name>Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IBLL\IBLL.csproj">
+      <Project>{0580701d-8254-4a3a-bbf8-3c3911b77cb9}</Project>
+      <Name>IBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IDAO\IDAO.csproj">
+      <Project>{85827942-04ea-44a7-b536-534b47e0f212}</Project>
+      <Name>IDAO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IocContainer\IocContainer.csproj">
+      <Project>{b6cb28a8-0d24-4a75-b1a3-2d1b41884a95}</Project>
+      <Name>IocContainer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
