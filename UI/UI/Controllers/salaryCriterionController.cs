@@ -20,7 +20,6 @@ namespace UI.Controllers
             return View();
         }
 
-        public void ss() { }
         // GET: salaryCriterion/Create
         public ActionResult Create()
         {
