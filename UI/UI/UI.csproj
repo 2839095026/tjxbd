@@ -647,10 +647,10 @@
     </Content>
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\login.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\salaryCriterion\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
