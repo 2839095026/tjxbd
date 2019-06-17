@@ -12,6 +12,6 @@ namespace IBLL
         int Add(salary_standard t);
         int Del(salary_standard t);
         int Change(salary_standard t);
-
+        string FindID();
     }
 }

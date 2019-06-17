@@ -12,6 +12,6 @@ namespace IDAO
         int Add(T t);
         int Del(T t);
         int Change(T t);
-
+        string FindID();
     }
 }
