@@ -14,18 +14,15 @@ namespace UI.Controllers
             return View();
         }
 
-        public ActionResult test()
-        {
-            return View();
-        }
+  
         // GET: salaryCriterion/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        public void ss() { }
         // GET: salaryCriterion/Create
+
         public ActionResult Create()
         {
             return View();
