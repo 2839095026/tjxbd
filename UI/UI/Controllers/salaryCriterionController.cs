@@ -50,10 +50,7 @@ namespace UI.Controllers
             return NewNumber;
         }
 
-        public ActionResult test()
-        {
-            return View();
-        }
+  
         // GET: salaryCriterion/Details/5
         public ActionResult Details(int id)
         {
@@ -61,6 +58,7 @@ namespace UI.Controllers
         }
 
         // GET: salaryCriterion/Create
+
         public ActionResult Create()
         {
             return View();

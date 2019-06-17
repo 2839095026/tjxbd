@@ -20,6 +20,22 @@ namespace DAO
         }
 
         /// <summary>
+        /// 获取当前表的linq对象
+        /// </summary>
+        /// <returns></returns>
+        public System.Data.Entity.DbSet<T> GetAdt()
+        {
+            return adt.Set<T>();
+        }
+        /// <summary>
+        /// 获取完整的linq对象
+        /// </summary>
+        /// <returns></returns>
+        public HR_DBEntities1 GetAllAdt() {
+            return adt;
+        }
+
+        /// <summary>
         /// 条件查询
         /// </summary>
         /// <param name="where">条件</param>
