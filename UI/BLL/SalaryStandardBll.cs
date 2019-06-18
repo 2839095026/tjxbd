@@ -35,5 +35,10 @@ namespace BLL
         {
             return dao.FindAll();
         }
+
+        public string FindID()
+        {
+            return dao.FindID();
+        }
     }
 }

@@ -16,7 +16,7 @@ namespace Entity
     public partial class HR_DBEntities1 : DbContext
     {
         public HR_DBEntities1()
-            : base("name=HR_DBEntities")
+            : base("name=HR_DBEntities1")
         {
         }
     
@@ -52,5 +52,9 @@ namespace Entity
         public virtual DbSet<salary_standard_details> salary_standard_details { get; set; }
         public virtual DbSet<training> training { get; set; }
         public virtual DbSet<users> users { get; set; }
+        public virtual DbSet<Permissions> Permissions { get; set; }
+        public virtual DbSet<RolePermissions> RolePermissions { get; set; }
+        public virtual DbSet<Roles> Roles { get; set; }
+        public virtual DbSet<salary_item> salary_item { get; set; }
     }
 }

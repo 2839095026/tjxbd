@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace IDAO
 {
-    public interface ISalaryStandardDao<T>
+    public interface ISalaryItemDao<T>
     {
         List<T> FindAll();
         int Add(T t);
         int Del(T t);
         int Change(T t);
-        string FindID();
     }
 }

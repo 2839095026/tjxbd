@@ -73,9 +73,13 @@
     <Compile Include="HumanFileDao.cs" />
     <Compile Include="HumanFileDigDao.cs" />
     <Compile Include="MajorChangeDao.cs" />
+    <Compile Include="PermissionsDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RolePermissionsDao.cs" />
+    <Compile Include="RolesDao.cs" />
     <Compile Include="SalaryGrantDao.cs" />
     <Compile Include="SalaryGrantDetailsDao.cs" />
+    <Compile Include="SalaryItemDao.cs" />
     <Compile Include="SalaryStandardDao.cs" />
     <Compile Include="SalaryStandardDetailsDao.cs" />
     <Compile Include="TrainingDao.cs" />
