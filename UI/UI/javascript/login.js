@@ -25,7 +25,7 @@ function doLogin() {
     }
     $.post("/Login/Login", { "u_name": userName.val(), "u_password": userPassword.val() }, function (data) {
         if (data == "ok") {
-            location.href = "page/index";
+            location.href = "index/index";
         }
         else {
             $.messager.show("消息提示", "登录名或登录密码不正确！", 2000);
