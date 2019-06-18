@@ -35,5 +35,10 @@ namespace BLL
         {
             return dao.FindAll();
         }
+
+        public List<config_file_second_kind> GetConfigFileSecondKindByFKID(string fkid)
+        {
+            return dao.GetConfigFileSecondKindByFKID(fkid);
+        }
     }
 }
