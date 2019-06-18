@@ -9,9 +9,10 @@ namespace DAO
 {
     public class SalaryStandardDao : BaseDao<salary_standard>, ISalaryStandardDao<salary_standard>
     {
+        HR_DBEntities1 db = new HR_DBEntities1();
         public string FindID()
         {
-            var v = GetAdt().OrderByDescending(e => e.regist_time).Take(1).ToList().FirstOrDefault();
+            var v = db.salary_standard.OrderByDescending(e => e.regist_time).Take(1).ToList().FirstOrDefault();
             return v != null ? v.standard_id : "";
         }
     }

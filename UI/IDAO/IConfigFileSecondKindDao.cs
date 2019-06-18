@@ -13,6 +13,12 @@ namespace IDAO
         int Add(T t);
         int Del(T t);
         int Change(T t);
-        
+        /// <summary>
+        /// 根据一级机构编号获取对应的二级机构
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        List<T> GetConfigFileSecondKindByFKID(string fkid);
+
     }
 }

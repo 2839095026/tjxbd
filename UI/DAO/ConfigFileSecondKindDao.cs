@@ -8,8 +8,12 @@ using IDAO;
 namespace DAO
 {
 
-    public class ConfigFileSecondKindDao:BaseDao<config_file_second_kind>,IConfigFileSecondKindDao<config_file_second_kind>
+    public class ConfigFileSecondKindDao : BaseDao<config_file_second_kind>, IConfigFileSecondKindDao<config_file_second_kind>
     {
 
+        public List<config_file_second_kind> GetConfigFileSecondKindByFKID(string fkid)
+        {
+            return GetAdt().Where(e => e.first_kind_id.ToString() == fkid.ToString()).ToList();
+        }
     }
 }

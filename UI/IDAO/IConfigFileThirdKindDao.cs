@@ -13,6 +13,11 @@ namespace IDAO
         int Add(T t);
         int Del(T t);
         int Change(T t);
-        
+        /// <summary>
+        /// 根据二级机构查询三级机构
+        /// </summary>
+        /// <param name="skid"></param>
+        /// <returns></returns>
+        List<T> GetConfigFileThirdKindBySKID(string skid);
     }
 }
