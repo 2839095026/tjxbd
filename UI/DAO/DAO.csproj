@@ -61,6 +61,7 @@
     <Compile Include="ConfigPublicCharDao.cs" />
     <Compile Include="ConfigQuestionFirstKindDao.cs" />
     <Compile Include="ConfigQuestionSecondKindDao.cs" />
+    <Compile Include="DBHelper.cs" />
     <Compile Include="EngageAnswerDao.cs" />
     <Compile Include="EngageAnswerDetailsDao.cs" />
     <Compile Include="EngageExamDao.cs" />
