@@ -9,13 +9,14 @@ namespace UI.Controllers
     public class salaryCriterionController : Controller
     {
         IBLL.ISalaryStandardBll bll = IocContainer.IocCreate.CreateBll<IBLL.ISalaryStandardBll>("SalaryStandardBll");
+        IBLL.ISalaryItemBll bll2 = IocContainer.IocCreate.CreateBll<IBLL.ISalaryItemBll>("SalaryItemBll");
         // GET: salaryCriterion
         public ActionResult salarystandard_register()
         {
             users s = Session["user"] as users;
             ViewBag.user = s.u_name;
             ViewBag.number = NextNumber(bll.FindID());//把自动生成的编号传给前台显示
-            return View();
+            return View(bll2.FindAll());
         }
         //根据页面的原有的编号自动生成新的编号
         public string NextNumber(string BaseNumber)
