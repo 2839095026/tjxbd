@@ -34,5 +34,10 @@ namespace BLL
         {
             return dao.FindAll();
         }
+
+        public List<config_file_third_kind> GetConfigFileThirdKindBySKID(string skid)
+        {
+            return dao.GetConfigFileThirdKindBySKID(skid);
+        }
     }
 }

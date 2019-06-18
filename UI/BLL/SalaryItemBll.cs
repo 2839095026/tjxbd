@@ -10,7 +10,7 @@ using IDAO;
 
 namespace BLL
 {
-    //IBLL.IBonusBll bll = IocContainer.IocCreate.CreateBll<IBLL.IBonusBll>("BonusBll");
+    //IBLL.ISalaryItemBll bll = IocContainer.IocCreate.CreateBll<IBLL.ISalaryItemBll>("SalaryItemBll");
     public class SalaryItemBll : ISalaryItemBll
     {
         ISalaryItemDao<salary_item> dao = IocCreate.CreateDao<ISalaryItemDao<salary_item>>("SalaryItemDao");

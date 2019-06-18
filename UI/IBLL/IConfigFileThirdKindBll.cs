@@ -13,5 +13,12 @@ namespace IBLL
         int Del(config_file_third_kind t);
         int Change(config_file_third_kind t);
 
+
+        /// <summary>
+        /// 根据二级机构查询三级机构
+        /// </summary>
+        /// <param name="skid"></param>
+        /// <returns></returns>
+        List<config_file_third_kind> GetConfigFileThirdKindBySKID(string skid);
     }
 }

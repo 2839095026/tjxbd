@@ -34,5 +34,15 @@ namespace BLL
         {
             return dao.FindAll();
         }
+
+        public List<config_major> GetAllMajorKindName()
+        {
+            return dao.GetAllMajorKindName();
+        }
+
+        public List<config_major> GetAllMajorName(string mkid)
+        {
+            return dao.GetAllMajorName(mkid);
+        }
     }
 }

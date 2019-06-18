@@ -50,10 +50,10 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin.Security">
-      <HintPath>..\..\..\..\..\T09\WebApplication2\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <HintPath>C:\Users\xhuan\source\repos\hr\WebApplication1\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin.Security.Facebook">
-      <HintPath>..\..\..\..\..\T09\WebApplication2\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+      <HintPath>C:\Users\xhuan\source\repos\hr\WebApplication1\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -167,9 +167,10 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\ApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\indexController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PositionController.cs" />
     <Compile Include="Controllers\salaryCriterionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -649,13 +650,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\login.cshtml" />
     <Content Include="Views\salaryCriterion\salarystandard_register.cshtml" />
-    <Content Include="Views\index\Index.cshtml" />
-    <Content Include="Views\index\top.cshtml" />
-    <Content Include="Views\index\left.cshtml" />
-    <Content Include="Views\index\main.cshtml" />
+    <Content Include="Views\Position\position_register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Api\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
