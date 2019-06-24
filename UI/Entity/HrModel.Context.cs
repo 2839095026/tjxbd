@@ -56,5 +56,6 @@ namespace Entity
         public virtual DbSet<RolePermissions> RolePermissions { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<salary_item> salary_item { get; set; }
+        public virtual DbSet<users_roles> users_roles { get; set; }
     }
 }

@@ -61,12 +61,17 @@
     <Compile Include="IHumanFileDao.cs" />
     <Compile Include="IHumanFileDigDao.cs" />
     <Compile Include="IMajorChangeDao.cs" />
+    <Compile Include="IPermissionsDao.cs" />
+    <Compile Include="IRolePermissionsDao.cs" />
+    <Compile Include="IRolesDao.cs" />
     <Compile Include="ISalaryGrantDao.cs" />
     <Compile Include="ISalaryGrantDetailsDao.cs" />
+    <Compile Include="ISalaryItemDao.cs" />
     <Compile Include="ISalaryStandardDao.cs" />
     <Compile Include="ISalaryStandardDetailsDao.cs" />
     <Compile Include="ITrainingDao.cs" />
     <Compile Include="IUsersDao.cs" />
+    <Compile Include="IUsersRolesDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

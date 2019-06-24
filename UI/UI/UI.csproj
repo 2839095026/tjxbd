@@ -50,14 +50,15 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin.Security">
-      <HintPath>C:\Users\xhuan\source\repos\hr\WebApplication1\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin.Security.Facebook">
-      <HintPath>C:\Users\xhuan\source\repos\hr\WebApplication1\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -169,8 +170,10 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\ApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\indexController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PositionController.cs" />
+    <Compile Include="Controllers\powerController.cs" />
     <Compile Include="Controllers\salaryCriterionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -651,9 +654,21 @@
     <Content Include="Views\Login\login.cshtml" />
     <Content Include="Views\salaryCriterion\salarystandard_register.cshtml" />
     <Content Include="Views\Position\position_register.cshtml" />
+    <Content Include="Views\index\Index.cshtml" />
+    <Content Include="Views\index\top.cshtml" />
+    <Content Include="Views\index\left.cshtml" />
+    <Content Include="Views\index\main.cshtml" />
+    <Content Include="Views\power\user_list.cshtml" />
+    <Content Include="Views\power\user_edit.cshtml" />
+    <Content Include="Views\power\user_add.cshtml" />
+    <Content Include="Views\power\right_list.cshtml" />
+    <Content Include="Views\power\right_add.cshtml" />
+    <Content Include="Views\power\success.cshtml" />
+    <Content Include="Views\power\right_list_information.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="jquery-easyui-1.3.5\" />
     <Folder Include="Views\Api\" />
   </ItemGroup>
   <ItemGroup>

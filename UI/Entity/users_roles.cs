@@ -12,14 +12,12 @@ namespace Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class users
+    public partial class users_roles
     {
         public short u_id { get; set; }
         public string u_name { get; set; }
         public string u_true_name { get; set; }
         public string u_password { get; set; }
-        public int RoleID { get; set; }
-    
-        public virtual Roles Roles { get; set; }
+        public string RoleName { get; set; }
     }
 }

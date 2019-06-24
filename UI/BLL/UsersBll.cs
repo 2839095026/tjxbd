@@ -7,6 +7,7 @@ using Entity;
 using IBLL;
 using IDAO;
 using IocContainer;
+using System.Data;
 
 namespace BLL
 {
@@ -39,5 +40,18 @@ namespace BLL
         {
             return dao.Login(u);
         }
+        public DataTable FindAllliangbiao(string fileName)
+        {
+            return dao.FindAllliangbiao(fileName);
+        }
+        public List<users> SelectWhere(int id)
+        {
+            return dao.SelectWhere(t=>t.u_id==id);
+        }
+        public List<users> FenYe(int pageIndex, int pageSize, out int Count)
+        {
+            return dao.FenYe<int>(pageIndex,pageSize,out Count,e=>e.u_id !=0, e => e.u_id);
+        }
+
     }
 }

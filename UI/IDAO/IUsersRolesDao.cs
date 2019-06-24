@@ -7,17 +7,13 @@ using System.Threading.Tasks;
 
 namespace IDAO
 {
-    public interface IConfigFileThirdKindDao<T>
+    public interface IUsersRolesDao<T>
     {
         List<T> FindAll();
         int Add(T t);
         int Del(T t);
         int Change(T t);
-        /// <summary>
-        /// 根据二级机构查询三级机构
-        /// </summary>
-        /// <param name="skid"></param>
-        /// <returns></returns>
-        List<T> GetConfigFileThirdKindBySKID(string skid);
+        List<T> FenYe<K>(int pageIndex, int pageSize, out int Count, Expression<Func<T, bool>> where, Expression<Func<T, K>> order);
+
     }
 }

@@ -129,11 +129,23 @@
     <Compile Include="major_change.cs">
       <DependentUpon>HrModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Permissions.cs">
+      <DependentUpon>HrModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RolePermissions.cs">
+      <DependentUpon>HrModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Roles.cs">
+      <DependentUpon>HrModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="salary_grant.cs">
       <DependentUpon>HrModel.tt</DependentUpon>
     </Compile>
     <Compile Include="salary_grant_details.cs">
+      <DependentUpon>HrModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="salary_item.cs">
       <DependentUpon>HrModel.tt</DependentUpon>
     </Compile>
     <Compile Include="salary_standard.cs">
@@ -146,6 +158,9 @@
       <DependentUpon>HrModel.tt</DependentUpon>
     </Compile>
     <Compile Include="users.cs">
+      <DependentUpon>HrModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="users_roles.cs">
       <DependentUpon>HrModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

@@ -1,6 +1,7 @@
 $(function () {
     //获取一级机构
     $.post("/api/GetConfigFileFirstKind", function (data) {
+        console.log("加载一级分类")
         var firstSelect = $("#firstKindId");
         firstSelect.empty();
         firstSelect.append('<option value="">--请选择--</option>')
@@ -8,10 +9,10 @@ $(function () {
             firstSelect.append('<option value="' + data[i].first_kind_id + '">' + data[i].first_kind_name + '</option>')
         }
     }, "json")
-    //选中一级机构时获取二级机构
+    //获取二级机构
     $("#firstKindId").change(function () {
+        console.log("加载二级分类")
         $.post("/api/GetConfigFileSecondKindByFKID?fkid=" + $(this).val(), function (data) {
-
             var secondSelect = $("#secondKindId");
             secondSelect.empty();
             secondSelect.append('<option value="">--请选择--</option>')
@@ -20,28 +21,19 @@ $(function () {
             }
         }, "json")
     });
+    //获取三级机构
     $("#secondKindId").change(function () {
-        var secondText = $("#secondKindId").find("option:selected").text();
-        $("#secondKindName").val(secondText);
-
-        $.ajax({
-            cache: false,
-            url: "/HR_Fist/recruit/recruitAction!selectjilian3",
-            data: "firstKind=" + $("#firstKindId").val() + "&secondId=" + $(this).val(),
-            dataType: "xml",
-            type: "POST",
-            error: function () { alert("awewe"); },
-            success: function (data) {
-                var items = $(data).find("item");
-                var thirdKind = $("#thirdKindId");
-                thirdKind.html("<option value=''>--请选择--</option>");
-                items.each(function (i) {
-                    var option = $("<option></option>");
-                    option.val($(items[i]).attr("id")).html($(items[i]).attr("value")).appendTo(thirdKind);
-
-                });
+        console.log("加载三级分类")
+        $.post("/api/GetConfigFileThirdKindBySKID?skid=" + $(this).val(), function (data) {
+            var thirdSelect = $("#thirdKindId");
+            thirdSelect.empty();
+            thirdSelect.append('<option value="">--请选择--</option>')
+            for (i in data) {
+                thirdSelect.append('<option value="' + data[i].second_kind_id + '">' + data[i].second_kind_name + '</option>')
             }
-        });
+        }, "json")
+
+
     });
 
     $("#thirdKindId").change(function () {

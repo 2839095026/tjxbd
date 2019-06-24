@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Expression.cs" />
     <Compile Include="IBonusBll.cs" />
     <Compile Include="IConfigFileFirstKindBll.cs" />
     <Compile Include="IConfigFileSecondKindBll.cs" />
@@ -61,12 +62,17 @@
     <Compile Include="IHumanFileBll.cs" />
     <Compile Include="IHumanFileDigBll.cs" />
     <Compile Include="IMajorChangeBll.cs" />
+    <Compile Include="IPermissionsBll.cs" />
+    <Compile Include="IRolePermissionsBll.cs" />
+    <Compile Include="IRolesBll.cs" />
     <Compile Include="ISalaryGrantBll.cs" />
     <Compile Include="ISalaryGrantDetailsBll.cs" />
+    <Compile Include="ISalaryItemBll.cs" />
     <Compile Include="ISalaryStandardBll.cs" />
     <Compile Include="ISalaryStandardDetailsBll.cs" />
     <Compile Include="ITrainingBll.cs" />
     <Compile Include="IUsersBll.cs" />
+    <Compile Include="IUsersRolesBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
