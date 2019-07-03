@@ -20,5 +20,6 @@ namespace IBLL
         /// <param name="skid"></param>
         /// <returns></returns>
         List<config_file_third_kind> GetConfigFileThirdKindBySKID(string skid);
+        List<config_file_third_kind> SelectWhere(int id);
     }
 }

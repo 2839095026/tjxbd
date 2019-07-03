@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entity;
+using System.Data;
+
 namespace IBLL
 {
     public interface IConfigPublicCharBll
@@ -13,6 +15,7 @@ namespace IBLL
         int Add(config_public_char t);
         int Del(config_public_char t);
         int Change(config_public_char t);
+        DataTable FindSelect(string fileName);
 
 
     }

@@ -32,6 +32,7 @@ namespace UI.Controllers
         public ActionResult user_edit(int id)//修改
         {
             ViewBag.st = usersBll.SelectWhere(id).FirstOrDefault();
+
             List<Roles> list = role.FindAll();
 
             ViewBag.stt = role.SelectWhere(id).FirstOrDefault();

@@ -443,25 +443,25 @@
             <PropertyRef Name="mch_id" />
           </Key>
           <Property Name="mch_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="first_kind_id" Type="char" MaxLength="2" />
+          <Property Name="first_kind_id" Type="nvarchar" MaxLength="50" />
           <Property Name="first_kind_name" Type="varchar" MaxLength="60" />
-          <Property Name="second_kind_id" Type="char" MaxLength="2" />
+          <Property Name="second_kind_id" Type="nvarchar" MaxLength="50" />
           <Property Name="second_kind_name" Type="varchar" MaxLength="60" />
-          <Property Name="third_kind_id" Type="char" MaxLength="2" />
+          <Property Name="third_kind_id" Type="nvarchar" MaxLength="50" />
           <Property Name="third_kind_name" Type="varchar" MaxLength="60" />
-          <Property Name="major_kind_id" Type="char" MaxLength="2" />
+          <Property Name="major_kind_id" Type="nvarchar" MaxLength="50" />
           <Property Name="major_kind_name" Type="varchar" MaxLength="60" />
-          <Property Name="major_id" Type="char" MaxLength="2" />
+          <Property Name="major_id" Type="nvarchar" MaxLength="50" />
           <Property Name="major_name" Type="varchar" MaxLength="60" />
-          <Property Name="new_first_kind_id" Type="char" MaxLength="2" />
+          <Property Name="new_first_kind_id" Type="nvarchar" MaxLength="50" />
           <Property Name="new_first_kind_name" Type="varchar" MaxLength="60" />
-          <Property Name="new_second_kind_id" Type="char" MaxLength="2" />
+          <Property Name="new_second_kind_id" Type="nvarchar" MaxLength="50" />
           <Property Name="new_second_kind_name" Type="varchar" MaxLength="60" />
-          <Property Name="new_third_kind_id" Type="char" MaxLength="2" />
+          <Property Name="new_third_kind_id" Type="nvarchar" MaxLength="50" />
           <Property Name="new_third_kind_name" Type="varchar" MaxLength="60" />
-          <Property Name="new_major_kind_id" Type="char" MaxLength="2" />
+          <Property Name="new_major_kind_id" Type="nvarchar" MaxLength="50" />
           <Property Name="new_major_kind_name" Type="varchar" MaxLength="60" />
-          <Property Name="new_major_id" Type="char" MaxLength="2" />
+          <Property Name="new_major_id" Type="nvarchar" MaxLength="50" />
           <Property Name="new_major_name" Type="varchar" MaxLength="60" />
           <Property Name="human_id" Type="varchar" MaxLength="30" />
           <Property Name="human_name" Type="varchar" MaxLength="60" />
@@ -1122,47 +1122,6 @@
           <Property Name="recovery_time" Type="DateTime" Precision="3" />
           <Property Name="human_file_status" Type="Boolean" />
         </EntityType>
-        <EntityType Name="major_change">
-          <Key>
-            <PropertyRef Name="mch_id" />
-          </Key>
-          <Property Name="mch_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="first_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
-          <Property Name="first_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="second_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
-          <Property Name="second_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="third_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
-          <Property Name="third_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="major_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
-          <Property Name="major_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="major_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
-          <Property Name="major_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="new_first_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
-          <Property Name="new_first_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="new_second_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
-          <Property Name="new_second_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="new_third_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
-          <Property Name="new_third_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="new_major_kind_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
-          <Property Name="new_major_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="new_major_id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
-          <Property Name="new_major_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="human_id" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="human_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="salary_standard_id" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="salary_standard_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="salary_sum" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="new_salary_standard_id" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="new_salary_standard_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="new_salary_sum" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="change_reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="check_reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="check_status" Type="Int16" />
-          <Property Name="register" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="checker" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="regist_time" Type="DateTime" Precision="3" />
-          <Property Name="check_time" Type="DateTime" Precision="3" />
-        </EntityType>
         <EntityType Name="salary_grant">
           <Key>
             <PropertyRef Name="sgr_id" />
@@ -1284,7 +1243,6 @@
           <EntitySet Name="engage_subjects" EntityType="Self.engage_subjects" />
           <EntitySet Name="human_file" EntityType="Self.human_file" />
           <EntitySet Name="human_file_dig" EntityType="Self.human_file_dig" />
-          <EntitySet Name="major_change" EntityType="Self.major_change" />
           <EntitySet Name="salary_grant" EntityType="Self.salary_grant" />
           <EntitySet Name="salary_grant_details" EntityType="Self.salary_grant_details" />
           <EntitySet Name="salary_standard" EntityType="Self.salary_standard" />
@@ -1300,6 +1258,7 @@
             <End Role="users" EntitySet="users" />
           </AssociationSet>
           <EntitySet Name="users_roles" EntityType="HR_DBModel.users_roles" />
+          <EntitySet Name="major_change" EntityType="HR_DBModel.major_change" />
         </EntityContainer>
         <EntityType Name="Permissions">
           <Key>
@@ -1360,6 +1319,47 @@
           <Property Name="u_true_name" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="u_password" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="major_change">
+          <Key>
+            <PropertyRef Name="mch_id" />
+          </Key>
+          <Property Name="mch_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_kind_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="first_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="second_kind_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="second_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="third_kind_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="third_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="major_kind_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="major_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="major_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="major_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="new_first_kind_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="new_first_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="new_second_kind_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="new_second_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="new_third_kind_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="new_third_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="new_major_kind_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="new_major_kind_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="new_major_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="new_major_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="human_id" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="human_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="salary_standard_id" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="salary_standard_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="salary_sum" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="new_salary_standard_id" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="new_salary_standard_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="new_salary_sum" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="change_reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="check_reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="check_status" Type="Int16" />
+          <Property Name="register" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="checker" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="regist_time" Type="DateTime" Precision="3" />
+          <Property Name="check_time" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1820,48 +1820,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="major_change">
-            <EntityTypeMapping TypeName="HR_DBModel.major_change">
-              <MappingFragment StoreEntitySet="major_change">
-                <ScalarProperty Name="mch_id" ColumnName="mch_id" />
-                <ScalarProperty Name="first_kind_id" ColumnName="first_kind_id" />
-                <ScalarProperty Name="first_kind_name" ColumnName="first_kind_name" />
-                <ScalarProperty Name="second_kind_id" ColumnName="second_kind_id" />
-                <ScalarProperty Name="second_kind_name" ColumnName="second_kind_name" />
-                <ScalarProperty Name="third_kind_id" ColumnName="third_kind_id" />
-                <ScalarProperty Name="third_kind_name" ColumnName="third_kind_name" />
-                <ScalarProperty Name="major_kind_id" ColumnName="major_kind_id" />
-                <ScalarProperty Name="major_kind_name" ColumnName="major_kind_name" />
-                <ScalarProperty Name="major_id" ColumnName="major_id" />
-                <ScalarProperty Name="major_name" ColumnName="major_name" />
-                <ScalarProperty Name="new_first_kind_id" ColumnName="new_first_kind_id" />
-                <ScalarProperty Name="new_first_kind_name" ColumnName="new_first_kind_name" />
-                <ScalarProperty Name="new_second_kind_id" ColumnName="new_second_kind_id" />
-                <ScalarProperty Name="new_second_kind_name" ColumnName="new_second_kind_name" />
-                <ScalarProperty Name="new_third_kind_id" ColumnName="new_third_kind_id" />
-                <ScalarProperty Name="new_third_kind_name" ColumnName="new_third_kind_name" />
-                <ScalarProperty Name="new_major_kind_id" ColumnName="new_major_kind_id" />
-                <ScalarProperty Name="new_major_kind_name" ColumnName="new_major_kind_name" />
-                <ScalarProperty Name="new_major_id" ColumnName="new_major_id" />
-                <ScalarProperty Name="new_major_name" ColumnName="new_major_name" />
-                <ScalarProperty Name="human_id" ColumnName="human_id" />
-                <ScalarProperty Name="human_name" ColumnName="human_name" />
-                <ScalarProperty Name="salary_standard_id" ColumnName="salary_standard_id" />
-                <ScalarProperty Name="salary_standard_name" ColumnName="salary_standard_name" />
-                <ScalarProperty Name="salary_sum" ColumnName="salary_sum" />
-                <ScalarProperty Name="new_salary_standard_id" ColumnName="new_salary_standard_id" />
-                <ScalarProperty Name="new_salary_standard_name" ColumnName="new_salary_standard_name" />
-                <ScalarProperty Name="new_salary_sum" ColumnName="new_salary_sum" />
-                <ScalarProperty Name="change_reason" ColumnName="change_reason" />
-                <ScalarProperty Name="check_reason" ColumnName="check_reason" />
-                <ScalarProperty Name="check_status" ColumnName="check_status" />
-                <ScalarProperty Name="register" ColumnName="register" />
-                <ScalarProperty Name="checker" ColumnName="checker" />
-                <ScalarProperty Name="regist_time" ColumnName="regist_time" />
-                <ScalarProperty Name="check_time" ColumnName="check_time" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="salary_grant">
             <EntityTypeMapping TypeName="HR_DBModel.salary_grant">
               <MappingFragment StoreEntitySet="salary_grant">
@@ -2013,6 +1971,48 @@
                 <ScalarProperty Name="u_true_name" ColumnName="u_true_name" />
                 <ScalarProperty Name="u_name" ColumnName="u_name" />
                 <ScalarProperty Name="u_id" ColumnName="u_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="major_change">
+            <EntityTypeMapping TypeName="HR_DBModel.major_change">
+              <MappingFragment StoreEntitySet="major_change">
+                <ScalarProperty Name="check_time" ColumnName="check_time" />
+                <ScalarProperty Name="regist_time" ColumnName="regist_time" />
+                <ScalarProperty Name="checker" ColumnName="checker" />
+                <ScalarProperty Name="register" ColumnName="register" />
+                <ScalarProperty Name="check_status" ColumnName="check_status" />
+                <ScalarProperty Name="check_reason" ColumnName="check_reason" />
+                <ScalarProperty Name="change_reason" ColumnName="change_reason" />
+                <ScalarProperty Name="new_salary_sum" ColumnName="new_salary_sum" />
+                <ScalarProperty Name="new_salary_standard_name" ColumnName="new_salary_standard_name" />
+                <ScalarProperty Name="new_salary_standard_id" ColumnName="new_salary_standard_id" />
+                <ScalarProperty Name="salary_sum" ColumnName="salary_sum" />
+                <ScalarProperty Name="salary_standard_name" ColumnName="salary_standard_name" />
+                <ScalarProperty Name="salary_standard_id" ColumnName="salary_standard_id" />
+                <ScalarProperty Name="human_name" ColumnName="human_name" />
+                <ScalarProperty Name="human_id" ColumnName="human_id" />
+                <ScalarProperty Name="new_major_name" ColumnName="new_major_name" />
+                <ScalarProperty Name="new_major_id" ColumnName="new_major_id" />
+                <ScalarProperty Name="new_major_kind_name" ColumnName="new_major_kind_name" />
+                <ScalarProperty Name="new_major_kind_id" ColumnName="new_major_kind_id" />
+                <ScalarProperty Name="new_third_kind_name" ColumnName="new_third_kind_name" />
+                <ScalarProperty Name="new_third_kind_id" ColumnName="new_third_kind_id" />
+                <ScalarProperty Name="new_second_kind_name" ColumnName="new_second_kind_name" />
+                <ScalarProperty Name="new_second_kind_id" ColumnName="new_second_kind_id" />
+                <ScalarProperty Name="new_first_kind_name" ColumnName="new_first_kind_name" />
+                <ScalarProperty Name="new_first_kind_id" ColumnName="new_first_kind_id" />
+                <ScalarProperty Name="major_name" ColumnName="major_name" />
+                <ScalarProperty Name="major_id" ColumnName="major_id" />
+                <ScalarProperty Name="major_kind_name" ColumnName="major_kind_name" />
+                <ScalarProperty Name="major_kind_id" ColumnName="major_kind_id" />
+                <ScalarProperty Name="third_kind_name" ColumnName="third_kind_name" />
+                <ScalarProperty Name="third_kind_id" ColumnName="third_kind_id" />
+                <ScalarProperty Name="second_kind_name" ColumnName="second_kind_name" />
+                <ScalarProperty Name="second_kind_id" ColumnName="second_kind_id" />
+                <ScalarProperty Name="first_kind_name" ColumnName="first_kind_name" />
+                <ScalarProperty Name="first_kind_id" ColumnName="first_kind_id" />
+                <ScalarProperty Name="mch_id" ColumnName="mch_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

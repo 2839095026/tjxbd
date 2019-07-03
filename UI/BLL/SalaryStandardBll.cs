@@ -7,6 +7,7 @@ using Entity;
 using IBLL;
 using IDAO;
 using IocContainer;
+using System.Data;
 
 namespace BLL
 {
@@ -39,6 +40,14 @@ namespace BLL
         public string FindID()
         {
             return dao.FindID();
+        }
+        public DataTable XinChou(string fileName)
+        {
+            return dao.XinChou(fileName);
+        }
+        public DataTable XinChouMoney(string id, string fileName)
+        {
+            return dao.XinChouMoney(id,fileName);
         }
     }
 }

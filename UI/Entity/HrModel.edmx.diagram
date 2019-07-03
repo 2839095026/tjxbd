@@ -25,7 +25,6 @@
         <EntityTypeShape EntityType="HR_DBModel.engage_subjects" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HR_DBModel.human_file" Width="1.5" PointX="12.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HR_DBModel.human_file_dig" Width="1.5" PointX="6.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HR_DBModel.major_change" Width="1.5" PointX="2.75" PointY="13.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HR_DBModel.salary_grant" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HR_DBModel.salary_grant_details" Width="1.5" PointX="14.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HR_DBModel.salary_standard" Width="1.5" PointX="14.75" PointY="9.75" IsExpanded="true" />
@@ -38,6 +37,7 @@
         <EntityTypeShape EntityType="HR_DBModel.salary_item" Width="1.5" PointX="15.375" PointY="17.75" />
         <AssociationConnector Association="HR_DBModel.FK_users_Roles" />
         <EntityTypeShape EntityType="HR_DBModel.users_roles" Width="1.5" PointX="17.375" PointY="17.75" />
+        <EntityTypeShape EntityType="HR_DBModel.major_change" Width="1.5" PointX="3.375" PointY="13.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

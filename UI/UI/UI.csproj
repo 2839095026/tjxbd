@@ -169,12 +169,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\ApiController.cs" />
+    <Compile Include="Controllers\clientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\indexController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PositionController.cs" />
     <Compile Include="Controllers\powerController.cs" />
     <Compile Include="Controllers\salaryCriterionController.cs" />
+    <Compile Include="Controllers\transferController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -665,6 +667,39 @@
     <Content Include="Views\power\right_add.cshtml" />
     <Content Include="Views\power\success.cshtml" />
     <Content Include="Views\power\right_list_information.cshtml" />
+    <Content Include="Views\transfer\register_locate.cshtml" />
+    <Content Include="Views\transfer\register_list.cshtml" />
+    <Content Include="Views\transfer\register.cshtml" />
+    <Content Include="Views\transfer\register_success.cshtml" />
+    <Content Include="Views\transfer\check_list.cshtml" />
+    <Content Include="Views\transfer\check.cshtml" />
+    <Content Include="Views\transfer\check_success.cshtml" />
+    <Content Include="Views\transfer\locate.cshtml" />
+    <Content Include="Views\transfer\list.cshtml" />
+    <Content Include="Views\transfer\detail.cshtml" />
+    <Content Include="Views\client\first_kind.cshtml" />
+    <Content Include="Views\client\first_kind_register.cshtml" />
+    <Content Include="Views\client\first_kind_register_success.cshtml" />
+    <Content Include="Views\client\first_kind_change.cshtml" />
+    <Content Include="Views\client\first_kind_change_success.cshtml" />
+    <Content Include="Views\client\first_delete_success.cshtml" />
+    <Content Include="Views\client\second_kind.cshtml" />
+    <Content Include="Views\client\second_kind_change.cshtml" />
+    <Content Include="Views\client\second_kind_change_success.cshtml" />
+    <Content Include="Views\client\second_kind_register.cshtml" />
+    <Content Include="Views\client\second_kind_register_success.cshtml" />
+    <Content Include="Views\client\second_delete_success.cshtml" />
+    <Content Include="Views\client\third_kind.cshtml" />
+    <Content Include="Views\client\third_kind_change_success.cshtml" />
+    <Content Include="Views\client\third_kind_change.cshtml" />
+    <Content Include="Views\client\third_kind_register.cshtml" />
+    <Content Include="Views\client\third_kind_register_success.cshtml" />
+    <Content Include="Views\client\third_delete_success.cshtml" />
+    <Content Include="Views\client\profession_design.cshtml" />
+    <Content Include="Views\client\major_kind.cshtml" />
+    <Content Include="Views\client\major_kind_add.cshtml" />
+    <Content Include="Views\client\major.cshtml" />
+    <Content Include="Views\client\major_add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

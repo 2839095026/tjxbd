@@ -14,6 +14,7 @@ namespace IDAO
         int Add(T t);
         int Del(T t);
         int Change(T t);
-        
+        List<T> SelectWhere(Expression<Func<T, bool>> where);
+
     }
 }

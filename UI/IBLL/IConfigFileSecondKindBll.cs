@@ -20,5 +20,6 @@ namespace IBLL
         /// <param name="id"></param>
         /// <returns></returns>
         List<config_file_second_kind> GetConfigFileSecondKindByFKID(string fkid);
+        List<config_file_second_kind> SelectWhere(int id);
     }
 }
