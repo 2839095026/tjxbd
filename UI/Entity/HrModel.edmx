@@ -607,7 +607,20 @@
           <Property Name="u_name" Type="varchar" MaxLength="60" Nullable="false" />
           <Property Name="u_true_name" Type="varchar" MaxLength="60" Nullable="false" />
           <Property Name="u_password" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_users_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="HR_DBModelStoreContainer">
           <EntitySet Name="bonus" EntityType="Self.bonus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="config_file_first_kind" EntityType="Self.config_file_first_kind" Schema="dbo" store:Type="Tables" />
@@ -640,6 +653,10 @@
           <EntitySet Name="salary_standard_details" EntityType="Self.salary_standard_details" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="training" EntityType="Self.training" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_users_Roles" Association="Self.FK_users_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -1215,6 +1232,8 @@
           <Property Name="u_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="u_true_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="u_password" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Roles" Relationship="HR_DBModel.FK_users_Roles" FromRole="users" ToRole="Roles" />
         </EntityType>
         <EntityContainer Name="HR_DBEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="bonus" EntityType="Self.bonus" />
@@ -1248,6 +1267,10 @@
           <EntitySet Name="RolePermissions" EntityType="HR_DBModel.RolePermissions" />
           <EntitySet Name="Roles" EntityType="HR_DBModel.Roles" />
           <EntitySet Name="salary_item" EntityType="HR_DBModel.salary_item" />
+          <AssociationSet Name="FK_users_Roles" Association="HR_DBModel.FK_users_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Permissions">
           <Key>
@@ -1273,6 +1296,7 @@
           </Key>
           <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="users" Relationship="HR_DBModel.FK_users_Roles" FromRole="Roles" ToRole="users" />
         </EntityType>
         <EntityType Name="salary_item">
           <Key>
@@ -1281,6 +1305,18 @@
           <Property Name="item_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="item_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <Association Name="FK_users_Roles">
+          <End Type="HR_DBModel.Roles" Role="Roles" Multiplicity="1" />
+          <End Type="HR_DBModel.users" Role="users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1878,6 +1914,7 @@
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="HR_DBModel.users">
               <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
                 <ScalarProperty Name="u_id" ColumnName="u_id" />
                 <ScalarProperty Name="u_name" ColumnName="u_name" />
                 <ScalarProperty Name="u_true_name" ColumnName="u_true_name" />

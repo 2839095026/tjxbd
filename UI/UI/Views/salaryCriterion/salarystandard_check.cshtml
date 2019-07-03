@@ -1,61 +1,65 @@
-﻿@model List<Entity.salary_item>
+﻿@model Entity.salary_standard
 @{
     Layout = null;
-    ViewBag.Title = "salarystandard_register";
+    ViewBag.Title = "salarystandard_check";
 }
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-trasitional.dtd">
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="~/css/table.css" type="text/css" />
-    <script type="text/javascript" src="~/javascript/comm/comm.js"></script>
-    <script type="text/javascript" src="~/javascript/jquery-1.7.2.js"></script>
+    <link rel="stylesheet" href="../../css/table.css" type="text/css" />
     <title>无标题文档</title>
+
 </head>
+
 <body>
 
-    <form method="post" action="Create">
+    <form method="post" action="salarystandard_check_success">
+
+
         <table width="100%">
             <tr>
                 <td>
-                    <font color="black">
-                        您正在做的业务是：人力资源--薪酬标准管理--薪酬标准登记
-                    </font>
+                    <font color="#0000CC">您正在做的业务是:人力资源管理--薪酬标准管理--薪酬标准登记复核</font>
                 </td>
             </tr>
             <tr>
-                <td align="right">
-                    <input type="button" value="提 交" onclick="check()" class="BUTTON_STYLE1">
-                    <input type="reset" value="返 回" class="BUTTON_STYLE1">
+                <td>
+                    <div align="right">
+                        <input type="button" value="复核通过" class="BUTTON_STYLE1" onclick="check();">
+                        <input type="button" value="返回" onclick="history.back();" class="BUTTON_STYLE1">
+                    </div>
                 </td>
             </tr>
         </table>
-        <table id="stable" width="100%" border="1" cellpadding=0 cellspacing=1
-               bordercolorlight=#848284 bordercolordark=#eeeeee
+
+        <table width="100%" border="1" cellpadding=0 cellspacing=1
+               bordercolorlight='#848284' bordercolordark='#eeeeee'
                class="TABLE_STYLE1">
             <tr>
-                <td width="74" class="TD_STYLE1">
-                    薪酬标准编号
+                <td width="12%" class="TD_STYLE1">
+                    薪酬编号
                 </td>
-                <td width="168" class="TD_STYLE2">
-                    <input type="text" name="standard_id" value="@ViewBag.number" readonly="readonly" class="INPUT_STYLE2">
+                <td width="15%" class="TD_STYLE2">
+                    <input type="text" name="standard_id" value="@Model.standard_id" readonly />
                 </td>
-                <td width="83" class="TD_STYLE1">
+                <td width="12%" class="TD_STYLE1">
                     薪酬标准名称
                 </td>
-                <td width="171" class="TD_STYLE2">
-                    <input type="text" name="standard_name" id="standardName" class="INPUT_STYLE2">
+                <td width="11%" class="TD_STYLE2">
+                    <input type="text" name="standard_name" id="standardName" value="@Model.standard_name" class="INPUT_STYLE2" readonly>
+
                 </td>
-                <td width="170" class="TD_STYLE1">
+                <td width="11%" class="TD_STYLE1">
                     薪酬总额
                 </td>
-                <td width="138" class="TD_STYLE2">
-                    <input type="text" name="salary_sum" id="sumSalary" value="0.0" readonly class="INPUT_STYLE2" />
+                <td width="17%" class="TD_STYLE2">
+                    <input type="text" name="salary_sum" value="@Model.salary_sum" id="sumSalary" class="INPUT_STYLE2" readonly>
                 </td>
-                <td width="103" class="TD_STYLE1">
+                <td width="12%" class="TD_STYLE1">
                     &nbsp;
                 </td>
-                <td width="95" height="26" class="TD_STYLE2">
+                <td width="10%" class="TD_STYLE2">
                     &nbsp;
                 </td>
             </tr>
@@ -64,19 +68,23 @@
                     制定人
                 </td>
                 <td class="TD_STYLE2">
-                    <input type="text" id="designer" name="designer" class="INPUT_STYLE2">
+                    <input type="text" name="designer" id="designer" value="@Model.designer" class="INPUT_STYLE2" readonly>
+
                 </td>
                 <td class="TD_STYLE1">
-                    登记人
+                    复核人
                 </td>
                 <td class="TD_STYLE2">
-                    <input type="text" name="register" value="@ViewBag.user" readonly="readonly" class="INPUT_STYLE2">
+                    <input type="text" name="checker" value="@ViewBag.user" class="INPUT_STYLE2">
                 </td>
                 <td class="TD_STYLE1">
-                    登记时间
+                    复核时间
                 </td>
                 <td class="TD_STYLE2">
-                    <input type="text" id="Tdate" name="regist_time" readonly="readonly" class="INPUT_STYLE2">
+                    <input type="text" name="check_time" id="Tdate" class="INPUT_STYLE2" readonly>
+                    <input type="hidden" name="ssd_id" value="@Model.ssd_id">
+                    <input type="hidden" name="register" value="@Model.register">
+                    <input type="hidden" name="regist_time" value="@Model.regist_time">
                 </td>
                 <td class="TD_STYLE1">
                     &nbsp;
@@ -87,58 +95,51 @@
             </tr>
             <tr>
                 <td class="TD_STYLE1">
-                    备注
+                    复核意见
                 </td>
                 <td colspan="7" class="TD_STYLE2">
-                    <textarea name="remark" rows="4" class="TEXTAREA_STYLE1"></textarea>
+                    <textarea name="check_comment" rows="4" class="INPUT_STYLE2"></textarea>
+
                 </td>
             </tr>
-            <tr class="TD_STYLE1">
-                <td align="center">
+            <tr>
+                <td class="TD_STYLE1">
                     序号
                 </td>
-                <td colspan="3">
+                <td colspan="3" class="TD_STYLE1">
                     薪酬项目名称
                 </td>
-                <td>
+                <td colspan="4" class="TD_STYLE1">
                     金额
                 </td>
-                <td colspan="3">
-                    &nbsp;
-                </td>
             </tr>
-            <tbody>
-                @{
-                        int i = 1;
-                        foreach (var item in Model) {
-                <tr class="TD_STYLE2">
-                    <td align="center">
-                        @item.item_id
-                        <input type="hidden" name="ssd[@{@(i-1)}].item_id" value="@item.item_id">
-                    </td>
-                    <td colspan="3">
-                        @item.item_name
-                        <input type="hidden" id="details@{@i}" name="ssd[@{@(i-1)}].item_name" value="@item.item_name">
-                    </td>
-                    <td>
-                        <input type="text" id="salary@{@i}" value="0.00" name="ssd[@{@(i-1)}].salary"
-                               onkeyup="countMoney(@Model.Count, 'salary@{@i}')" class="INPUT_STYLE2">
-                    </td>
-                    <td colspan="3">
-                        &nbsp;
-                    </td>
-                </tr>
+            @{
+                int i = 1;
+                foreach (var item in ViewBag.list)
+                {
+                    <tr class="TD_STYLE2">
+                        <td align="center">
+                            @item.item_id
+                        </td>
+                        <td colspan="3">
+                            <input type="hidden" name="item_name" value="@item.item_name" />
+                            @item.item_name
+                        </td>
+                        <td>
+                            <input type="text" id="salary@{@i}" value="@item.salary" name="details[0].salary"
+                                   onkeyup="countMoney(@(ViewBag.list.Count),'salary@{@i}')" class="INPUT_STYLE2" readonly>
 
-                        i++;
-                    } }
-            </tbody>
+                        </td>
+                        <td colspan="3">
+                            &nbsp;
+                        </td>
+                    </tr>
+    }}
         </table>
-        <p>
-            &nbsp;
-        </p>
     </form>
     <script type="text/javascript">
         function check() {
+
             var designer = document.getElementById("designer");
             var standardName = document.getElementById("standardName");
             if (designer.value.length <= 0) {

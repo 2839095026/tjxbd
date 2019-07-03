@@ -1,0 +1,330 @@
+﻿
+@{
+    Layout = null;
+    ViewBag.Title = "register_commit";
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-trasitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="~/css/table.css" type="text/css" />
+    <title>无标题文档</title>
+    <style type="text/css">
+        <!--
+        .style3 {
+            color: #0000CC;
+        }
+
+        td {
+            text-align: center;
+        }
+        -->
+    </style>
+
+    <script src="~/javascript/jquery-1.7.2.js"></script>
+
+</head>
+
+<body>
+    <form method="post" action="register_success">
+        @{
+            if ("I".Equals(ViewBag.submitType))
+            {
+                <input type="hidden" name="first_kind_id" value="@Request.QueryString["id"]"/>
+                <input type="hidden" name="first_kind_name" value="@Request.QueryString["name"]" />
+            }
+            else if ("II".Equals(ViewBag.submitType))
+            {
+                <input type="hidden" name="second_kind_id" value="@Request.QueryString["id"]" />
+                <input type="hidden" name="second_kind_name" value="@Request.QueryString["name"]" />
+            }
+            else if ("III".Equals(ViewBag.submitType))
+            {
+                <input type="hidden" name="third_kind_id" value="@Request.QueryString["id"]" />
+                <input type="hidden" name="third_kind_name" value="@Request.QueryString["name"]" />
+            }
+        }
+        <table width="100%">
+            <tr>
+                <td colspan="2" style="text-align: left">
+                    <font color="black">
+                        您正在做的业务是：人力资源--薪酬标准管理--薪酬发放登记
+                    </font>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: right;">
+                    <input type="submit" value="提交" class="BUTTON_STYLE1">
+                    <input type="button" value="返回" onclick="javascript:window.history.back();" class="BUTTON_STYLE1">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: left">
+                    薪酬单编号：@ViewBag.salary_grant_id
+                    <input type="hidden" name="salary_grant_id" value="@ViewBag.salary_grant_id">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: left">
+                    机构：
+                    @Request.QueryString["submitType"]级结构
+                </td>
+            </tr>
+            @{
+                double paid_salary_sum = 0;
+                double salary_sum = 0;
+                string salary_standard_id = "";
+                Dictionary<Entity.human_file, List<Entity.salary_standard_details>> dic = new Dictionary<Entity.human_file, List<Entity.salary_standard_details>>();
+                foreach (Entity.human_file item in ViewBag.human)
+                {
+                    List<Entity.salary_standard_details> ssd = new List<Entity.salary_standard_details>();
+                    foreach (Entity.salary_standard_details item2 in ViewBag.details)
+                    {
+                        if ("I".Equals(ViewBag.submitType))
+                        {
+                            if (int.Parse(item.first_kind_id) == (int.Parse(ViewBag.id)))
+                            {
+                                if (item.salary_standard_id.Equals(item2.standard_id))
+                                {
+                                    salary_standard_id = item2.standard_id;
+                                    paid_salary_sum += item.paid_salary_sum.HasValue == true ? (double)item.paid_salary_sum : 0.0;
+                                    salary_sum += (double)item2.salary;
+                                    ssd.Add(item2);
+                                }
+                            }
+                        }
+                        else if ("II".Equals(ViewBag.submitType))
+                        {
+                            if (int.Parse(item.second_kind_id) == (int.Parse(ViewBag.id)))
+                            {
+                                if (item.salary_standard_id.Equals(item2.standard_id))
+                                {
+                                    paid_salary_sum += item.paid_salary_sum.HasValue == true ? (double)item.paid_salary_sum : 0.0;
+                                    salary_sum += (double)item.salary_sum;
+                                    ssd.Add(item2);
+                                }
+                            }
+                        }
+                        else if ("III".Equals(ViewBag.submitType))
+                        {
+                            if (item.third_kind_id.Equals(ViewBag.id))
+                            {
+                                if (int.Parse(item.third_kind_id) == (int.Parse(ViewBag.id)))
+                                {
+                                    if (item.salary_standard_id.Equals(item2.standard_id))
+                                    {
+                                        paid_salary_sum += item.paid_salary_sum.HasValue == true ? (double)item.paid_salary_sum : 0.0;
+                                        salary_sum += (double)item.salary_sum;
+                                        ssd.Add(item2);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    dic.Add(item, ssd);
+                }
+            }
+            <tr>
+                <td style="text-align: left">
+                    本机构总人数:@dic.Count
+                    <input type="hidden" name="human_amount" value="@dic.Count">
+                    ，基本薪酬总数:@salary_sum<input type="hidden" name="salary_standard_sum" value="@salary_sum" />
+                    ，实发总额:<span id="salarySum_sum"></span>
+                    <input type="hidden" name="salary_paid_sum" id="salary_paid_sum"value=""/>
+
+                </td>
+                <td style="text-align: right;">
+                    登记人:<input type="text" name="register" value="@ViewBag.user" size="11" readonly="readonly">
+                    登记时间：<span id="Tdate"></span>
+                    <input type="hidden" name="regist_time" id="Tdate2" readonly>
+                </td>
+            </tr>
+        </table>
+
+
+        <table width="100%" border="1" cellpadding=0 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            <tr>
+                <td class="TD_STYLE1">
+                    <span>序号</span>
+                </td>
+                <td class="TD_STYLE1">
+                    <span>档案编号</span>
+                </td>
+                <td class="TD_STYLE1">
+                    <span>姓名</span>
+                </td>
+                @foreach (Entity.salary_item item in ViewBag.item)
+                {
+                    <td class="TD_STYLE1" width="4%">
+                        @item.item_name
+                    </td>
+                }
+                <td class="TD_STYLE1" width="7%">
+                    奖励金额
+                </td>
+                <td class="TD_STYLE1" width="7%">
+                    销售绩效总额
+                </td>
+                <td class="TD_STYLE1" width="7%">
+                    应扣金额
+                </td>
+                <td class="TD_STYLE1" width="7%">
+                    实发金额
+                </td>
+            </tr>
+            @{
+                int i = 1;
+                foreach (var item in dic)
+                {
+                    <tr class="TD_STYLE2">
+                        <td>
+                            @i
+                        </td>
+                        <td>
+                            @item.Key.human_id
+                            <input type="hidden" name="grantDetails[@{@(i - 1)}].human_id" value="@item.Key.human_id" />
+                        </td>
+                        <td>
+                            @item.Key.human_name
+                            <input type="hidden" name="grantDetails[@{@(i - 1)}].human_name" value="@item.Key.human_name" />
+                        </td>
+                        @{
+                            List<Entity.salary_standard_details> details = item.Value.OrderBy(e => e.item_id).ToList();
+                            List<Entity.salary_item> salaryItem = (ViewBag.item as List<Entity.salary_item>);
+                            int reader = 0;
+                            double sum = 0;
+                            for (int K = 0; K < salaryItem.Count; K++)
+                            {
+                                //当前的列等于生成列
+                                if (details.Count>0)
+                                {
+                                    if (salaryItem[K].item_id == details[reader].item_id)
+                                {
+                                    sum += details[reader].salary.HasValue == true ? (double)details[reader].salary : 0.0;
+                                    <td>@((double)details[reader].salary)</td>
+                                    if (reader < details.Count - 1)
+                                    {
+                                        reader++;
+                                    }
+                                }
+                                else
+                                {
+                                    <td>0.0 </td>
+                                }
+                                }
+                            }
+                        }
+                        <td>
+                            <input type="hidden" name="grantDetails[@{@(i - 1)}].salary_grant_id" value="@ViewBag.salary_grant_id">
+                            <input type="hidden" id="salaryStandardSum@{@i}" name="grantDetails[@{@(i - 1)}].salary_standard_sum" value="@sum" />
+                            <input type="hidden" name="salary_standard_id" value="@salary_standard_id" />
+                            <input type="text" name="grantDetails[@{@(i - 1)}].bouns_sum" id="bounsSum@{@i}" onkeyup="onKeyPress(@{@i})" class="INPUT_STYLE2" />
+                        </td>
+                        <td>
+                            <input type="text" name="grantDetails[@{@(i - 1)}].sale_sum" id="saleSum@{@i}" onkeyup="onKeyPress(@{@i})" class="INPUT_STYLE2" />
+                        </td>
+                        <td>
+                            <input type="text" name="grantDetails[@{@(i - 1)}].deduct_sum" id="deductSum@{@i}" onkeyup="onKeyPress(@{@i})" class="INPUT_STYLE2" />
+                        </td>
+                        <td>
+                            <input type="text" name="grantDetails[@{@(i - 1)}].salary_paid_sum" readonly="readonly" id="salaryPaidSum@{@i}" value="@sum" class="INPUT_STYLE2" />
+                        </td>
+        </tr>
+        i++;
+    }
+            }
+            }
+        </table>
+    </form>
+    <SCRIPT type="text/javascript">
+        $(function(){
+            var  sadf1=0;
+            $("input[id*='salaryPaidSum']").each(function(){
+                sadf1+=parseInt($(this).val());
+    
+            })
+            $("#salarySum_sum").text(sadf1);
+            $("#salary_paid_sum").val(sadf1);
+        });
+        function onKeyPress(i) {
+
+            var size = @dic.Count;
+            var bounsSum = document.getElementById("bounsSum" + i);
+            var saleSum = document.getElementById("saleSum" + i);
+            var deductSum = document.getElementById("deductSum" + i);
+            var salaryPaidSum = document.getElementById("salaryPaidSum" + i);
+            if (isNaN(bounsSum.value) || bounsSum.value < 0) {
+                alert("金额填写错误!");
+                bounsSum.value = "0.00";
+                return;
+            }
+            if (isNaN(saleSum.value) || saleSum.value < 0) {
+                alert("金额填写错误!");
+                saleSum.value = "0.00";
+                return;
+            }
+            if (isNaN(deductSum.value) || deductSum.value < 0) {
+                alert("金额填写错误!");
+                deductSum.value = "0.00";
+                return;
+            }
+            salaryPaidSum.value = Number(bounsSum.value) + Number(saleSum.value) - Number(deductSum.value) + Number(document.getElementById("salaryStandardSum" + i).value);
+           var  sadf=0;
+           $("input[id*='salaryPaidSum']").each(function(){
+               sadf+=parseInt($(this).val());
+            })
+           $("#salarySum_sum").val(sadf);
+            
+           $("#salary_paid_sum").val(sadf);
+            var sum = 0;
+            for (var j = 1; j <= size; j++) {
+                sum = Number(sum) + Number(document.getElementById("salaryPaidSum" + j).value);
+            }
+            document.getElementById("salarySum_sum").innerHTML = sum;
+        }
+        function time() {
+            var tdate = document.getElementById("Tdate");
+            var d = new Date();
+            var y = d.getFullYear();
+            var moth = d.getMonth() + 1;
+            var date = d.getDate();
+            var h = d.getHours();
+            var m = d.getMinutes();
+            var s = d.getSeconds();
+            var hh = 20 - 1 - h;
+            var mm = 60 - 1 - m;
+            var ss = 60 - s;
+            if (hh > 0) {
+                mm = mm + 60 * hh;
+            }
+            if (moth < 10) {
+                moth = "0" + moth;
+            }
+            if (date < 10) {
+                date = "0" + date;
+            }
+            if (h < 10) {
+                h = "0" + h;
+            }
+            if (m < 10) {
+                m = "0" + m;
+            }
+            if (s < 10) {
+                s = "0" + s;
+            }
+            if (mm < 10) {
+                mm = "0" + mm;
+            }
+            if (ss < 10) {
+                ss = "0" + ss;
+            }
+            tdate.innerHTML = y + "-" + moth + "-" + date + " " + h + ":" + m + ":" + s;
+            document.getElementById("Tdate2").value = tdate.innerHTML;
+        }
+        window.onload = time;
+        var out = window.setInterval(time, 1000);
+    </SCRIPT>
+</body>
+</html>

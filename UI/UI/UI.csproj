@@ -58,6 +58,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -173,6 +174,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PositionController.cs" />
     <Compile Include="Controllers\salaryCriterionController.cs" />
+    <Compile Include="Controllers\salaryGrantController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -656,6 +658,27 @@
     <Content Include="Views\index\top.cshtml" />
     <Content Include="Views\index\left.cshtml" />
     <Content Include="Views\index\main.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_register_success.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_check_list.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_check.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_check_success.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_query_locate.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_query_list.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_query.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_change_locate.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_change_list.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_change.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_change_success.cshtml" />
+    <Content Include="Views\salaryGrant\register_locate.cshtml" />
+    <Content Include="Views\salaryGrant\register_list.cshtml" />
+    <Content Include="Views\salaryGrant\register_commit.cshtml" />
+    <Content Include="Views\salaryGrant\register_success.cshtml" />
+    <Content Include="Views\salaryGrant\check_list.cshtml" />
+    <Content Include="Views\salaryGrant\check.cshtml" />
+    <Content Include="Views\salaryGrant\check_success.cshtml" />
+    <Content Include="Views\salaryGrant\query_locate.cshtml" />
+    <Content Include="Views\salaryGrant\query_list.cshtml" />
+    <Content Include="Views\salaryGrant\query.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

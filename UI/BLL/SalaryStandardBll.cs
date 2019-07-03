@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Entity;
@@ -22,6 +23,7 @@ namespace BLL
         }
 
         public int Change(salary_standard t)
+
         {
             return dao.Change(t);
         }
@@ -39,6 +41,21 @@ namespace BLL
         public string FindID()
         {
             return dao.FindID();
+        }
+
+        public List<salary_standard> FenYe(int pageIndex, int pageSize, out int Count)
+        {
+            return dao.FenYe<DateTime?>(pageIndex, pageSize, out Count, e => e.checker == null && e.check_status == 0, r => r.regist_time);
+        }
+
+        public salary_standard SelectWhere(int id)
+        {
+            return dao.SelectWhere(e => e.ssd_id == id).FirstOrDefault();
+        }
+
+        public List<salary_standard> FenYe2(int pageIndex, int pageSize, out int Count, string standardId, string primarKey, string startDate, string endDate)
+        {
+            return dao.FenYe2<DateTime?>(pageIndex, pageSize, out Count, standardId, primarKey, startDate, endDate);
         }
     }
 }
