@@ -280,6 +280,7 @@
           <Property Name="pass_check_status" Type="smallint" />
           <Property Name="pass_checkComment" Type="varchar" MaxLength="60" />
           <Property Name="pass_passComment" Type="varchar" MaxLength="60" />
+          <Property Name="magor_release_ID" Type="smallint" />
         </EntityType>
         <EntityType Name="engage_subjects">
           <Key>
@@ -502,6 +503,8 @@
           </Key>
           <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RoleName" Type="varchar" MaxLength="50" />
+          <Property Name="Roledescription" Type="nvarchar" MaxLength="50" />
+          <Property Name="ravailable" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="salary_grant">
           <Key>
@@ -609,7 +612,22 @@
           <Property Name="u_password" Type="varchar" MaxLength="60" Nullable="false" />
           <Property Name="RoleID" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_users_Roles">
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“HR_DB.dbo.users_roles”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="users_roles">
+          <Key>
+            <PropertyRef Name="u_id" />
+            <PropertyRef Name="u_name" />
+            <PropertyRef Name="u_true_name" />
+            <PropertyRef Name="u_password" />
+          </Key>
+          <Property Name="u_id" Type="smallint" Nullable="false" />
+          <Property Name="u_name" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="u_true_name" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="u_password" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_users_Roles1">
           <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
           <End Role="users" Type="Self.users" Multiplicity="*" />
           <ReferentialConstraint>
@@ -653,7 +671,16 @@
           <EntitySet Name="salary_standard_details" EntityType="Self.salary_standard_details" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="training" EntityType="Self.training" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_users_Roles" Association="Self.FK_users_Roles">
+          <EntitySet Name="users_roles" EntityType="Self.users_roles" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [users_roles].[u_id] AS [u_id], 
+    [users_roles].[u_name] AS [u_name], 
+    [users_roles].[u_true_name] AS [u_true_name], 
+    [users_roles].[u_password] AS [u_password], 
+    [users_roles].[RoleName] AS [RoleName]
+    FROM [dbo].[users_roles] AS [users_roles]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_users_Roles1" Association="Self.FK_users_Roles1">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
@@ -937,6 +964,7 @@
           <Property Name="pass_check_status" Type="Int16" />
           <Property Name="pass_checkComment" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="pass_passComment" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="magor_release_ID" Type="Int16" />
         </EntityType>
         <EntityType Name="engage_subjects">
           <Key>
@@ -1271,6 +1299,7 @@
             <End Role="Roles" EntitySet="Roles" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
+          <EntitySet Name="users_roles" EntityType="HR_DBModel.users_roles" />
         </EntityContainer>
         <EntityType Name="Permissions">
           <Key>
@@ -1297,6 +1326,8 @@
           <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="users" Relationship="HR_DBModel.FK_users_Roles" FromRole="Roles" ToRole="users" />
+          <Property Name="ravailable" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Roledescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="salary_item">
           <Key>
@@ -1317,6 +1348,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="users_roles">
+          <Key>
+            <PropertyRef Name="u_id" />
+            <PropertyRef Name="u_name" />
+            <PropertyRef Name="u_true_name" />
+            <PropertyRef Name="u_password" />
+          </Key>
+          <Property Name="u_id" Type="Int16" Nullable="false" />
+          <Property Name="u_name" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="u_true_name" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="u_password" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1562,6 +1606,7 @@
           <EntitySetMapping Name="engage_resume">
             <EntityTypeMapping TypeName="HR_DBModel.engage_resume">
               <MappingFragment StoreEntitySet="engage_resume">
+                <ScalarProperty Name="magor_release_ID" ColumnName="magor_release_ID" />
                 <ScalarProperty Name="res_id" ColumnName="res_id" />
                 <ScalarProperty Name="human_name" ColumnName="human_name" />
                 <ScalarProperty Name="engage_type" ColumnName="engage_type" />
@@ -1945,6 +1990,8 @@
           <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="HR_DBModel.Roles">
               <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Roledescription" ColumnName="Roledescription" />
+                <ScalarProperty Name="ravailable" ColumnName="ravailable" />
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
               </MappingFragment>
@@ -1955,6 +2002,17 @@
               <MappingFragment StoreEntitySet="salary_item">
                 <ScalarProperty Name="item_name" ColumnName="item_name" />
                 <ScalarProperty Name="item_id" ColumnName="item_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users_roles">
+            <EntityTypeMapping TypeName="HR_DBModel.users_roles">
+              <MappingFragment StoreEntitySet="users_roles">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="u_password" ColumnName="u_password" />
+                <ScalarProperty Name="u_true_name" ColumnName="u_true_name" />
+                <ScalarProperty Name="u_name" ColumnName="u_name" />
+                <ScalarProperty Name="u_id" ColumnName="u_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

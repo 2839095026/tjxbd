@@ -7,6 +7,8 @@ using Entity;
 using IDAO;
 using IBLL;
 using IocContainer;
+using System.Linq.Expressions;
+
 namespace BLL
 {
     //IBLL.IRolesBll bll = IocContainer.IocCreate.CreateBll<IBLL.IRolesBll>("RolesBll");
@@ -32,6 +34,14 @@ namespace BLL
         public List<Roles> FindAll()
         {
             return dao.FindAll();
+        }
+        public List<Roles> SelectWhere(int id)
+        {
+            return dao.SelectWhere(t => t.RoleID == id);
+        }
+        public List<Roles> FenYe(int pageIndex, int pageSize, out int Count)
+        {
+            return dao.FenYe<int>(pageIndex, pageSize, out Count, e => e.RoleID != 0, e => e.RoleID);
         }
     }
 }

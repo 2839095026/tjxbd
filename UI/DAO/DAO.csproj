@@ -84,6 +84,7 @@
     <Compile Include="SalaryStandardDetailsDao.cs" />
     <Compile Include="TrainingDao.cs" />
     <Compile Include="UsersDao.cs" />
+    <Compile Include="UsersRolesDao.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entity\Entity.csproj">

@@ -160,6 +160,9 @@
     <Compile Include="users.cs">
       <DependentUpon>HrModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="users_roles.cs">
+      <DependentUpon>HrModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
