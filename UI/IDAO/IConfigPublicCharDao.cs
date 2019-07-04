@@ -16,5 +16,7 @@ namespace IDAO
         int Change(T t);
         DataTable FindSelect(string fileName);
 
+        DataTable salary_itemSelect(string fileName);
+
     }
 }

@@ -386,10 +386,94 @@ namespace UI.Controllers
                 return Content("<script>alert('删除失败');window.location.href='/client/major'</script>");
             }
         }
-         
+         [HttpGet]
         public ActionResult major_add()
         {
             return View();
+        }
+        [HttpPost]
+        public ActionResult major_add(config_major t)
+        {
+            if (Mb.Add(t) > 0)
+            {
+                return Content("<script>alert('添加成功');window.location.href='/client/major'</script>");
+            }
+            else
+            {
+                return Content("<script>alert('添加失败');window.location.href='/client/major_add'</script>");
+            }
+        }
+
+        //公共属性设置
+        public ActionResult public_char()
+        {
+            List<config_public_char> list = cc.FindAll();
+            return View(list);
+        }
+        public ActionResult Deletepublic_char(int id)
+        {
+            if (cc.Del(new config_public_char() { pbc_id = short.Parse(id.ToString()) }) > 0)
+            {
+
+                return Content("<script>window.location.href='/client/public_char'</script>");
+            }
+            else
+            {
+                return Content("<script>alert('删除失败');window.location.href='/client/public_char'</script>");
+            }
+        }
+        [HttpGet]
+        public ActionResult public_char_add()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult public_char_add(config_public_char t)
+        {
+            if (cc.Add(t) > 0)
+            {
+                return Content("<script>alert('添加成功');window.location.href='/client/public_char'</script>");
+            }
+            else
+            {
+                return Content("<script>alert('添加失败');window.location.href='/client/public_char_add'</script>");
+            }
+        }
+
+        //薪酬项目设置
+        public ActionResult salary_item()
+        {
+            ViewBag.dt = cc.salary_itemSelect("salary_item");
+            return View();
+        }
+        public ActionResult Deletesalary_item(int id)
+        {
+            if (cc.Del(new config_public_char() { pbc_id = short.Parse(id.ToString()) }) > 0)
+            {
+
+                return Content("<script>window.location.href='/client/salary_item'</script>");
+            }
+            else
+            {
+                return Content("<script>alert('删除失败');window.location.href='/client/salary_item'</script>");
+            }
+        }
+        [HttpGet]
+        public ActionResult salary_item_register()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult salary_item_register(config_public_char t)
+        {
+            if (cc.Add(t) > 0)
+            {
+                return Content("<script>alert('添加成功');window.location.href='/client/salary_item'</script>");
+            }
+            else
+            {
+                return Content("<script>alert('添加失败');window.location.href='/client/salary_item_register'</script>");
+            }
         }
     }
 }
