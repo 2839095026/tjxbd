@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace IDAO
         int Add(T t);
         int Del(T t);
         int Change(T t);
+        DataTable FindSelect(string fileName);
 
     }
 }

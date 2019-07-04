@@ -19,6 +19,7 @@ namespace IDAO
         /// <param name="id"></param>
         /// <returns></returns>
         List<T> GetConfigFileSecondKindByFKID(string fkid);
+        List<T> SelectWhere(Expression<Func<T, bool>> where);
 
     }
 }

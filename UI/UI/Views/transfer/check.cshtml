@@ -1,0 +1,482 @@
+﻿@model List<Entity.major_change>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+@{Entity.major_change aa = ViewBag.st; }
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>check</title>
+    <link rel="stylesheet" href="../../css/table.css"
+          type="text/css"></link>
+    <script src="~/javascript/jquery-1.7.2.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //获取一级机构
+            $.ajax({
+                url: "/transfer/GetFirstKidDD",
+                data: "",
+                type: "get",
+                success: function (data) {
+                    var result = eval("(" + data + ")");
+                    for (var i = 0; i < result.length; i++) {
+                        $("#firstKindId").append('<option value=' + result[i].new_first_kind_id + '>' + result[i].new_first_kind_name + '</option>');
+                    }
+                }
+            })
+            //获取二级机构
+            $("#firstKindId").change(function () {
+                $.ajax({
+                    url: "/transfer/GetSecondKidDD?id=" + $(this).val(),
+                    data: "",
+                    type: "get",
+                    success: function (data) {
+                        var result = eval("(" + data + ")");
+                        for (var i = 0; i < result.length; i++) {
+                            $("#secondKindId").append('<option value=' + result[i].new_second_kind_id + '>' + result[i].new_second_kind_name + '</option>');
+                        }
+                    }
+                })
+                //获取三级机构
+                $("#secondKindId").change(function () {
+                    $.ajax({
+                        url: "/transfer/GetThirdKidDD?id=" + $(this).val(),
+                        data: "",
+                        type: "get",
+                        success: function (data) {
+                            var result = eval("(" + data + ")");
+                            for (var i = 0; i < result.length; i++) {
+                                $("#thirdKindId").append('<option value=' + result[i].new_third_kind_id + '>' + result[i].new_third_kind_name + '</option>');
+                            }
+                        }
+
+                    })
+                })
+            })
+
+        });
+        $(function () {
+            //获取新薪酬标准
+            $.ajax({
+                url: "/transfer/GetXinChou",
+                data: "",
+                type: "get",
+                success: function (data) {
+                    var result = eval("(" + data + ")");
+                    for (var i = 0; i < result.length; i++) {
+                        $("#newSalaryStandardId").append('<option value=' + result[i].standard_id + '>' + result[i].standard_name + '</option>');
+                    }
+                    $('#newSalaryStandardId').change();
+                }
+            })
+            //获取新薪酬总额
+            $("#newSalaryStandardId").change(function () {
+                $.ajax({
+                    url: "/transfer/GetXinChouMoney?id=" + $(this).val(),
+                    data: "",
+                    type: "get",
+                    success: function (data) {
+                        var result = eval("(" + data + ")");
+                        for (var i = 0; i < result.length; i++) {
+                            $("#newSalarySum").val(result[i].salary_sum);
+                        }
+                    }
+
+                })
+            })
+          
+        })
+        $(function () {
+            //获取新职位分类
+            $.ajax({
+                url: "/transfer/Getkind_name",
+                data: "",
+                type: "get",
+                success: function (data) {
+                    var result = eval("(" + data + ")");
+                    for (var i = 0; i < result.length; i++) {
+                        $("#newMajorKindId").append('<option value=' + result[i].new_major_kind_id + '>' + result[i].new_major_kind_name + '</option>');
+                    }
+                    $("#newMajorKindId").change();
+                }
+            })
+            //获取新职位名称
+            $("#newMajorKindId").change(function () {
+                $(this).val();
+                console.info($("#newMajorKindId").val());
+                $.ajax({
+                    url: "/transfer/Getmajor_name?id=" + $(this).val(),
+                    data: "",
+                    type: "get",
+                    dataType: "json",
+                    success: function (data) {
+                        for (var i = 0; i < data.length; i++) {
+                            $("#newMajorId").append('<option value=' + data[i].new_major_id + '>' + data[i].new_major_name + '</option>');
+                        }
+                    }
+
+                })
+            })
+
+        })
+    </script>
+</head>
+<body>
+    <form method="post" action="/transfer/check">
+        <table width="100%">
+            <tr>
+                <td>
+                    <font color="#0000CC">您正在做的业务是:人力资源--调动管理--调动登记</font>
+                </td>
+            </tr>
+
+            <tr>
+                <td align="right">
+                    <input type="hidden" name="id" value="@ViewBag.id"/>
+                    <input type="radio" name="stus" value="1">通过
+                    <input type="radio" name="stus" value="0">不通过
+                    <input type="button" value="确认" class="BUTTON_STYLE1" onclick="check()">
+                    <input type="button" class="BUTTON_STYLE1" onclick="javascript:window.history.back();" value="返回">
+                    <SCRIPT type="text/javascript">
+					function check(){
+					    var rs = document.getElementsByName("stus");
+					    if (rs[0].checked == false && rs[1].checked == false) {
+						 alert("请选择通过或者不通过！");
+						 }else{
+					
+						 	document.forms[0].submit();
+						 }
+					}
+                    </SCRIPT>
+                </td>
+            </tr>
+        </table>
+
+        <table width="100%" border="1" cellpadding=0 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            <tr height="21">
+                <td class="TD_STYLE1" width="8%">
+                    档案编号
+                </td>
+                <td class="TD_STYLE2" width="10%">
+                    <input type="text" name="human_id" value="@aa.human_id" class="INPUT_STYLE2" readonly="readonly">
+                    <input type="hidden" name="mch_id" value="@aa.mch_id" />
+                </td>
+                <td class="TD_STYLE1" width="8%">
+                    姓名
+                </td>
+                <td class="TD_STYLE2" width="10%">
+                    <input type="text" name="human_name" value="@aa.human_name" readonly="readonly"
+                           class="INPUT_STYLE2">
+                </td>
+                <td class="TD_STYLE1" width="8%"></td>
+                <td class="TD_STYLE2" width="10%"></td>
+                <td class="TD_STYLE1" width="8%"></td>
+                <td class="TD_STYLE2" width="10%"></td>
+            </tr>
+            <tr>
+
+                <td class="TD_STYLE1" width="8%">
+                    原一级机构
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" name="first_kind_name" value="@aa.first_kind_name" readonly="readonly"
+                           class="INPUT_STYLE2">
+                    <input type="hidden" name="first_kind_id" value="@aa.first_kind_id">
+                </td>
+                <td class="TD_STYLE1" width="8%">
+                    原二级机构
+                </td>
+                <td class="TD_STYLE2" width="10%">
+                    <input type="text" name="second_kind_name" readonly="readonly"
+                           value="@aa.second_kind_name"
+                           class="INPUT_STYLE2">
+                    <input type="hidden" name="second_kind_id" value="@aa.second_kind_id">
+                </td>
+                <td class="TD_STYLE1" width="8%">
+                    原三级机构
+                </td>
+                <td class="TD_STYLE2" width="10%">
+                    <input type="text" name="third_kind_name" readonly="readonly"
+                           value="@aa.third_kind_name"
+                           class="INPUT_STYLE2">
+                    <input type="hidden" name="third_kind_id" value="@aa.third_kind_id">
+                </td>
+                <td class="TD_STYLE1" width="8%"></td>
+                <td class="TD_STYLE2" width="10%"></td>
+            </tr>
+
+            <tr>
+                <td class="TD_STYLE1">
+                    原职位分类
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" name="major_kind_name" class="INPUT_STYLE2" value="@aa.major_kind_name" readonly="readonly">
+                    <input type="hidden" name="major_kind_id">
+                </td>
+                <td class="TD_STYLE1" width="12%">
+                    原职位名称
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" name="major_name" value="@aa.major_name" readonly="readonly"
+                           class="INPUT_STYLE2">
+                    <input type="hidden" name="major_id" value="">
+                </td>
+                <td class="TD_STYLE1">
+                    原薪酬标准
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" name="salary_standard_name" value="@aa.salary_standard_name" readonly="readonly"
+                           class="INPUT_STYLE2">
+                    <input type="hidden" name="salary_standard_id">
+                </td>
+                <td class="TD_STYLE1">
+                    原薪酬总额
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" name="salary_sum" value="@aa.salary_sum" readonly="readonly"
+                           class="INPUT_STYLE2">
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    新一级机构名称
+                </td>
+                <td class="TD_STYLE2">
+                    <script type="text/javascript">
+
+						function mySubmit(){
+						if(document.getElementById("firstKindId").value=='0'){
+							alert("请选择新一级结构！");
+								return ;
+						}
+						if(document.getElementById("newMajorKindId").value=='0'){
+							alert("请选择新职位分类！");
+								return ;
+						}
+						if(document.getElementById("newMajorId").value=='0'){
+							alert("请选择新职位名称！");
+								return ;
+						}
+						if(document.getElementById("newSalaryStandardId").value=='0'){
+							alert("请选择新薪酬标准！");
+								return ;
+						}
+
+						document.forms[0].submit();
+
+						}
+
+                    </script>
+
+                    <select style="width:160px" name="new_first_kind_id" id="firstKindId" size="1" class="SELECT_STYLE2">
+                        @*<option value="0">-----请选择-----</option>*@
+
+
+                    </select>
+                    <input type="hidden" name="new_first_kind_name" id="newFirstKindName">
+                </td>
+                <td class="TD_STYLE1" width="12%">
+                    新二级机构名称
+                </td>
+                <td class="TD_STYLE2">
+
+                    <select style="width:160px" name="new_second_kind_id" id="secondKindId" size="1" class="SELECT_STYLE2">
+                        <option value="0">-----请选择-----</option>
+
+                    </select>
+                    <input type="hidden" name="new_second_kind_name" id="newSecondKindName">
+                </td>
+                <td class="TD_STYLE1" width="12%">
+                    新三级机构名称
+                </td>
+                <td class="TD_STYLE2">
+                    <select style="width:160px" name="new_third_kind_id" id="thirdKindId" size="1" class="SELECT_STYLE2">
+                        <option value="0">-----请选择-----</option>
+                    </select>
+                    <input type="hidden" name="new_third_kind_name" id="newThirdKindName">
+                </td>
+                <td class="TD_STYLE1" width="8%"></td>
+                <td class="TD_STYLE2" width="10%"></td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    新职位分类
+                </td>
+                <td class="TD_STYLE2">
+                    <select style="width:160px" name="new_major_kind_id" id="newMajorKindId" size="1" class="SELECT_STYLE2">
+                     
+                       
+                    </select>
+                    <input type="hidden" name="new_major_kind_name" id="newMajorKindName">
+
+                </td>
+                <td class="TD_STYLE1" width="12%">
+                    新职位名称
+                </td>
+                <td class="TD_STYLE2">
+                    <select name="new_major_id" id="newMajorId" class="INPUT_STYLE2">
+                 
+                       
+                    </select>
+                    <input type="hidden" name="new_major_name" id="newMajorName">
+                </td>
+                <td class="TD_STYLE1">
+                    新薪酬标准
+                </td>
+                <td class="TD_STYLE2">
+                    <select style="width:160px" name="new_salary_standard_id" id="newSalaryStandardId" size="1" class="SELECT_STYLE2">
+                     
+                    </select>
+
+
+                </td>
+                <td class="TD_STYLE1">
+                    新薪酬总额
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" name="new_salary_sum" id="newSalarySum"
+                           class="INPUT_STYLE2">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="TD_STYLE1">
+                    登记人
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" name="register" class="INPUT_STYLE2" value="@aa.register">
+                </td>
+                <td class="TD_STYLE1">
+                    登记时间
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" name="regist_time"
+                           id="Tdate" class="INPUT_STYLE2">
+                    <SCRIPT type="text/javascript">
+					function time(){
+ 					var tdate=document.getElementById("Tdate");
+ 					var d=new Date();
+ 					var y=d.getFullYear();
+ 					var moth=d.getMonth()+1;
+ 					var date=d.getDate();
+ 					var h=d.getHours();
+ 					var m=d.getMinutes();
+ 					var s=d.getSeconds();
+					var hh=20-1-h;
+					var mm=60-1-m;
+					var ss=60-s;
+					if(hh>0){
+							mm=mm+60*hh;
+					}
+ 					if(moth<10){
+ 							moth="0"+moth;
+ 					}
+ 					if(date<10){
+ 							date="0"+date;
+ 					}
+ 					if(h<10){
+ 							h="0"+h;
+ 					}
+ 					if(m<10){
+ 							m="0"+m;
+ 					}
+ 					if(s<10){
+ 							s="0"+s;
+ 					}
+ 					if(mm<10){
+ 							mm="0"+mm;
+ 					}
+ 					if(ss<10){
+ 							ss="0"+ss;
+ 					}
+
+ 					tdate.value=y+"-"+moth+"-"+date+"- "+h+":"+m+":"+s;
+
+
+ 				}
+				window.onload=time;
+ 				var out=window.setInterval(time, 1000);
+                    </SCRIPT>
+                </td>
+                <td class="TD_STYLE1">
+                    复核人
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" name="checker" readonly="readonly" value="better_admin" class="INPUT_STYLE2">
+                </td>
+                <td class="TD_STYLE1">
+                    复核时间
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" name="check_time" id="check_time" class="INPUT_STYLE2">
+                    <SCRIPT type="text/javascript">
+					function time(){
+ 					var tdate=document.getElementById("Tdate");
+ 					var d=new Date();
+ 					var y=d.getFullYear();
+ 					var moth=d.getMonth()+1;
+ 					var date=d.getDate();
+ 					var h=d.getHours();
+ 					var m=d.getMinutes();
+ 					var s=d.getSeconds();
+					var hh=20-1-h;
+					var mm=60-1-m;
+					var ss=60-s;
+					if(hh>0){
+							mm=mm+60*hh;
+					}
+ 					if(moth<10){
+ 							moth="0"+moth;
+ 					}
+ 					if(date<10){
+ 							date="0"+date;
+ 					}
+ 					if(h<10){
+ 							h="0"+h;
+ 					}
+ 					if(m<10){
+ 							m="0"+m;
+ 					}
+ 					if(s<10){
+ 							s="0"+s;
+ 					}
+ 					if(mm<10){
+ 							mm="0"+mm;
+ 					}
+ 					if(ss<10){
+ 							ss="0"+ss;
+ 					}
+ 					$("#check_time").val(y + "-" + moth + "-" + date + "- " + h + ":" + m + ":" + s);
+ 					tdate.value=y+"-"+moth+"-"+date+"- "+h+":"+m+":"+s;
+
+
+ 				}
+				window.onload=time;
+ 				var out=window.setInterval(time, 1000);
+                    </SCRIPT>
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    调动原因
+                </td>
+                <td colspan="7" class="TD_STYLE2">
+                    <textarea name="change_reason" rows="6" class="TEXTAREA_STYLE1" readonly="readonly" >@aa.change_reason</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    复合通过意见
+                </td>
+                <td colspan="7" class="TD_STYLE2">
+                    <textarea name="check_reason" rows="6" class="TEXTAREA_STYLE1"></textarea>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

@@ -198,11 +198,10 @@
                             for (int K = 0; K < salaryItem.Count; K++)
                             {
                                 //当前的列等于生成列
-                                if (details.Count>0)
+
+                                if (details.Count > 0&&salaryItem[K].item_id == details[reader].item_id)
                                 {
-                                    if (salaryItem[K].item_id == details[reader].item_id)
-                                {
-                                    sum += details[reader].salary.HasValue == true ? (double)details[reader].salary : 0.0;
+                                sum += details[reader].salary.HasValue == true ? (double)details[reader].salary : 0.0;
                                     <td>@((double)details[reader].salary)</td>
                                     if (reader < details.Count - 1)
                                     {
@@ -212,8 +211,8 @@
                                 else
                                 {
                                     <td>0.0 </td>
-                                }
-                                }
+                                    }
+                            
                             }
                         }
                         <td>

@@ -39,5 +39,9 @@ namespace BLL
         {
             return dao.GetConfigFileThirdKindBySKID(skid);
         }
+        public List<config_file_third_kind> SelectWhere(int id)
+        {
+            return dao.SelectWhere(t => t.ftk_id == id);
+        }
     }
 }

@@ -10,7 +10,7 @@ using IDAO;
 using IocContainer;
 namespace BLL
 {
-    //IBLL.IConfigFileFirstKindBll bll = IocContainer.IocCreate.CreateBll<IConfigFileFirstKindBll>("ConfigFileFirstKindBll");
+    //IBLL.IConfigFileFirstKindBll dao = IocContainer.IocCreate.CreateBll<IConfigFileFirstKindBll>("ConfigFileFirstKindBll");
 
     public class ConfigFileFirstKindBll : IConfigFileFirstKindBll
     {
@@ -35,6 +35,10 @@ namespace BLL
         public List<config_file_first_kind> FindAll()
         {
             return dao.FindAll();
+        }
+        public List<config_file_first_kind> SelectWhere(int id)
+        {
+            return dao.SelectWhere(t => t.ffk_id == id);
         }
     }
 }

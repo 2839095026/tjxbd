@@ -45,7 +45,6 @@ namespace Entity
         public virtual DbSet<engage_subjects> engage_subjects { get; set; }
         public virtual DbSet<human_file> human_file { get; set; }
         public virtual DbSet<human_file_dig> human_file_dig { get; set; }
-        public virtual DbSet<major_change> major_change { get; set; }
         public virtual DbSet<salary_grant> salary_grant { get; set; }
         public virtual DbSet<salary_grant_details> salary_grant_details { get; set; }
         public virtual DbSet<salary_standard> salary_standard { get; set; }
@@ -57,5 +56,6 @@ namespace Entity
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<salary_item> salary_item { get; set; }
         public virtual DbSet<users_roles> users_roles { get; set; }
+        public virtual DbSet<major_change> major_change { get; set; }
     }
 }

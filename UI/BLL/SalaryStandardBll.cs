@@ -8,6 +8,7 @@ using Entity;
 using IBLL;
 using IDAO;
 using IocContainer;
+using System.Data;
 
 namespace BLL
 {
@@ -45,7 +46,7 @@ namespace BLL
 
         public List<salary_standard> FenYe(int pageIndex, int pageSize, out int Count)
         {
-            return dao.FenYe<DateTime?>(pageIndex, pageSize, out Count, e => e.checker == null && e.check_status == 0, r => r.regist_time);
+            return dao.FenYe<DateTime?>(pageIndex, pageSize, out Count, e => e.check_status == 0, r => r.regist_time);
         }
 
         public salary_standard SelectWhere(int id)
@@ -56,6 +57,14 @@ namespace BLL
         public List<salary_standard> FenYe2(int pageIndex, int pageSize, out int Count, string standardId, string primarKey, string startDate, string endDate)
         {
             return dao.FenYe2<DateTime?>(pageIndex, pageSize, out Count, standardId, primarKey, startDate, endDate);
+        }
+        public DataTable XinChou(string fileName)
+        {
+            return dao.XinChou(fileName);
+        }
+        public DataTable XinChouMoney(string id, string fileName)
+        {
+            return dao.XinChouMoney(id,fileName);
         }
     }
 }

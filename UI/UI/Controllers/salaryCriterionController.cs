@@ -194,6 +194,7 @@ namespace UI.Controllers
                 ss2.change_time = ss.change_time;
                 ss2.remark = ss.remark;
                 ss2.salary_sum = ss.salary_sum;
+                ss2.check_status = 0;
                 if (bll.Change(ss2) > 0 && num == j)
                 {
                     ts.Complete();

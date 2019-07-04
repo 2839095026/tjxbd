@@ -14,6 +14,7 @@ namespace IBLL
         int Add(config_file_first_kind t);
         int Del(config_file_first_kind t);
         int Change(config_file_first_kind t);
+        List<config_file_first_kind> SelectWhere(int id);
 
     }
 }

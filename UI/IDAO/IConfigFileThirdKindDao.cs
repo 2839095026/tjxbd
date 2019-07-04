@@ -19,5 +19,6 @@ namespace IDAO
         /// <param name="skid"></param>
         /// <returns></returns>
         List<T> GetConfigFileThirdKindBySKID(string skid);
+        List<T> SelectWhere(Expression<Func<T, bool>> where);
     }
 }
