@@ -1036,6 +1036,10 @@
     <Content Include="Views\client\major_kind_add.cshtml" />
     <Content Include="Views\client\major.cshtml" />
     <Content Include="Views\client\major_add.cshtml" />
+    <Content Include="Views\client\public_char.cshtml" />
+    <Content Include="Views\client\public_char_add.cshtml" />
+    <Content Include="Views\client\salary_item.cshtml" />
+    <Content Include="Views\client\salary_item_register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

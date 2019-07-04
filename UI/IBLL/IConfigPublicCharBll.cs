@@ -16,6 +16,7 @@ namespace IBLL
         int Del(config_public_char t);
         int Change(config_public_char t);
         DataTable FindSelect(string fileName);
+        DataTable salary_itemSelect(string fileName);
 
 
     }

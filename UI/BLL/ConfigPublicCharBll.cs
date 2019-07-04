@@ -40,5 +40,10 @@ namespace BLL
         {
             return dao.FindSelect(fileName);
         }
+
+        public DataTable salary_itemSelect(string fileName)
+        {
+            return dao.salary_itemSelect(fileName);
+        }
     }
 }

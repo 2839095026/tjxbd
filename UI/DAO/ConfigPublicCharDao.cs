@@ -17,5 +17,11 @@ namespace DAO
             return DBHelper.Select(sql, fileName);
         }
 
+        public DataTable salary_itemSelect(string fileName)
+        {
+            string sql = "select pbc_id,attribute_name from dbo.config_public_char where attribute_kind='薪酬设置'";
+            return DBHelper.Select(sql, fileName);
+        }
+
     }
 }
