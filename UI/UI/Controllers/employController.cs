@@ -153,7 +153,7 @@ namespace UI.Controllers
             ViewBag.resume = rs;
             ViewBag.engageInterviewList = EngageInterviewBll.FindEngageInterviewByResID(id).OrderBy(e => e.ein_id).ToList();
             return View();
-         
+   
         }
 
     }
