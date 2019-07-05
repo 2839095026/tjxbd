@@ -69,39 +69,43 @@
            
         });
         $(function () {
-            //获取新职位分类
-            $.ajax({
-                url: "/transfer/Getkind_name",
-                data: "",
-                type: "get",
-                success: function (data) {
-                    var result = eval("(" + data + ")");
-                    for (var i = 0; i < result.length; i++) {
-                        $("#newMajorKindId").append('<option value=' + result[i].new_major_kind_id + '>' + result[i].new_major_kind_name + '</option>');
-                    }
+            //获取职位分类
+            $.post("/api/GetAllMajorKindName", function (data) {
+                console.log("加载职位分类")
+                console.log(data)
+                var majorSelect = $("#majorKindId");
+                majorSelect.empty();
+                majorSelect.append('<option value="" selected="selected">全部</option>')
+                for (i in data) {
+                    majorSelect.append('<option value="' + data[i].major_kind_id + '">' + data[i].major_kind_name + '</option>')
                 }
-            })
-            //获取新职位名称
-            $("#newMajorKindId").change(function () {
-                $.ajax({
-                    url: "/transfer/Getmajor_name?id=" + $(this).val(),
-                    data: "",
-                    type: "get",
-                    success: function (data) {
-                        var result = eval("(" + data + ")");
-                        for (var i = 0; i < result.length; i++) {
-                            $("#newMajorId").append('<option value=' + result[i].new_major_id + '>' + result[i].new_major_name + '</option>');
-                        }
+                $("#majorKindId").change();
+            }, "json")
+
+            $("#majorKindId").change(function () {
+
+                $.post("/api/GetAllMajorName?mkid=" + $(this).val(), function (data) {
+                    console.log("加载职位名称")
+                    var majorSelect = $("#majorId");
+                    majorSelect.empty();
+                    majorSelect.append('<option value="" selected="selected">全部</option>')
+                    for (i in data) {
+                        majorSelect.append('<option value="' + data[i].major_id + '">' + data[i].major_name + '</option>')
                     }
 
-                })
-            })
+                }, "json")
 
-        })
+            });
+            $("#majorId").change(function () {
+                var majorIdText = $("#majorId").find("option:selected").text();
+                $("#majorName").val(majorIdText);
+            });
+
+        });
     </script>
 </head>
 <body>
-    <form method="post" action="/transfer/list">
+    <form method="get" action="/transfer/list">
         <input type="hidden" name="page.startPage" value="0">
         <table width="100%">
             <tr>
@@ -129,10 +133,8 @@
 			
                     </script>
 
-                    <select name="majorChange.newFirstKindId" id="firstKindId" size="5" class="SELECT_STYLE2">
-                        <option value="0" selected="selected" id="quanbuan">全部</option>
-
-
+                    <select name="firstKindId" id="firstKindId" size="5" class="SELECT_STYLE2">
+                        <option value="" selected="selected" id="quanbuan">全部</option>
                     </select>
                 </td>
             </tr>
@@ -142,8 +144,8 @@
                 </td>
                 <td width="84%" class="TD_STYLE2">
                   
-                    <select name="majorChange.newSecondKindId" id="secondKindId" size="5" class="SELECT_STYLE2">
-                        <option value="0" selected="selected">全部</option>
+                    <select name="secondKindId" id="secondKindId" size="5" class="SELECT_STYLE2">
+                        <option value="" selected="selected">全部</option>
 
                     </select>
                 </td>
@@ -153,8 +155,8 @@
                     请选择员工所在III级机构
                 </td>
                 <td width="84%" class="TD_STYLE2">
-                    <select name="majorChange.newThirdKindId" id="thirdKindId" size="5" class="SELECT_STYLE2">
-                        <option value="0" selected="selected">全部</option>
+                    <select name="thirdKindId" id="thirdKindId" size="5" class="SELECT_STYLE2">
+                        <option value="" selected="selected">全部</option>
 
                     </select>
                 </td>
@@ -164,8 +166,8 @@
                     请选择职位分类
                 </td>
                 <td width="84%" class="TD_STYLE2">
-                    <select name="majorChange.newMajorKindId" id="newMajorKindId" size="5" class="SELECT_STYLE2">
-                        <option value="0" selected="selected">全部</option>
+                    <select name="new_major_kind_id" id="majorKindId" size="5" class="SELECT_STYLE2">
+                        <option value="" selected="selected">全部</option>
 
                     </select>
                
@@ -176,8 +178,8 @@
                     请选择职位名称
                 </td>
                 <td width="84%" class="TD_STYLE2">
-                    <select name="majorChange.newMajorId" size=5 id="newMajorId" class="SELECT_STYLE2">
-                        <option value="0" selected="selected">全部</option>
+                    <select name="new_major_id" size=5 id="majorId" class="SELECT_STYLE2">
+                        <option value="" selected="selected">全部</option>
 
                        
                     </select>
@@ -188,8 +190,8 @@
                     请输入建档时间
                 </td>
                 <td width="84%" class="TD_STYLE2">
-                    <input name="utilbean.startDate" onclick="aa('utilbean.startDate')" type="text" class="INPUT_STYLE2" id="date_start" style="width:24% " value="" size="30">
-                    至<input type="text" name="utilbean.endDate" onclick="aa('utilbean.endDate')" value="" style="width:24% " class="INPUT_STYLE2" id="date_end">
+                    <input name="startDate" onclick="aa('startDate')" type="text" class="INPUT_STYLE2" id="date_start" style="width:24% " value="" size="30">
+                    至<input type="text" name="endDate"  onclick="aa('endDate')" value="" style="width:24% " class="INPUT_STYLE2" id="date_end">
                     （YYYY-MM-DD）
                 </td>
             </tr>

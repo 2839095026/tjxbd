@@ -62,7 +62,7 @@ namespace UI.Controllers
         {
             if (EngageInterviewBll.Add(engageInterview) > 0)
             {
-                return Content("<script>alert('面试登记成功');location.href='/index/index'</script>");
+                return Content("<script>alert('面试登记成功');location.href='/interview/interviewlist'</script>");
             }
             return Content("<script>alert('面试登记失败');history.back()</script>");
         }
@@ -116,7 +116,7 @@ namespace UI.Controllers
             en.interview_status = engageResume.interview_status;
             if (EngageResumeBll.Change(en) > 0)
             {
-                return Content("<script>alert('筛选提交成功');location.href='/index/index'</script>");
+                return Content("<script>alert('筛选提交成功');location.href='/interview/siftlist'</script>");
             }
             return Content("<script>alert('筛选提交失败');history.back()</script>");
 

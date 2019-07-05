@@ -30,19 +30,19 @@ namespace DAO
         public DataTable Selectfirst(string fileName)
         {
 
-            string sql = "select first_kind_id,first_kind_name from  dbo.human_file ";
+            string sql = "select first_kind_id,first_kind_name from  dbo.human_file  group by first_kind_id,first_kind_name ";
             return DBHelper.Select(sql, fileName);
 
         }
 
         public DataTable SelectSecond(string id, string fileName)
         {
-            string sql = string.Format("select second_kind_id,second_kind_name from  dbo.human_file  where  first_kind_id='{0}'", id, fileName);
+            string sql = string.Format("select second_kind_id,second_kind_name from  dbo.human_file  where  first_kind_id='{0}' group by  second_kind_id,second_kind_name", id, fileName);
             return DBHelper.Select(sql, fileName);
         }
         public DataTable SelectThird(string id, string fileName)
         {
-            string sql = string.Format("select third_kind_id,third_kind_name  from  dbo.human_file where second_kind_id='{0}'", id, fileName);
+            string sql = string.Format("select third_kind_id,third_kind_name  from  dbo.human_file where second_kind_id='{0}' group by third_kind_id,third_kind_name", id, fileName);
             return DBHelper.Select(sql, fileName);
         }
     }

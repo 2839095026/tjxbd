@@ -36,7 +36,7 @@ namespace BLL
             return dao.FindAll();
         }
 
-        public List<human_file> FindAllHumanFileByState(int pageInxex, int pageSize, out int count, Expression<Func<human_file, bool>> where)
+        public List<human_file> FindAllHumanFileByState(int pageInxex, int pageSize, out int count, System.Linq.Expressions.Expression<Func<human_file, bool>> where)
         {
             return dao.FindAllHumanFileByState(pageInxex, pageSize, out count, where);
         }
@@ -72,5 +72,7 @@ namespace BLL
         {
             return dao.SelectWhere(t => t.huf_id == id);
         }
+
+        
     }
 }

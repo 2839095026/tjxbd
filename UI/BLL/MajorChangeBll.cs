@@ -64,7 +64,7 @@ namespace BLL
         }
         public List<major_change> FenYesh(int pageIndex, int pageSize, out int Count)
         {
-            return dao.FenYe<int>(pageIndex, pageSize, out Count, e => e.check_status==1, e => e.mch_id);
+            return dao.FenYe<int>(pageIndex, pageSize, out Count, e => e.check_status==0, e => e.mch_id);
         }
         public DataTable Selectkind_name(string fileName)
         {
