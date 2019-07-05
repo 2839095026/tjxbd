@@ -65,5 +65,6 @@ namespace Entity
         public Nullable<short> pass_check_status { get; set; }
         public string pass_checkComment { get; set; }
         public string pass_passComment { get; set; }
+        public Nullable<short> magor_release_ID { get; set; }
     }
 }

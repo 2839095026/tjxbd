@@ -34,5 +34,17 @@ namespace BLL
         {
             return dao.FindAll();
         }
+
+      
+
+        public List<engage_interview> FindAllEngageInterviewGroupByResId(int pageIndex, int pageSize, out int count)
+        {
+            return dao.FindAllEngageInterviewGroupByResId(pageIndex, pageSize, out count);
+        }
+
+        public List<engage_interview> FindEngageInterviewByResID(string ResID)
+        {
+            return dao.FindEngageInterviewByResID(ResID);
+        }
     }
 }

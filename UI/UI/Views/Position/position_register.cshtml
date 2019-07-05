@@ -1,7 +1,7 @@
 ﻿
 @{
     Layout = null;
-
+   Entity.users loginUser= Session["user"] as Entity.users;
 }
 
 
@@ -10,9 +10,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>My JSP 'index.jsp' starting page</title>
-    
+
+    <script src="~/javascript/DatePicker/WdatePicker.js"></script>
     <link rel="stylesheet"
-          href="../../../css/table.css"  type="text/css">
+          href="../../../css/table.css" type="text/css">
     <link rel="stylesheet"
           href="../../../css/cwcalendar.css" type="text/css">
     <script type="text/javascript"
@@ -75,8 +76,7 @@
     </script>
     <script type="text/javascript">
         function mysubmit() {
-            document.getElementById('deadline').value = document
-                    .getElementById('date_start').value;
+
 
             if (document.getElementById("firstKindId").value == "") {
                 alert("请选择一级机构");
@@ -103,14 +103,46 @@
                 return;
             }
 
-            document.humanfileForm.submit();
+            var postData = {
+                "first_kind_id": $('#firstKindId').val(),
+                "first_kind_name": $('#firstKindId option:checked').text(),
+                "second_kind_id": $('#secondKindId').val(),
+                "second_kind_name": $('#secondKindId option:checked').text(),
+
+                "third_kind_id": $('#thirdKindId').val(),
+                "third_kind_name": $('#thirdKindId option:checked').text(),
+
+                "major_kind_id": $('#majorKindId').val(),
+                "major_kind_name": $('#majorKindId option:checked').text(),
+                "major_id": $('#majorId').val(),
+                "major_name": $('#majorId option:checked').text(),
+                "human_amount": $('#humanAmount').val(),
+                "engage_type": $('#engageType option:checked').text(),
+                "deadline": $('#date_start').val(),
+                "register": $('#register').val(),
+                "regist_time": $('#nowTime').val(),
+                "major_describe": $('#major_describe').val(),
+                "engage_required": $('#engage_required').val()
+            }
+            $.post("/Position/Create_Position_Register", postData, function (data) {
+                if (data == "ok") {
+                    location.href = "/Position/position_release_search"
+                } else {
+                    alert('添加失败请重试')
+                }
+            })
+
+
+
+
+
         }
 
 
     </script>
 </head>
 <body>
-    <form name="humanfileForm" method="post" action="position_change_update.html">
+    <form name="humanfileForm" method="post" action="Create">
         <table width="100%">
             <tr>
                 <td>
@@ -221,7 +253,7 @@
                     登记人
                 </td>
                 <td class="TD_STYLE2">
-                    <input type="text" name="emajorRelease.register" value="admin" class="INPUT_STYLE2">
+                    <input type="text" name="emajorRelease.register" id="register" value="@loginUser.u_name" class="INPUT_STYLE2">
                 </td>
                 <td class="TD_STYLE1">
                     登记时间
@@ -244,7 +276,7 @@
                     职位描述
                 </td>
                 <td class="TD_STYLE2" colspan="8">
-                    <textarea name="emajorRelease.majorDescribe" rows="4" cols="80" class="TEXTAREA_STYLE1"></textarea>
+                    <textarea name="emajorRelease.majorDescribe" id="major_describe" rows="4" cols="80" class="TEXTAREA_STYLE1"></textarea>
                 </td>
 
             </tr>
@@ -253,7 +285,7 @@
                     招聘要求
                 </td>
                 <td class="TD_STYLE2" colspan="8">
-                    <textarea name="emajorRelease.engageRequired" rows="4" cols="80" class="TEXTAREA_STYLE1"></textarea>
+                    <textarea name="emajorRelease.engageRequired" id="engage_required" rows="4" cols="80" class="TEXTAREA_STYLE1"></textarea>
                 </td>
 
             </tr>

@@ -13,5 +13,7 @@ namespace IBLL
         int Add(engage_interview t);
         int Del(engage_interview t);
         int Change(engage_interview t);
+        List<engage_interview> FindEngageInterviewByResID(string ResID);
+        List<engage_interview> FindAllEngageInterviewGroupByResId(int pageIndex, int pageSize, out int count);
     }
 }

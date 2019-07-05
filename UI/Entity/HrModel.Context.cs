@@ -46,15 +46,16 @@ namespace Entity
         public virtual DbSet<human_file> human_file { get; set; }
         public virtual DbSet<human_file_dig> human_file_dig { get; set; }
         public virtual DbSet<major_change> major_change { get; set; }
+        public virtual DbSet<Permissions> Permissions { get; set; }
+        public virtual DbSet<RolePermissions> RolePermissions { get; set; }
+        public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<salary_grant> salary_grant { get; set; }
         public virtual DbSet<salary_grant_details> salary_grant_details { get; set; }
+        public virtual DbSet<salary_item> salary_item { get; set; }
         public virtual DbSet<salary_standard> salary_standard { get; set; }
         public virtual DbSet<salary_standard_details> salary_standard_details { get; set; }
         public virtual DbSet<training> training { get; set; }
         public virtual DbSet<users> users { get; set; }
-        public virtual DbSet<Permissions> Permissions { get; set; }
-        public virtual DbSet<RolePermissions> RolePermissions { get; set; }
-        public virtual DbSet<Roles> Roles { get; set; }
-        public virtual DbSet<salary_item> salary_item { get; set; }
+        public virtual DbSet<users_roles> users_roles { get; set; }
     }
 }
