@@ -12,7 +12,6 @@ using System.Data;
 
 namespace BLL
 {
-    //IBLL.IHumanFileBll bll = IocContainer.IocCreate.CreateBll<IBLL.IHumanFileBll>("HumanFileBll");
     public class HumanFileBll : IHumanFileBll
     {
         IHumanFileDao<human_file> dao = IocCreate.CreateDao<IHumanFileDao<human_file>>("HumanFileDao");
@@ -35,6 +34,21 @@ namespace BLL
         public List<human_file> FindAll()
         {
             return dao.FindAll();
+        }
+
+        public List<human_file> FindAllHumanFileByState(int pageInxex, int pageSize, out int count, Expression<Func<human_file, bool>> where)
+        {
+            return dao.FindAllHumanFileByState(pageInxex, pageSize, out count, where);
+        }
+
+        public List<human_file> FindCheckList(int pageInxex, int pageSize, out int count)
+        {
+            return dao.FindCheckList(pageInxex, pageSize, out count);
+        }
+
+        public human_file FindHumanFileByHumanId(string humanid)
+        {
+            return dao.FindHumanFileByHumanId(humanid);
         }
         public DataTable Selectfirst(string fileName)
         {

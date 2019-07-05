@@ -1,0 +1,571 @@
+﻿@model Entity.engage_major_release
+@{
+    Layout = null;
+    ViewBag.Title = "register";
+}
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-trasitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet"
+          href="../../../css/table.css" type="text/css">
+    <link rel="stylesheet"
+          href="../../../css/cwcalendar.css" type="text/css">
+    <script type="text/javascript"
+            src="../../../javascript/comm/comm.js">
+    </script>
+    <script type="text/javascript"
+            src="../../../javascript/comm/list.js">
+    </script>
+    <script type="text/javascript"
+            src="../../../javascript/calendar-ch.js">
+    </script>
+    <script type="text/javascript"
+            src="../../../javascript/jquery-1.7.2.js">
+    </script>
+
+    <script type="text/javascript"
+            src="../../../javascript/locate.js">
+    </script>
+
+    <script src="~/javascript/DatePicker/WdatePicker.js"></script>
+
+    <script type="text/javascript">
+        window.onload=check;
+        function tick() {
+            var now = new Date();
+            var hours, minutes, seconds, noon;
+            var intHours, intMinutes, intSeconds;
+            intHours = now.getHours();
+            intMinutes = now.getMinutes();
+            intSeconds = now.getSeconds();
+            if (intHours < 24) {
+                hours = intHours+":";
+                noon = "A.M.";
+            } else {
+                intHours = intHours - 24;
+                hours = intHours + ":";
+                noon = "P.M.";
+            }
+            if (intMinutes < 10) {
+                minutes = "0"+intMinutes+":";
+            } else {
+                minutes = intMinutes+":";
+            }
+            if (intSeconds < 10) {
+                seconds = "0"+intSeconds+" ";
+            } else {
+                seconds = intSeconds+" ";
+            }
+            timeString = hours+minutes+seconds;
+            var now = new Date();
+            document.getElementById("nowTime").value=now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate()+" "+timeString;
+            window.setTimeout("tick();", 1000);
+        }
+
+        //load事件
+        function check(){
+            //获得系统当前时间的方法
+            tick();
+        }
+    </script>
+    <script type="text/javascript">
+        function mysubmit(){
+            if(document.getElementById("name").value==""){
+                alert("请填写姓名");
+                return false;
+            }
+            if(document.getElementById("phone").value==""){
+                alert("请填写电话");
+                return false;
+            }else if(isNaN(document.getElementById("phone").value)){
+                alert("电话号码请填写数字");
+                return false;
+            }
+            if(document.getElementById("card").value==""){
+                alert("请填写身份证号码");
+                return false;
+            }
+            if(document.getElementById("birthday").value!=""){
+                var str = document.getElementById("birthday").value;
+                var r = str.match(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/);
+                if(r==null){
+                    alert("请输入正确的日期格式：yyyy-MM-dd");
+                    return false;
+                }
+            }
+            if(document.getElementById("email").value!=""){
+                var email=document.getElementById("email").value;
+                if(!new RegExp(/^([a-z0-9_\.-]+)@("@")([\da-z\.-]+)\.([a-z\.]{2,6})$/).test(email)){
+                    alert("Email格式不匹配，如：123@("@").com");
+                    return false;
+                }
+            }
+            if(document.getElementById("humanHomephone").value!=""){
+                if(isNaN(document.getElementById("humanHomephone").value)){
+                    alert("家庭电话请填写数字");
+                    return false;
+                }
+            }
+            if(document.getElementById("humanMobilephone").value!=""){
+                if(isNaN(document.getElementById("humanMobilephone").value)){
+                    alert("手机请填写数字");
+                    return false;
+                }
+            }
+
+            
+            if(document.getElementById("humanParty").value==""){
+                    alert("请选择政治面貌");
+                    return false;   
+            }
+
+            //if(document.getElementById("humanAge").value!=""){
+            //    if(isNaN(document.getElementById("humanAge").value)){
+            //        alert("年龄请填写数字");
+            //        return false;
+            //    }
+            //}
+            //if(document.getElementById("demandSalaryStandard").value!=""){
+            //    if(isNaN(document.getElementById("demandSalaryStandard").value)){
+            //        alert("年龄请填写数字");
+            //        return false;
+            //    }
+            //}
+            document.fm.submit();
+        }
+            
+    </script>
+    <title>申请职务</title>
+</head>
+<body>
+
+    @{using (Html.BeginForm("addEngageResume", "Resume", FormMethod.Post, new { name = "fm" }))
+        {  
+                <input type="hidden" name="engageResume.magor_release_ID" value="@(Model!=null?Model.mre_id:0)" />
+
+                <table width="100%">
+                <tr>
+                    <td>
+                        <font color="black">您正在做的业务是：人力资源--招聘管理--简历管理--简历登记 </font>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+
+                        <input type="button" value="提交" class="BUTTON_STYLE1" onclick="return mysubmit()">
+                        <input type="reset" value="清除" class="BUTTON_STYLE1">
+                    </td>
+                </tr>
+            </table>
+            <table width="100%" border="1" cellpadding=0 cellspacing=1
+                   bordercolorlight=#848284 bordercolordark=#eeeeee
+                   class="TABLE_STYLE1">
+                <tr>
+                    <td class="TD_STYLE1">
+                        职位分类
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="hidden" value="@(Model!=null?Model.major_kind_name : "")" id="humanMajorKindId" name="engageResume.human_major_kind_name" />
+                        <select name="engageResume.human_major_kind_id" class="SELECT_STYLE1" id="@(Model==null?"majorKindId":"")">
+                            @{
+                                if (Model != null)
+                                {
+                                        <option value="@Model.major_kind_id">@Model.major_kind_name</option>
+                                }
+                            }
+
+                        </select>
+                    </td>
+
+                    <td class="TD_STYLE1">
+                        职位名称
+                    </td>
+                    <td class="TD_STYLE2" width="20%">
+
+                        <input type="hidden" value="@(Model!=null?Model.major_name : "")" id="human_major_id" name="engageResume.human_major_name" />
+                        <select name="engageResume.human_major_id" class="SELECT_STYLE1"    id="@(Model==null? "majorId" : "")">
+                            @{
+                                if (Model != null)
+                                {
+                                        <option value="@Model.major_id">@Model.major_name</option>
+                                }
+                                else
+                                {
+                                    <option value="">--请选择--</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td width="11%" class="TD_STYLE1">
+                        招聘类型
+                    </td>
+                    <td class="TD_STYLE2" colspan="2">
+                        <select name="engageResume.engage_type" class="SELECT_STYLE1">
+                            @{
+                                if (Model != null)
+                                {
+                                        <option value="@Model.engage_type">@Model.engage_type</option>
+                                }
+                                else
+                                {
+                                    <option value="">--请选择--</option>
+                                    <option value="校园招聘">校园招聘</option>
+                                    <option value="社会招聘">社会招聘</option>
+                                }
+
+                            }
+                        </select>
+                    </td>
+                    <td rowspan="6">
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        姓名
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="text" name="engageResume.human_name" id="name" class="INPUT_STYLE2" />
+                    </td>
+                    <td class="TD_STYLE1">
+                        性别
+                    </td>
+                    <td class="TD_STYLE2">
+                        <select name="engageResume.human_sex" class="SELECT_STYLE1">
+                            <option value="男">男</option>
+                            <option value="女">女</option>
+                        </select>
+                    </td>
+                    <td class="TD_STYLE1">
+                        EMAIL
+                    </td>
+                    <td colspan="2" class="TD_STYLE2">
+                        <input type="text" name="engageResume.human_email" id="email" class="INPUT_STYLE2">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        电话
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="text" name="engageResume.human_telephone" id="phone" class="INPUT_STYLE2">
+                    </td>
+                    <td class="TD_STYLE1">
+                        家庭电话
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="text" name="engageResume.human_homephone" id="humanHomephone" class="INPUT_STYLE2">
+                    </td>
+                    <td class="TD_STYLE1">
+                        手机
+                    </td>
+                    <td colspan="2" class="TD_STYLE2">
+                        <input type="text" name="engageResume.human_mobilephone" id="humanMobilephone" class="INPUT_STYLE2">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        住址
+                    </td>
+                    <td colspan="3" class="TD_STYLE2">
+                        <input type="text" name="engageResume.human_address" value="" class="INPUT_STYLE2">
+                    </td>
+
+                    <td class="TD_STYLE1">
+                        邮编
+                    </td>
+                    <td colspan="2" class="TD_STYLE2">
+                        <input type="text" name="engageResume.human_postcode" value="" class="INPUT_STYLE2">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="TD_STYLE1">
+                        国籍
+                    </td>
+                    <td class="TD_STYLE2">
+                        <select name="engageResume.human_nationality" class="SELECT_STYLE1">
+                            <option value="">--请选择--</option>
+                            @{
+                                foreach (Entity.config_public_char item in ViewBag.nationality)
+                                {
+                                    <option value="@item.attribute_name">@item.attribute_name </option>
+
+                                }
+
+                            }
+                        </select>
+                    </td>
+                    <td class="TD_STYLE1">
+                        出生地
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="text" name="engageResume.human_birthplace" value="" class="INPUT_STYLE2">
+                    </td>
+                    <td class="TD_STYLE1">
+                        生日
+                    </td>
+                    <td width="13%" colspan="2" class="TD_STYLE2">
+                        <input type="text" name="engageResume.human_birthday" onclick="WdatePicker()" id="birthday" class="INPUT_STYLE2">
+                    </td>
+
+                </tr>
+                <tr>
+                    <td width="11%" class="TD_STYLE1">
+                        民族
+                    </td>
+                    <td class="TD_STYLE2" width="14%">
+                        <select name="engageResume.human_race" class="SELECT_STYLE1">
+                            <option value="">--请选择--</option>
+                            @{
+                                foreach (Entity.config_public_char item in ViewBag.FamousRace)
+                                {
+                                    <option value="@item.attribute_name">@item.attribute_name </option>
+
+                                }
+
+                            }
+                        </select>
+                    </td>
+                    <td class="TD_STYLE1">
+                        宗教信仰
+                    </td>
+                    <td class="TD_STYLE2">
+                        <select name="engageResume.human_religion" class="SELECT_STYLE1">
+
+                            @{
+                                foreach (Entity.config_public_char item in ViewBag.Religion)
+                                {
+                                    <option value="@item.attribute_name">@item.attribute_name </option>
+
+                                }
+
+                            }
+                        </select>
+                    </td>
+                    <td class="TD_STYLE1">
+                        政治面貌
+                    </td>
+                    <td class="TD_STYLE2" colspan="2">
+                        <select name="engageResume.human_party" id="humanParty" class="SELECT_STYLE1">
+                            <option value="">--请选择--</option>
+
+
+                            @{
+                                foreach (Entity.config_public_char item in ViewBag.Party)
+                                {
+                                    <option value="@item.attribute_name">@item.attribute_name </option>
+
+                                }
+
+                            }
+                        </select>
+                    </td>
+
+
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        身份证号码
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="text" name="engageResume.human_idcard" value="" id="card" class="INPUT_STYLE2">
+                    </td>
+                    @*<td class="TD_STYLE1">
+                        年龄
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="text" name="engageResume.human_age" id="humanAge" class="INPUT_STYLE2">
+                    </td>*@
+                    <td class="TD_STYLE1">
+                        毕业院校
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="text" name="engageResume.human_college" class="INPUT_STYLE2" />
+                    </td>
+
+                    <td class="TD_STYLE1">
+                        学历
+                    </td>
+                    <td class="TD_STYLE2">
+                        <select name="engageResume.human_educated_degree" class="SELECT_STYLE1">
+                            <option value="">--请选择--</option>
+                            @{
+                                foreach (Entity.config_public_char item in ViewBag.EducatedMajor)
+                                {
+                                    <option value="@item.attribute_name">@item.attribute_name </option>
+
+                                }
+
+                            }
+                        </select>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        教育年限
+                    </td>
+                    <td class="TD_STYLE2">
+                        <select name="engageResume.human_educated_years" class="SELECT_STYLE1">
+                            <option value="">--请选择--</option>
+                                    @{
+                                        foreach (Entity.config_public_char item in ViewBag.EducatedYears)
+                                        {
+                                            <option value="@item.attribute_name">@item.attribute_name </option>
+
+                                        }
+
+                                    }
+
+                        </select>
+                    </td>
+                    <td class="TD_STYLE1">
+                        学历专业
+                    </td>
+                    <td class="TD_STYLE2">
+                        <select name="engageResume.human_educated_major" class="SELECT_STYLE1">
+                            <option value="">--请选择--</option>
+
+                            @{
+                                foreach (Entity.config_public_char item in ViewBag.hEducatedMajor)
+                                {
+                                    <option value="@item.attribute_name">@item.attribute_name </option>
+
+                                }
+
+                            }
+                        </select>
+                    </td>
+
+                    <td class="TD_STYLE1">
+                        薪酬要求
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="text" name="engageResume.demand_salary_standard" id="demandSalaryStandard" class="INPUT_STYLE2" />
+                    </td>
+                    <td class="TD_STYLE1">
+                        注册时间
+                    </td>
+                    <td class="TD_STYLE2">
+                        <input type="text" name="engageResume.regist_time"
+                               id="nowTime" readonly="readonly"
+                               class="INPUT_STYLE2">
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td class="TD_STYLE1">
+                        特长
+                    </td>
+                    <td class="TD_STYLE2">
+                        <select name="engageResume.human_specility" class="SELECT_STYLE1">
+                            <option value="">--请选择--</option>
+
+                            @{
+                                foreach (Entity.config_public_char item in ViewBag.Specility)
+                                {
+                                    <option value="@item.attribute_name">@item.attribute_name </option>
+
+                                }
+
+                            }
+
+                        </select>
+
+                    </td>
+                    <td class="TD_STYLE1">
+                        爱好
+                    </td>
+                    <td class="TD_STYLE2">
+                        <select name="engageResume.human_hobby" class="SELECT_STYLE1">
+                            <option value="">--请选择--</option>
+
+                            @{
+                                foreach (Entity.config_public_char item in ViewBag.Hobby)
+                                {
+                                    <option value="@item.attribute_name">@item.attribute_name </option>
+                                }
+                            }
+                        </select>
+
+                    </td>
+                    <td class="TD_STYLE1">
+                        &nbsp;
+                    </td>
+                    <td class="TD_STYLE2">
+                        &nbsp;
+                    </td>
+                    <td class="TD_STYLE1">
+                        &nbsp;
+                    </td>
+                    <td class="TD_STYLE2">
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        个人履历
+                    </td>
+                    <td colspan="7" class="TD_STYLE2">
+                        <textarea name="engageResume.human_history_records" rows="4" class="TEXTAREA_STYLE1"></textarea>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="TD_STYLE1">
+                        备注
+                    </td>
+                    <td colspan="7" class="TD_STYLE2">
+                        <textarea name="engageResume.remark" rows="4" class="TEXTAREA_STYLE1"></textarea>
+                    </td>
+                </tr>
+            </table>
+                                }}
+
+<script>
+    $(function(){
+    
+        //获取职位分类
+        $.post("/api/GetAllMajorKindName", function (data) {
+            console.log("加载职位分类")
+            console.log(data)
+            var majorSelect = $("#majorKindId");
+            majorSelect.empty();
+            majorSelect.append('<option value="">--请选择--</option>')
+            for (i in data) {
+                majorSelect.append('<option  value='+ data[i].major_kind_id+'>' + data[i].major_kind_name + '</option>')
+            }
+        }, "json")
+
+        $("#majorKindId").change(function () {   
+            selectid=$('#majorKindId  option:selected').text();
+            $('#humanMajorKindId').val(selectid)
+            $.post("/api/GetAllMajorName?mkid=" + $(this).val(), function (data) {
+                console.log("加载职位名称")
+                var majorSelect = $("#majorId");
+                majorSelect.empty();
+                majorSelect.append('<option value="">--请选择--</option>')
+                for (i in data) {
+                    majorSelect.append('<option  value='+ data[i].major_id+'>' + data[i].major_name + '</option>')
+                }
+            }, "json")
+
+        });
+        $('#majorId').change(function(){
+            selectid=$('#majorId  option:selected').text();
+            $('#human_major_id').val(selectid)
+
+        
+        })
+
+    })
+</script>
+
+</body>
+
+</html>

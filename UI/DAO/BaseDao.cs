@@ -68,7 +68,8 @@ namespace DAO
         public int Add(T t)
         {
             adt.Entry<T>(t).State = System.Data.Entity.EntityState.Added;
-            return adt.SaveChanges();
+          return adt.SaveChanges();
+         
         }
         /// <summary>
         /// 删除

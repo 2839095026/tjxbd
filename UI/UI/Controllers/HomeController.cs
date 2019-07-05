@@ -14,7 +14,7 @@ namespace UI.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            //ISalaryStandardBll
+
             return View();
         }
     }

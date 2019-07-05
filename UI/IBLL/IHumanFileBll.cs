@@ -16,6 +16,18 @@ namespace IBLL
         int Add(human_file t);
         int Del(human_file t);
         int Change(human_file t);
+        
+        human_file FindHumanFileByHumanId(string humanid);
+        /// <summary>
+        /// 分页获取状态为0（待审核）的记录
+        /// </summary>
+        /// <param name="pageInxex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        List<human_file> FindCheckList(int pageInxex, int pageSize, out int count);
+        List<human_file> FindAllHumanFileByState(int pageInxex, int pageSize, out int count, Expression<Func<human_file, bool>> where);
+
         DataTable Selectfirst(string fileName);
         DataTable SelectSecond(string id, string fileName);
         DataTable SelectThird(string id, string fileName);

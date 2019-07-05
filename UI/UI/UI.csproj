@@ -50,10 +50,10 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin.Security">
-      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <HintPath>..\..\..\..\..\T09\WebApplication2\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin.Security.Facebook">
-      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+      <HintPath>..\..\..\..\..\T09\WebApplication2\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -169,11 +169,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\ApiController.cs" />
+    <Compile Include="Controllers\employController.cs" />
     <Compile Include="Controllers\clientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\humanResourcesController.cs" />
     <Compile Include="Controllers\indexController.cs" />
+    <Compile Include="Controllers\interviewController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PositionController.cs" />
+    <Compile Include="Controllers\ResumeController.cs" />
     <Compile Include="Controllers\powerController.cs" />
     <Compile Include="Controllers\salaryCriterionController.cs" />
     <Compile Include="Controllers\salaryGrantController.cs" />
@@ -510,6 +514,20 @@
     <Content Include="javascript\comm\list.js" />
     <Content Include="javascript\comm\select.js" />
     <Content Include="javascript\comm\time.js" />
+    <Content Include="javascript\DatePicker\calendar.js" />
+    <Content Include="javascript\DatePicker\config.js" />
+    <Content Include="javascript\DatePicker\lang\en.js" />
+    <Content Include="javascript\DatePicker\lang\zh-cn.js" />
+    <Content Include="javascript\DatePicker\lang\zh-tw.js" />
+    <Content Include="javascript\DatePicker\My97DatePicker.htm" />
+    <Content Include="javascript\DatePicker\skin\datePicker.gif" />
+    <Content Include="javascript\DatePicker\skin\default\datepicker.css" />
+    <Content Include="javascript\DatePicker\skin\default\img.gif" />
+    <Content Include="javascript\DatePicker\skin\WdatePicker.css" />
+    <Content Include="javascript\DatePicker\skin\whyGreen\bg.jpg" />
+    <Content Include="javascript\DatePicker\skin\whyGreen\datepicker.css" />
+    <Content Include="javascript\DatePicker\skin\whyGreen\img.gif" />
+    <Content Include="javascript\DatePicker\WdatePicker.js" />
     <Content Include="javascript\easyui\jquery.easyui.min.js" />
     <Content Include="javascript\easyui\themes\default\accordion.css" />
     <Content Include="javascript\easyui\themes\default\calendar.css" />
@@ -1106,6 +1124,47 @@
     <Content Include="Views\Login\login.cshtml" />
     <Content Include="Views\salaryCriterion\salarystandard_register.cshtml" />
     <Content Include="Views\Position\position_register.cshtml" />
+    <Content Include="Views\Position\position_change_update.cshtml" />
+    <Content Include="Views\Position\position_release_change.cshtml" />
+    <Content Include="Views\Position\position_release_search.cshtml" />
+    <Content Include="Views\Resume\register.cshtml" />
+    <Content Include="Views\Resume\resumechoose.cshtml" />
+    <Content Include="Views\Resume\resumelist.cshtml" />
+    <Content Include="Views\Resume\resumedetails.cshtml" />
+    <Content Include="Views\Resume\validresume.cshtml" />
+    <Content Include="Views\Resume\validlist.cshtml" />
+    <Content Include="Views\Resume\resumeselect.cshtml" />
+    <Content Include="Views\Resume\interviewlist.cshtml" />
+    <Content Include="Views\interview\interviewlist.cshtml" />
+    <Content Include="Views\interview\interviewregister.cshtml" />
+    <Content Include="Views\interview\siftlist.cshtml" />
+    <Content Include="Views\interview\interviewsift.cshtml" />
+    <Content Include="Views\employ\registerlist.cshtml" />
+    <Content Include="Views\employ\register.cshtml" />
+    <Content Include="Views\employ\check_list.cshtml" />
+    <Content Include="Views\employ\check.cshtml" />
+    <Content Include="Views\employ\list.cshtml" />
+    <Content Include="Views\employ\details.cshtml" />
+    <Content Include="Views\humanResources\human_list.cshtml" />
+    <Content Include="Views\humanResources\human_register.cshtml" />
+    <Content Include="Views\humanResources\check_list.cshtml" />
+    <Content Include="Views\humanResources\register_choose_picture.cshtml" />
+    <Content Include="Views\humanResources\human_check.cshtml" />
+    <Content Include="Views\humanResources\register_choose_attachment.cshtml" />
+    <Content Include="Views\humanResources\query_locate.cshtml" />
+    <Content Include="Views\humanResources\query_list.cshtml" />
+    <Content Include="Views\humanResources\query_list_information.cshtml" />
+    <Content Include="Views\humanResources\change_locate.cshtml" />
+    <Content Include="Views\humanResources\change_list.cshtml" />
+    <Content Include="Views\humanResources\change_list_information.cshtml" />
+    <Content Include="Views\humanResources\delete_locate.cshtml" />
+    <Content Include="Views\humanResources\delete_list.cshtml" />
+    <Content Include="Views\humanResources\delete_list_information.cshtml" />
+    <Content Include="Views\humanResources\recovery_locate.cshtml" />
+    <Content Include="Views\humanResources\recovery_listd.cshtml" />
+    <Content Include="Views\humanResources\recovery_list_information.cshtml" />
+    <Content Include="Views\humanResources\recovery_list.cshtml" />
+    <Content Include="Views\humanResources\delete_forever_list.cshtml" />
     <Content Include="Views\index\Index.cshtml" />
     <Content Include="Views\index\top.cshtml" />
     <Content Include="Views\index\left.cshtml" />
@@ -1179,7 +1238,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="Filter\" />
     <Folder Include="Views\Api\" />
+    <Folder Include="Views\index\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

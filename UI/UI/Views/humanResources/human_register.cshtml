@@ -1,0 +1,532 @@
+﻿@model Entity.engage_resume
+@{
+    Layout = null;
+    ViewBag.Title = "human_register";
+    List<Entity.salary_standard> salaryStandard = ViewBag.salary_standard as List<Entity.salary_standard>;
+    Entity.users loginUser = Session["user"] as Entity.users;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-trasitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet"
+          href="../../css/table.css" type="text/css">
+    <link rel="stylesheet"
+          href="../../css/cwcalendar.css" type="text/css">
+    <script type="text/javascript"
+            src="../../javascript/jquery-1.7.2.js">
+    </script>
+    <script type="text/javascript"
+            src="../../javascript/jquery.messager.js">
+    </script>
+    <script type="text/javascript"
+            src="../../javascript/comm/comm.js">
+    </script>
+
+    <script src="~/javascript/DatePicker/WdatePicker.js"></script>
+    <script src="~/javascript/select.js"></script>
+    <script type="text/javascript"
+            src="../../javascript/calendar-ch.js">
+    </script>
+    <script type="text/javascript"
+            src="../../javascript/time.js">
+    </script>
+    @*<script type="text/javascript"
+            src="../../javascript/human_input_check.js">*@
+    </script>
+</head>
+
+<body>
+    <form method="post" action="humanAdd">
+        <table width="100%">
+            <tr>
+                <td>
+                    <font color="black">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案登记 </font>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <input type="submit" value="提交" class="BUTTON_STYLE1" />
+                    <input type="reset" value="清除" class="BUTTON_STYLE1" />
+                </td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellpadding=3 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            <tr>
+                <td class="TD_STYLE1" width="11%">
+                    I级机构
+                </td>
+                <td width="14%" class="TD_STYLE2">
+                    <input type="hidden" name="humanFile.first_kind_name" id="firstKindName" value=""/>
+                    <select name="humanFile.first_kind_id" class="SELECT_STYLE1" id="firstKindId">                       
+                        <option value="0">请选择</option>
+                        <option>集团</option>
+                    </select>
+                    <script>$(function () {
+    $("#firstKindId").change(function () {
+        $("#firstKindName").val($("#firstKindId option:selected").text())
+       
+    })})</script>
+                </td>
+                <td width="11%" class="TD_STYLE1">
+                    II级机构
+                </td>
+                <td width="14%" class="TD_STYLE2">
+                    <select name="humanFile.second_kind_id" class="SELECT_STYLE1" id="secondKindId">
+                        <option value="0">请选择</option>
+                        <option>湖南分校</option>
+                    </select>
+                    <input type="hidden" name="humanFile.second_kind_name" id="secondKindName" />
+                    <script>
+$(function () {
+    $("#secondKindId").change(function () {
+        $("#secondKindName").val($("#secondKindId option:selected").text())
+
+})})</script>
+
+                </td>
+                <td width="11%" class="TD_STYLE1">
+                    III级机构
+                </td>
+                <td class="TD_STYLE2" colspan="2">
+                    <select name="humanFile.third_kind_id" class="SELECT_STYLE1" id="thirdKindId">
+                        <option value="0">请选择</option>
+                        <option>长沙华瑞</option>
+                    </select>
+                    <input type="hidden" name="humanFile.third_kind_name" id="thirdKindName" />
+                    <script>
+$(function () {
+    $("#thirdKind").change(function () {
+        $("#thirdKindName").val($("#thirdKind option:selected").text())
+
+})})</script>
+             </td>
+                <td rowspan="5" style="text-align: center;"></td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    职位分类
+                </td>
+                <td class="TD_STYLE2">
+                    <select name="humanFile.human_major_kind_id" class="SELECT_STYLE1" id="majorKindId">
+                        <option>loading...</option>
+                     
+                    </select>
+                    <input type="hidden" name="humanFile.human_major_kind_name" id="humanMajorKindName" />
+                
+                    <script>
+$(function () {
+    $("#majorKindId").change(function () {
+        $("#humanMajorKindName").val($("#majorKindId option:selected").text())
+
+})})</script>   
+                </td>
+                <td class="TD_STYLE1">
+                    职位名称
+                </td>
+                <td class="TD_STYLE2">
+                    <select name="humanFile.human_major_id" class="SELECT_STYLE1" id="majorId">
+                        <option>区域经理</option>
+                        <option>总经理</option>
+                    </select>
+                    <input type="hidden" name="humanFile.hunma_major_name" id="hunmaMajorName" />
+      
+
+                    <script>
+$(function () {
+    $("#majorId").change(function () {
+        $("#hunmaMajorName").val($("#majorId option:selected").text())
+
+})})</script>   
+                          </td>
+                <td class="TD_STYLE1">
+                    职称
+                </td>
+                <td colspan="2" class="TD_STYLE2">
+                    <select name="humanFile.human_pro_designation" class="SELECT_STYLE1">
+                        @{
+                            foreach (Entity.config_public_char item in ViewBag.ProDesignation)
+                            {
+                                <option value="@item.attribute_name" @(Model != null ? Model.human_nationality == item.attribute_name ? "selected" : "" : "")>@item.attribute_name</option>
+                            }
+
+                        }
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    姓名
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" id="humanName" value="@(Model!=null?Model.human_name:"")" name="humanFile.human_name"
+                           class="INPUT_STYLE2" />
+                </td>
+                <td class="TD_STYLE1">
+                    性别
+                </td>
+                <td class="TD_STYLE2">
+                    <select name="humanFile.human_sex" class="SELECT_STYLE1">
+                        <option value="男" @(Model!=null?Model.human_sex== "男" ? "selected":"":"")>
+                            男
+                        </option>
+                        <option value="女" @(Model!=null?Model.human_sex=="女"?"selected":"":"")>
+                            女
+                        </option>
+                    </select>
+                </td>
+                <td class="TD_STYLE1">
+                    EMAIL
+                </td>
+                <td colspan="2" class="TD_STYLE2">
+                    <input type="text" name="humanFile.human_email" id="humanEmail" value="@(Model!=null?Model.human_email:"")"
+                           class="INPUT_STYLE2">
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    电话
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" name="humanFile.human_telephone" id="humanTelephone"
+                           class="INPUT_STYLE2" value="@(Model!=null?Model.human_telephone:"")">
+                </td>
+                <td class="TD_STYLE1">
+                    QQ
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" name="humanFile.human_qq" id="humanQq"
+                           class="INPUT_STYLE2">
+                </td>
+                <td class="TD_STYLE1">
+                    手机
+                </td>
+                <td colspan="2" class="TD_STYLE2">
+                    <input type="text" name="humanFile.human_mobilephone" id="humanMobilephone"
+                           class="INPUT_STYLE2" value="@(Model!=null?Model.human_mobilephone:"")">
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    住址
+                </td>
+                <td colspan="3" class="TD_STYLE2">
+                    <input type="text" name="humanFile.human_address" value="@(Model!=null?Model.human_address:"")"
+                           class="INPUT_STYLE2">
+                </td>
+                <td class="TD_STYLE1">
+                    邮编
+                </td>
+                <td colspan="2" class="TD_STYLE2">
+                    <input type="text" name="humanFile.human_postcode" value="@(Model!=null?Model.human_postcode:"")"
+                           class="INPUT_STYLE2">
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    国籍
+                </td>
+                <td class="TD_STYLE2">
+                    <select name="humanFile.human_nationality" class="SELECT_STYLE1">
+                        @{
+                                foreach (Entity.config_public_char item in ViewBag.nationality)
+                                {
+                                    <option value="@item.attribute_name"  @(Model != null ? Model.human_nationality == item.attribute_name ? "selected" : "" : "") >@item.attribute_name</option>
+                                }
+
+                        }
+
+                    </select>
+                </td>
+                <td class="TD_STYLE1">
+                    出生地
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" name="humanFile.human_birthplace" value="@(Model!=null?Model.human_birthplace:"")"
+                           class="INPUT_STYLE2">
+                </td>
+                <td class="TD_STYLE1">
+                    生日
+                </td>
+                <script>                        
+                            function getAge() {
+                                var birthday = new Date($('#birthday').attr('realvalue')).getFullYear();
+                                var now = new Date().getFullYear();
+                                console.log(birthday)
+                                $("#humanAge").val(now - birthday)
+
+                            }                    
+                </script>
+
+                              <td width="13%" class="TD_STYLE2">
+                    <input type="text" name="humanFile.human_birthday" readonly="readonly" onclick="WdatePicker({onpicked:getAge});" value="@(Model!=null?Model.human_birthday.ToString():"")"
+                           class="INPUT_STYLE2" id="birthday">
+                </td>
+                <td width="11%" class="TD_STYLE1">
+                    民族
+                </td>
+                <td class="TD_STYLE2" width="14%">
+                    <select name="humanFile.human_race" class="SELECT_STYLE1">
+                        @*<option>汉族</option>
+                        <option>回族</option>*@
+                        @{
+                            foreach (Entity.config_public_char item in ViewBag.FamousRace)
+                            {
+                                <option value="@item.attribute_name" @(Model != null ? Model.human_race == item.attribute_name ? "selected" : "" : "") >@item.attribute_name</option>
+                            }
+
+                        }
+
+
+                     </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    宗教信仰
+                </td>
+                <td class="TD_STYLE2">
+                    <select name="humanFile.human_religion" class="SELECT_STYLE1">
+                   
+                    @{
+                        foreach (Entity.config_public_char item in ViewBag.Religion)
+                        {
+                            <option value="@item.attribute_name" @(Model != null ? Model.human_religion == item.attribute_name ? "selected" : "" : "") >@item.attribute_name </option>
+                        }
+
+                    }
+                    </select>
+                </td>
+                <td class="TD_STYLE1">
+                    政治面貌
+                </td>
+                <td class="TD_STYLE2">
+                    <select name="humanFile.human_party" class="SELECT_STYLE1">
+                        @{
+                            foreach (Entity.config_public_char item in ViewBag.Party)
+                            {
+                                <option value="@item.attribute_name" @(Model != null ? Model.human_party == item.attribute_name ? "selected" : "" : "")>@item.attribute_name</option>
+                            }
+                        }
+                    </select>
+                </td>
+                <td class="TD_STYLE1">
+                    身份证号码
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" name="humanFile.human_id_card" id="humanIdCard" value="@(Model!=null?Model.human_idcard:"")"
+                           class="INPUT_STYLE2">
+                </td>
+                <td class="TD_STYLE1">
+                    社会保障号码
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" name="humanFile.human_society_security_id"
+                           class="INPUT_STYLE2">
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    年龄
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" name="humanFile.human_age" readonly id="humanAge" value="@(Model!=null?Model.human_age.ToString():"")"
+                           class="INPUT_STYLE2">
+                </td>
+                <td class="TD_STYLE1">
+                    学历
+                </td>
+                <td class="TD_STYLE2">
+                    <select name="humanFile.human_educated_degree" class="SELECT_STYLE1">
+                        
+                        @{
+                            foreach (Entity.config_public_char item in ViewBag.EducatedMajor)
+                            {
+                                <option value="@item.attribute_name" @(Model != null ? Model.human_educated_major == item.attribute_name ? "selected" : "" : "") >@item.attribute_name</option>
+                            }
+                        }
+                    </select>
+                </td>
+                <td class="TD_STYLE1">
+                    教育年限
+                </td>
+                <td class="TD_STYLE2">
+                    <select name="humanFile.human_educated_years" class="SELECT_STYLE1">
+                    @{
+                        foreach (Entity.config_public_char item in ViewBag.EducatedYears)
+                        {
+                            <option value="@item.attribute_name" @(Model != null ? Model.human_educated_years.ToString() == item.attribute_name ? "selected" : "" : "")>@item.attribute_name</option>
+                        }
+                    }
+                    </select>
+                </td>·  
+                <td class="TD_STYLE1">
+                    学历专业
+                </td>
+                <td class="TD_STYLE2">
+                    <select name="humanFile.human_educated_major" class="SELECT_STYLE1">
+                        @{
+                            foreach (Entity.config_public_char item in ViewBag.hEducatedMajor)
+                            {
+                                <option value="@item.attribute_name" @(Model != null ? Model.human_educated_years.ToString() == item.attribute_name ? "selected" : "" : "")>@item.attribute_name</option>
+                            }
+                        }
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    薪酬标准
+                </td>
+                <td class="TD_STYLE2">
+                    <select name="humanFile.salary_standard_id" id="salaryStandardId" class="SELECT_STYLE1">
+                       @{ 
+                           foreach (Entity.salary_standard item in ViewBag.salary_standard)
+                           {
+                               <option value="@item.standard_id">@item.standard_name</option>
+                           }
+                       }
+                    </select>
+                    <input type="hidden" name="salary_standard_name" id="salaryStandardName" value=""/>
+                    <script>
+$(function () {
+    $("#salaryStandardId").change(function () {
+        $("#firstKindName").val($("#salaryStandardId option:selected").text())
+
+    })})</script>
+
+                </td>
+                <td class="TD_STYLE1">
+                    开户行
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" name="humanFile.human_bank"
+                           class="INPUT_STYLE2">
+                </td>
+                <td class="TD_STYLE1">
+                    帐号
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" name="humanFile.human_account"
+                           class="INPUT_STYLE2">
+                </td>
+                <td class="TD_STYLE1">
+                    登记人
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" name="humanFile.register" value="@loginUser.u_name"
+                           readonly="readonly" class="INPUT_STYLE2">
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    建档时间
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" name="humanFile.regist_time" id="create_time" readonly="readonly"
+                           class="INPUT_STYLE2">
+                </td>
+                <td class="TD_STYLE1">
+                    特长
+                </td>
+                <td class="TD_STYLE2">
+                    <select name="humanFile.human_speciality" class="SELECT_STYLE1">
+                    @{
+                        foreach (Entity.config_public_char item in ViewBag.Specility)
+                        {
+                            <option value="@item.attribute_name" @(Model != null ? Model.human_specility.ToString() == item.attribute_name ? "selected" : "" : "")>@item.attribute_name</option>
+                        }
+                    }
+                    </select>
+                </td>
+                <td class="TD_STYLE1">
+                    爱好
+                </td>
+                <td class="TD_STYLE2">
+                    <select name="humanFile.human_hobby" class="SELECT_STYLE1">
+                    
+                        @{
+                            foreach (Entity.config_public_char item in ViewBag.Hobby)
+                            {
+                                <option value="@item.attribute_name" @(Model != null ? Model.human_hobby.ToString() == item.attribute_name ? "selected" : "" : "")>@item.attribute_name</option>
+                            }
+                        }
+                    </select>
+                </td>
+                <td class="TD_STYLE1">
+                    &nbsp;
+                </td>
+                <td class="TD_STYLE2">
+                    &nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    个人履历
+                </td>
+                <td colspan="7" class="TD_STYLE2">
+                    <textarea name="humanFile.human_histroy_records" rows="4"
+                              class="TEXTAREA_STYLE1">@(Model!=null?Model.human_history_records:"")</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    家庭关系信息
+                </td>
+                <td colspan="7" class="TD_STYLE2">
+                    <textarea name="humanFile.human_family_membership" rows="4"
+                              class="TEXTAREA_STYLE1"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    备注
+                </td>
+                <td colspan="7" class="TD_STYLE2">
+                    <textarea name="humanFile.remark" rows="4" class="TEXTAREA_STYLE1">@(Model!=null?Model.remark:"")</textarea>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <script>
+        $(function () {
+            tick()
+        })
+
+        function tick() {
+            var now = new Date();
+            var hours, minutes, seconds, noon;
+            var intHours, intMinutes, intSeconds;
+            intHours = now.getHours();
+            intMinutes = now.getMinutes();
+            intSeconds = now.getSeconds();
+            if (intHours < 24) {
+                hours = intHours + ":";
+                noon = "A.M.";
+            } else {
+                intHours = intHours - 24;
+                hours = intHours + ":";
+                noon = "P.M.";
+            }
+            if (intMinutes < 10) {
+                minutes = "0" + intMinutes + ":";
+            } else {
+                minutes = intMinutes + ":";
+            }
+            if (intSeconds < 10) {
+                seconds = "0" + intSeconds + " ";
+            } else {
+                seconds = intSeconds + " ";
+            }
+            timeString = hours + minutes + seconds;
+            var now = new Date();
+            document.getElementById("create_time").value = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + " " + timeString;
+            window.setTimeout("tick();", 1000);
+        }
+
+    </script>
+    
+</body>
+</html>

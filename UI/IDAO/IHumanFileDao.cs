@@ -14,6 +14,18 @@ namespace IDAO
         int Add(T t);
         int Del(T t);
         int Change(T t);
+        /// <summary>
+        /// 获取复核状态的记录
+        /// 人力资源档案登记复核
+        /// </summary>
+        /// <returns></returns>
+        List<T> FindCheckList(int pageInxex, int pageSize, out int count);
+
+
+        T FindHumanFileByHumanId(string humanid);
+
+        List<T> FindAllHumanFileByState(int pageInxex, int pageSize, out int count, Expression<Func<T, bool>> where);
+
 
         DataTable Selectfirst(string fileName);
         DataTable SelectSecond(string id, string fileName);

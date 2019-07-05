@@ -30,9 +30,19 @@ namespace BLL
             return dao.Del(t);
         }
 
+        public engage_major_release FindAEngageMajorReleaseByMreID(int id)
+        {
+            return dao.FindAEngageMajorReleaseByMreID(id);
+        }
+
         public List<engage_major_release> FindAll()
         {
             return dao.FindAll();
+        }
+
+        public List<engage_major_release> FindAllEngageMajorReleaseByPage(int pageIndex, int pageSize, out int Count)
+        {
+            return dao.FindAllEngageMajorReleaseByPage(pageIndex, pageSize, out Count);
         }
     }
 }

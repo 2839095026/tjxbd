@@ -9,6 +9,6 @@ namespace DAO
 {
     public class SalaryItemDao : BaseDao<salary_item>, ISalaryItemDao<salary_item>
     {
-
+        
     }
 }
