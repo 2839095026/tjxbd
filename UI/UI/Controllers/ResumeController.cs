@@ -66,7 +66,7 @@ namespace UI.Controllers
             IBLL.IEngageResumeBll engageResumeBll = IocContainer.IocCreate.CreateBll<IBLL.IEngageResumeBll>("EngageResumeBll");
             if (engageResumeBll.Add(engageResume) > 0)
             {
-                return Content("<script>alert('简历登记成功');location.href='/index/index';</script>");
+                return Content("<script>alert('简历登记成功');location.href='/resume/resumechoose';</script>");
             }
             return Content("<script>alert('简历登记失败');history.back();</script>");
         }
@@ -164,7 +164,7 @@ namespace UI.Controllers
             old.check_status = 1;
             if (EngageResumeBll.Change(old) > 0)
             {
-                return Content("<script>alert('推荐成功');location.href='/index/index';</script>");
+                return Content("<script>alert('推荐成功');location.href='/resume/validresume';</script>");
 
             }
             else

@@ -101,7 +101,7 @@
     </script>
 </head>
 <body>
-    <form method="post" action="/transfer/list">
+    <form method="get" action="/transfer/list">
         <input type="hidden" name="page.startPage" value="0">
         <table width="100%">
             <tr>
@@ -129,10 +129,8 @@
 			
                     </script>
 
-                    <select name="majorChange.newFirstKindId" id="firstKindId" size="5" class="SELECT_STYLE2">
-                        <option value="0" selected="selected" id="quanbuan">全部</option>
-
-
+                    <select name="firstKindId" id="firstKindId" size="5" class="SELECT_STYLE2">
+                        <option value="" selected="selected" id="quanbuan">全部</option>
                     </select>
                 </td>
             </tr>
@@ -142,8 +140,8 @@
                 </td>
                 <td width="84%" class="TD_STYLE2">
                   
-                    <select name="majorChange.newSecondKindId" id="secondKindId" size="5" class="SELECT_STYLE2">
-                        <option value="0" selected="selected">全部</option>
+                    <select name="secondKindId" id="secondKindId" size="5" class="SELECT_STYLE2">
+                        <option value="" selected="selected">全部</option>
 
                     </select>
                 </td>
@@ -153,8 +151,8 @@
                     请选择员工所在III级机构
                 </td>
                 <td width="84%" class="TD_STYLE2">
-                    <select name="majorChange.newThirdKindId" id="thirdKindId" size="5" class="SELECT_STYLE2">
-                        <option value="0" selected="selected">全部</option>
+                    <select name="thirdKindId" id="thirdKindId" size="5" class="SELECT_STYLE2">
+                        <option value="" selected="selected">全部</option>
 
                     </select>
                 </td>
@@ -165,7 +163,7 @@
                 </td>
                 <td width="84%" class="TD_STYLE2">
                     <select name="majorChange.newMajorKindId" id="newMajorKindId" size="5" class="SELECT_STYLE2">
-                        <option value="0" selected="selected">全部</option>
+                        <option value="" selected="selected">全部</option>
 
                     </select>
                
@@ -177,7 +175,7 @@
                 </td>
                 <td width="84%" class="TD_STYLE2">
                     <select name="majorChange.newMajorId" size=5 id="newMajorId" class="SELECT_STYLE2">
-                        <option value="0" selected="selected">全部</option>
+                        <option value="" selected="selected">全部</option>
 
                        
                     </select>
@@ -189,7 +187,7 @@
                 </td>
                 <td width="84%" class="TD_STYLE2">
                     <input name="utilbean.startDate" onclick="aa('utilbean.startDate')" type="text" class="INPUT_STYLE2" id="date_start" style="width:24% " value="" size="30">
-                    至<input type="text" name="utilbean.endDate" onclick="aa('utilbean.endDate')" value="" style="width:24% " class="INPUT_STYLE2" id="date_end">
+                    至<input type="text" name="utilbean.endDate"  onclick="aa('utilbean.endDate')" value="" style="width:24% " class="INPUT_STYLE2" id="date_end">
                     （YYYY-MM-DD）
                 </td>
             </tr>

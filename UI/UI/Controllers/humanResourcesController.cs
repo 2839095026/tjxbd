@@ -77,10 +77,10 @@ namespace UI.Controllers
             humanFile.file_chang_amount = 0;
             if (HumanFileBll.Add(humanFile) > 0)
             {
-                return Content("<script>alert('添加成功');</script>");
+                return Content("<script>alert('添加成功');location.href='/humanResources/register_choose_picture?hid="+humanFile.human_id+"';</script>");
             }
 
-            return Content("<script>alert('添加失败');</script>");
+            return Content("<script>alert('添加失败');history.back();</script>");
         }
         public ActionResult human_check(string hId)
         {
@@ -411,7 +411,7 @@ namespace UI.Controllers
             //else
             //{
                 List<Entity.human_file> data = HumanFileBll.FindAll();
-                data=data.Where(e => e.human_file_status.Equals(false)).ToList();
+                data=data.Where(e => e.human_file_status.Equals(false)|| e.human_file_status.HasValue==false).ToList();
                 if (!CheckString(firstKindId))
                 {
                   data=  data.Where(e => e.first_kind_id.Equals(firstKindId)).ToList();
@@ -445,7 +445,7 @@ namespace UI.Controllers
             data = data.Skip((pageIndexInt - 1) * pageSize).Take(pageSize).ToList();
             ViewBag.data = data;
             ViewBag.index = pageIndexInt;
-            ViewBag.pages = (ViewBag.count - 1) / pageSize + 1;
+            ViewBag.pages = (ViewBag.count - 1)/ pageSize + 1;
             ViewBag.pagesize = pageSize;
             //}
 
@@ -508,7 +508,7 @@ namespace UI.Controllers
             //else
             //{
             List<Entity.human_file> data = HumanFileBll.FindAll();
-            data = data.Where(e => e.human_file_status.Equals(false)).ToList();
+            data = data.Where(e => e.human_file_status.Equals(false)||e.human_file_status.HasValue==false).ToList();
             if (!CheckString(firstKindId))
             {
                 data = data.Where(e => e.first_kind_id.Equals(firstKindId)).ToList();
@@ -642,12 +642,12 @@ namespace UI.Controllers
            changeObj.human_file_status = true;
             if (HumanFileBll.Change(changeObj) > 0)
             {
-                return Content("<script>alert('删除成功!')</script>");
+                return Content("<script>alert('删除成功!');location.href='/humanResources/delete_forever_list'</script>");
             }
             else
             {
 
-                return Content("<script>alert('删除失败!')</script>");
+                return Content("<script>alert('删除失败!');history.back();</script>");
             }
 
         }
@@ -708,7 +708,7 @@ namespace UI.Controllers
             changeObj.human_file_status = false;
             if (HumanFileBll.Change(changeObj) > 0)
             {
-                return Content("<script>alert('恢复成功!');</script>");
+                return Content("<script>alert('恢复成功!');location.href='/humanResources/recovery_locate'</script>");
             }
             else
             {
