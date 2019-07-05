@@ -40,5 +40,9 @@ namespace BLL
         {
             return dao.GetConfigFileSecondKindByFKID(fkid);
         }
+        public List<config_file_second_kind> SelectWhere(int id)
+        {
+            return dao.SelectWhere(t => t.fsk_id == id);
+        }
     }
 }

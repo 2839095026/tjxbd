@@ -7,6 +7,8 @@ using Entity;
 using IBLL;
 using IDAO;
 using IocContainer;
+using System.Data;
+
 namespace BLL
 {
     //IBLL.IConfigPublicCharBll bll = IocContainer.IocCreate.CreateBll<IBLL.IConfigPublicCharBll>("ConfigPublicCharBll");
@@ -33,6 +35,15 @@ namespace BLL
         public List<config_public_char> FindAll()
         {
             return dao.FindAll();
+        }
+        public DataTable FindSelect(string fileName)
+        {
+            return dao.FindSelect(fileName);
+        }
+
+        public DataTable salary_itemSelect(string fileName)
+        {
+            return dao.salary_itemSelect(fileName);
         }
     }
 }

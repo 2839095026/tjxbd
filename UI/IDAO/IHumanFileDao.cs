@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -25,5 +26,12 @@ namespace IDAO
 
         List<T> FindAllHumanFileByState(int pageInxex, int pageSize, out int count, Expression<Func<T, bool>> where);
 
+
+        DataTable Selectfirst(string fileName);
+        DataTable SelectSecond(string id, string fileName);
+        DataTable SelectThird(string id, string fileName);
+
+        List<T> FenYe<K>(int pageIndex, int pageSize, out int Count, Expression<Func<T, bool>> where, Expression<Func<T, K>> order);
+        List<T> SelectWhere(Expression<Func<T, bool>> where);
     }
 }

@@ -23,6 +23,7 @@ namespace Entity
         public int RoleID { get; set; }
         public string RoleName { get; set; }
         public string ravailable { get; set; }
+        public string Roledescription { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<users> users { get; set; }

@@ -8,10 +8,10 @@ using Entity;
 using IBLL;
 using IDAO;
 using IocContainer;
+using System.Data;
+
 namespace BLL
 {
-    //IBLL.IHumanFileBll bll = IocContainer.IocCreate.CreateBll<IBLL.IHumanFileBll>("HumanFileBll");
-
     public class HumanFileBll : IHumanFileBll
     {
         IHumanFileDao<human_file> dao = IocCreate.CreateDao<IHumanFileDao<human_file>>("HumanFileDao");
@@ -49,6 +49,28 @@ namespace BLL
         public human_file FindHumanFileByHumanId(string humanid)
         {
             return dao.FindHumanFileByHumanId(humanid);
+        }
+        public DataTable Selectfirst(string fileName)
+        {
+            return dao.Selectfirst(fileName);
+        }
+
+        public DataTable SelectSecond(string id, string fileName)
+        {
+            return dao.SelectSecond(id, fileName);
+        }
+        public DataTable SelectThird(string id, string fileName)
+        {
+            return dao.SelectThird(id, fileName);
+        }
+        public List<human_file> FenYe(int pageIndex, int pageSize, out int Count)
+        {
+            return dao.FenYe<int>(pageIndex, pageSize, out Count, e => e.huf_id != 0, e => e.huf_id);
+        }
+
+        public List<human_file> SelectWhere(int id)
+        {
+            return dao.SelectWhere(t => t.huf_id == id);
         }
     }
 }

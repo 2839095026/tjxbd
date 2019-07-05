@@ -1,0 +1,149 @@
+﻿@model List<Entity.salary_standard>
+@{
+    Layout = null;
+    ViewBag.Title = "salarystandard_query_list";
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-trasitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet"
+          href="../../css/table.css" type="text/css" />
+    <title>无标题文档</title>
+
+    <style type="text/css">
+        .style3 {
+            color: #0000CC;
+        }
+    </style>
+</head>
+
+<body>
+    <form method="get" action="salarystandard_query_list">
+        <table width="100%">
+            <tr>
+                <td>
+                    <font color="black">您正在做的业务是:人力资源管理--薪酬标准管理--薪酬标准登记查询</font>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    &nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    符合条件的薪酬标准总数: @ViewBag.count 例
+                </td>
+            </tr>
+        </table>
+
+        <table width="100%" border="1" cellpadding=0 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            <tr>
+                <td width="15%" class="TD_STYLE1">
+                    <span>薪酬标准编号</span>
+                </td>
+                <td width="20%" class="TD_STYLE1">
+                    <span>薪酬标准名称</span>
+                </td>
+                <td width="15%" class="TD_STYLE1">
+                    <span>制定人</span>
+                </td>
+                <td width="30%" class="TD_STYLE1">
+                    <span>登记时间</span>
+                </td>
+                <td class="TD_STYLE1" width="15%">
+                    薪酬总额
+                </td>
+            </tr>
+            @{ foreach (var item in Model)
+                {
+                    <tr class="TD_STYLE2">
+                        <td>
+                            <a href="salarystandard_query?standard_id=@item.standard_id&&ssd_id=@item.ssd_id">@item.standard_id</a>
+                        </td>
+                        <td>
+                            @item.standard_name
+                        </td>
+                        <td>
+                            @item.designer
+                        </td>
+                        <td>
+                            @item.regist_time
+                        </td>
+                        <td>
+                            &nbsp;
+                            @item.salary_sum
+                        </td>
+                    </tr>
+                }
+            }
+            
+        </table>
+        <input type="hidden" value="@Context.Request.QueryString["standardId"]" name="standardId"/>
+        <input type="hidden" value="@Context.Request.QueryString["primarKey"]" name="primarKey" />
+        <input type="hidden" value="@Context.Request.QueryString["startDate"]" name="startDate" />
+        <input type="hidden" value="@Context.Request.QueryString["endDate"]" name="endDate" />
+        <html>
+        <head>
+        </head>
+        <body>
+            <p>
+                <div align="center" style="font-size: 18px;color: gray">
+                    &nbsp;&nbsp;总数：
+                    <font style="color: maroon;font-weight: bold;">@ViewBag.count</font>
+                    例
+                    &nbsp;&nbsp;&nbsp;
+                    每页显示 <font style="color: maroon;font-weight: bold;">1</font>
+                    条
+                    &nbsp;&nbsp;&nbsp;
+                    当前第 <font style="color: maroon;font-weight: bold;">@ViewBag.index</font>
+                    页
+                    &nbsp;&nbsp;&nbsp;共
+                    <font style="color: maroon;font-weight: bold;">@ViewBag.pageSize</font>
+                    页
+                    <a style="color: navy;font-weight: bold" href="javascript:doPage(1)">首页</a>
+
+                    <a style="color: navy;font-weight: bold"
+                       href="javascript:doPage(@(ViewBag.index>1?@ViewBag.index-1:1))">上一页</a>
+
+                    <a style="color: navy;font-weight: bold"
+                       href="javascript:doPage(@(ViewBag.index<@ViewBag.pageSize?@ViewBag.index+1:@ViewBag.pageSize))">下一页</a>
+
+                    <a style="color: navy;font-weight: bold"
+                       href="javascript:doPage(@(ViewBag.pageSize))">末页</a>
+                    &nbsp;&nbsp;&nbsp;跳到第
+                    <input id=page type=text value="1" class=input1 size=1>
+                    页&nbsp;&nbsp;
+                    <input type="image" onclick="dopagebybutton()" src="../../images/go.bmp" width=18 height=18 border=0>
+                    <input type="hidden" name="pageIndex" id="startpage" value="1">
+                </div>
+                <script type="text/javascript">
+                    function dopagebybutton() {
+                        var reg = /^[0-9]*[1-9][0-9]*$/;
+                        if (reg.test(document.getElementById("page").value)) {
+                            document.getElementById("startpage").value = document.getElementById("page").value;
+                        } else {
+                            alert("您的输入有误");
+                            document.getElementById("page").value = document.getElementById("startpage").value;
+                        }
+                        document.forms[0].submit();
+
+                    }
+                    function doPage(startsize) {
+                        document.getElementById("startpage").value = startsize;
+                        document.forms[0].submit();
+
+                    }
+                </script>
+
+
+        </body>
+    </html>
+
+
+</form>
+</body>
+</html>

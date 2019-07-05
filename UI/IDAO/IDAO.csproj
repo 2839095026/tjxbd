@@ -71,6 +71,7 @@
     <Compile Include="ISalaryStandardDetailsDao.cs" />
     <Compile Include="ITrainingDao.cs" />
     <Compile Include="IUsersDao.cs" />
+    <Compile Include="IUsersRolesDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

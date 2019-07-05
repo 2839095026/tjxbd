@@ -57,5 +57,11 @@ namespace Entity
         public virtual DbSet<training> training { get; set; }
         public virtual DbSet<users> users { get; set; }
         public virtual DbSet<users_roles> users_roles { get; set; }
+        public virtual DbSet<Permissions> Permissions { get; set; }
+        public virtual DbSet<RolePermissions> RolePermissions { get; set; }
+        public virtual DbSet<Roles> Roles { get; set; }
+        public virtual DbSet<salary_item> salary_item { get; set; }
+        public virtual DbSet<users_roles> users_roles { get; set; }
+        public virtual DbSet<major_change> major_change { get; set; }
     }
 }

@@ -1,0 +1,187 @@
+﻿@model List<Entity.salary_grant_details>
+@{
+    Layout = null;
+    ViewBag.Title = "query";
+
+    Entity.salary_grant sg = ViewBag.sg as Entity.salary_grant;
+    List<Entity.salary_standard_details> sgd = ViewBag.details as List<Entity.salary_standard_details>;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-trasitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="~/css/table.css" type="text/css" />
+    <script src="~/javascript/jquery-1.7.2.js"></script>
+    <title>无标题文档</title>
+    <style type="text/css">
+        <!--
+        .style3 {
+            color: #0000CC;
+        }
+
+        td {
+            text-align: center;
+        }
+        -->
+    </style>
+</head>
+
+<body>
+    <form method="post" action="">
+        <table width="100%">
+            <tr>
+                <td style="text-align: left">
+                    <font color="black">您正在做的业务是:人力资源管理--薪酬发放管理--薪酬发放查询</font>
+                    <br><br><br>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" style="text-align: left">
+                    薪酬单编号：@sg.salary_grant_id
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: left">
+                    机构：
+                    @{
+                        if (sg.first_kind_name != null)
+                        {
+                            @("I级结构")
+                            <input type="hidden" name="first_kind_id" value="@sg.first_kind_id" />
+                            <input type="hidden" name="first_kind_name" value="@sg.first_kind_name" />
+                        }
+                        else if (sg.second_kind_name != null)
+                        {
+                            @("II级结构")
+                            <input type="hidden" name="second_kind_id" value="@sg.second_kind_id" />
+                            <input type="hidden" name="second_kind_name" value="@sg.second_kind_name" />
+                        }
+                        else if (sg.third_kind_name != null)
+                        {
+                            @("III级结构")
+                            <input type="hidden" name="third_kind_id" value="@sg.third_kind_id" />
+                            <input type="hidden" name="third_kind_name" value="@sg.third_kind_name" />
+                        }
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: left">
+                    本机构总人数:@sg.human_amount
+                    ，基本薪酬总数:@(sg.salary_standard_sum.HasValue ? (double)sg.salary_standard_sum : 0.0)
+                    ，实发总额:<span id="salarySum_sum">@(sg.salary_paid_sum.HasValue ? (double)sg.salary_paid_sum : 0.0)</span>
+
+                </td>
+                <td style="text-align: right">
+
+                    登记人:@sg.register 　
+                    登记时间： @(Convert.ToDateTime(sg.regist_time).ToString("yyyy-MM-dd"));
+
+                </td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellpadding=0 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            <tr>
+                <td class="TD_STYLE1">
+                    <span>序号</span>
+                </td>
+                <td class="TD_STYLE1">
+                    <span>档案编号</span>
+                </td>
+                <td class="TD_STYLE1">
+                    <span>姓名</span>
+                </td>
+                @foreach (Entity.salary_item item in ViewBag.item)
+                {
+                    <td class="TD_STYLE1" width="4%">
+                        @item.item_name
+                    </td>
+                }
+                <td class="TD_STYLE1">
+                    奖励金额
+                </td>
+                <td class="TD_STYLE1">
+                    销售绩效总额
+                </td>
+                <td class="TD_STYLE1">
+                    应扣金额
+                </td>
+                <td class="TD_STYLE1">
+                    实发金额
+                </td>
+
+            </tr>
+@{
+    int i = 1;
+    foreach (var item in Model)
+    {
+        <input type="hidden" name="grantDetails[@{@(i - 1)}].salary_grant_id" value="@item.salary_grant_id">
+        <tr class="TD_STYLE2">
+            <td>
+                @i
+            </td>
+            <td>
+                @item.human_id
+                <input type="hidden" name="grantDetails[@{@(i - 1)}].human_id" value="@item.human_id" />
+            </td>
+            <td>
+                @item.human_name
+                <input type="hidden" name="grantDetails[@{@(i - 1)}].human_name" value="@item.human_name" />
+            </td>
+            @{
+                IBLL.IHumanFileBll bll = IocContainer.IocCreate.CreateBll<IBLL.IHumanFileBll>("HumanFileBll");
+                Entity.human_file hf = bll.FindAll().Where(f => f.human_id == item.human_id).FirstOrDefault();
+                List<Entity.salary_standard_details> details = sgd.Where(e => e.standard_id == hf.salary_standard_id).OrderBy(e => e.item_id).ToList();
+                List<Entity.salary_item> salaryItem = (ViewBag.item as List<Entity.salary_item>);
+                int reader = 0;
+                double sum = 0;
+                for (int K = 0; K < salaryItem.Count; K++)
+                {
+                    //当前的列等于生成列
+                    if (salaryItem[K].item_id == details[reader].item_id)
+                    {
+                        sum += details[reader].salary.HasValue == true ? (double)details[reader].salary : 0.0;
+                        <td>@((double)details[reader].salary)</td>
+                        if (reader < details.Count - 1)
+                        {
+                            reader++;
+                        }
+                    }
+                    else
+                    {
+                        <td>0.0 </td>
+                    }
+                }
+            }
+            <td>
+                @(item.bouns_sum.HasValue ? (double)item.bouns_sum : 0.0)
+            </td>
+            <td>
+                @(item.sale_sum.HasValue ? (double)item.sale_sum : 0.0)
+            </td>
+            <td>
+                @(item.deduct_sum.HasValue ? (double)item.deduct_sum : 0.0)
+            </td>
+            <td>
+                @(item.salary_paid_sum.HasValue ? (double)item.salary_paid_sum : 0.0)
+            </td>
+
+</tr>
+        i++;
+    }
+}
+        </table>
+        <br>
+        <center>
+            <input type="button" style="width: 200;height: 50;font-size: 20px;font-weight: bold;border-bottom-style: ridge;cursor: pointer" onclick="javascript:window.history.back();" value="返 回">
+
+        </center>
+
+    </form>
+</body>
+</html>
+
+

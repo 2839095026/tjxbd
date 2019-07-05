@@ -87,7 +87,7 @@ namespace DAO
             }
             return dt;
         }
-        public static object SelectSinger(string sql, string fileName, params SqlParameter[] ps)
+        public static object SelectSinger(string sql, string fileName,params SqlParameter[] ps)
         {
             SqlConnection cn = GetConnection();
             SqlCommand cmd = new SqlCommand(sql, cn);
@@ -139,13 +139,13 @@ namespace DAO
 
         private static void WRZ(string fileName, Exception ex)
         {
-            using (StreamWriter sw = new StreamWriter("错误日志.txt", true))
-            {
-                sw.WriteLine("错误信息：" + ex.Message);
-                sw.WriteLine("错误时间:" + DateTime.Now);
-                sw.WriteLine("报错窗体名:" + fileName);
-                sw.WriteLine("----------------------------");
-            }
+            //using (StreamWriter sw = new StreamWriter("错误日志.txt", true))
+            //{
+            //    sw.WriteLine("错误信息：" + ex.Message);
+            //    sw.WriteLine("错误时间:" + DateTime.Now);
+            //    sw.WriteLine("报错窗体名:" + fileName);
+            //    sw.WriteLine("----------------------------");
+            //}
 
         }
 

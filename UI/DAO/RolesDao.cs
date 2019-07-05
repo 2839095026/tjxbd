@@ -9,5 +9,6 @@ namespace DAO
 {
     public class RolesDao : BaseDao<Roles>, IRolesDao<Roles>
     {
+       
     }
 }

@@ -35,5 +35,10 @@ namespace BLL
         {
             return dao.FindAll();
         }
+
+        public List<salary_grant_details> SelectWhere(string id)
+        {
+            return dao.SelectWhere(e => e.salary_grant_id == id);
+        }
     }
 }

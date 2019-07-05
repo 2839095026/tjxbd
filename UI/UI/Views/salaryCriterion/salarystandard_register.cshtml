@@ -14,7 +14,7 @@
 </head>
 <body>
 
-    <form method="post" action="salarystandard_register_success.html">
+    <form method="post" action="Create">
         <table width="100%">
             <tr>
                 <td>
@@ -38,19 +38,19 @@
                     薪酬标准编号
                 </td>
                 <td width="168" class="TD_STYLE2">
-                    <input type="text" name="standard.standardId" value="@ViewBag.number" readonly="readonly" class="INPUT_STYLE2">
+                    <input type="text" name="standard_id" value="@ViewBag.number" readonly="readonly" class="INPUT_STYLE2">
                 </td>
                 <td width="83" class="TD_STYLE1">
                     薪酬标准名称
                 </td>
                 <td width="171" class="TD_STYLE2">
-                    <input type="text" name="standard.standardName" id="standardName" class="INPUT_STYLE2">
+                    <input type="text" name="standard_name" id="standardName" class="INPUT_STYLE2">
                 </td>
                 <td width="170" class="TD_STYLE1">
                     薪酬总额
                 </td>
                 <td width="138" class="TD_STYLE2">
-                    <input type="text" name="standard.salarySum" id="sumSalary" value="0.0" readonly class="INPUT_STYLE2" />
+                    <input type="text" name="salary_sum" id="sumSalary" value="0.0" readonly class="INPUT_STYLE2" />
                 </td>
                 <td width="103" class="TD_STYLE1">
                     &nbsp;
@@ -64,19 +64,19 @@
                     制定人
                 </td>
                 <td class="TD_STYLE2">
-                    <input type="text" id="designer" name="standard.designer" class="INPUT_STYLE2">
+                    <input type="text" id="designer" name="designer" class="INPUT_STYLE2">
                 </td>
                 <td class="TD_STYLE1">
                     登记人
                 </td>
                 <td class="TD_STYLE2">
-                    <input type="text" name="standard.register" value="@ViewBag.user" readonly="readonly" class="INPUT_STYLE2">
+                    <input type="text" name="register" value="@ViewBag.user" readonly="readonly" class="INPUT_STYLE2">
                 </td>
                 <td class="TD_STYLE1">
                     登记时间
                 </td>
                 <td class="TD_STYLE2">
-                    <input type="text" id="Tdate" name="standard.registTime" readonly="readonly" class="INPUT_STYLE2">
+                    <input type="text" id="Tdate" name="regist_time" readonly="readonly" class="INPUT_STYLE2">
                 </td>
                 <td class="TD_STYLE1">
                     &nbsp;
@@ -90,7 +90,7 @@
                     备注
                 </td>
                 <td colspan="7" class="TD_STYLE2">
-                    <textarea name="standard.remark" rows="4" class="TEXTAREA_STYLE1"></textarea>
+                    <textarea name="remark" rows="4" class="TEXTAREA_STYLE1"></textarea>
                 </td>
             </tr>
             <tr class="TD_STYLE1">
@@ -108,25 +108,29 @@
                 </td>
             </tr>
             <tbody>
-                @{foreach (var item in Model) {
+                @{
+                        int i = 1;
+                        foreach (var item in Model) {
                 <tr class="TD_STYLE2">
                     <td align="center">
                         @item.item_id
-                        <input type="hidden" name="details[0].itemId" value="63">
+                        <input type="hidden" name="ssd[@{@(i-1)}].item_id" value="@item.item_id">
                     </td>
                     <td colspan="3">
                         @item.item_name
-                        <input type="hidden" id="details1" name="details[0].itemName" value="@item.item_name">
+                        <input type="hidden" id="details@{@i}" name="ssd[@{@(i-1)}].item_name" value="@item.item_name">
                     </td>
                     <td>
-                        <input type="text" id="salary1" value="0.00" name="details[0].salary"
-                               onkeyup="countMoney('6','salary1')" class="INPUT_STYLE2">
+                        <input type="text" id="salary@{@i}" value="0.00" name="ssd[@{@(i-1)}].salary"
+                               onkeyup="countMoney(@Model.Count, 'salary@{@i}')" class="INPUT_STYLE2">
                     </td>
                     <td colspan="3">
                         &nbsp;
                     </td>
                 </tr>
-                } }
+
+                        i++;
+                    } }
             </tbody>
         </table>
         <p>
@@ -135,7 +139,6 @@
     </form>
     <script type="text/javascript">
         function check() {
-
             var designer = document.getElementById("designer");
             var standardName = document.getElementById("standardName");
             if (designer.value.length <= 0) {

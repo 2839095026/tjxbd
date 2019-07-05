@@ -12,5 +12,6 @@ namespace IBLL
         int Add(salary_grant_details t);
         int Del(salary_grant_details t);
         int Change(salary_grant_details t);
+        List<salary_grant_details> SelectWhere(string id);
     }
 }

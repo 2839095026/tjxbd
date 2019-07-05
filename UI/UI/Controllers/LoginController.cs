@@ -26,5 +26,10 @@ namespace UI.Controllers
             }
             return Content("no");
         }
+        public ActionResult Exit()
+        {
+            Session.Clear();
+            return Redirect("Index");
+        }
     }
 }

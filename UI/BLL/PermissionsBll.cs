@@ -7,6 +7,7 @@ using Entity;
 using IDAO;
 using IBLL;
 using IocContainer;
+using System.Data;
 
 namespace BLL
 {
@@ -35,5 +36,9 @@ namespace BLL
         {
             return dao.FindAll();
         }
+        public DataTable PermissionsAll(string fileName, int useId, int qxid) {
+            return dao.PermissionsAll(fileName,useId,qxid);
+        }
+
     }
 }
