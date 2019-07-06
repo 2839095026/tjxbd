@@ -66,33 +66,13 @@
                 })
             });
         
-            $(function () {
-                $("#btncx").click(function () {
-                    location.href = '/transfer/register_list/'
-                })
+            //$(function () {
+            //    $("#btncx").click(function () {
+            //        location.href = '/transfer/register_list/'
+            //    })
 
-            })
-            function mySubmit() {
-                if (document.getElementById("firstKindId").value == '0') {
-                    alert("请选择新一级结构！");
-                    return;
-                }
-                if (document.getElementById("secondKindId").value == '0') {
-                    alert("请选择新二级结构！");
-                    return;
-                }
-                if (document.getElementById("thirdKindId").value == '0') {
-                    alert("请选择新三级结构！");
-                    return;
-                }
-                if (document.getElementById("newSalaryStandardId").value == '0') {
-                    alert("请选择新薪酬标准！");
-                    return;
-                }
-
-                document.forms[0].submit();
-
-            }
+            //})
+           
         })
     </script>
 </head>
@@ -106,7 +86,7 @@
             </tr>
             <tr>
                 <td align="right">
-                    <input type="submit" value="查询" class="BUTTON_STYLE1" onclick="mySubmit()" >
+                    <input type="submit" value="查询" class="BUTTON_STYLE1" >
                 </td>
             </tr>
         </table>
@@ -152,8 +132,8 @@
                     请输入建档时间
                 </td>
                 <td width="45%" class="TD_STYLE2">
-                    <input name="utilbean.startDate" onclick="aa('utilbean.startDate')" type="text" class="INPUT_STYLE2" id="date_start" style="width:24% " value="" size="30">
-                    至<input type="text" name="utilbean.endDate" onclick="aa('utilbean.endDate')" value="" style="width:24% " class="INPUT_STYLE2" id="date_end">
+                    <input name="startDate" onclick="aa('startDate')" type="text" class="INPUT_STYLE2" id="date_start" style="width:24% " value="" size="30">
+                    至<input type="text" name="endDate" onclick="aa('endDate')" value="" style="width:24% " class="INPUT_STYLE2" id="date_end">
                     （YYYY-MM-DD）
                 </td>
             </tr>

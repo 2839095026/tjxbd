@@ -107,7 +107,7 @@
                             @item.human_educated_major
                         </td>
                         <td class="TD_STYLE2">
-                            @Html.ActionLink("登记", "details/" + item.res_id, "employ")
+                            @Html.ActionLink("登记", "human_register", "humanResources", new { rid=item.res_id },null)
                         </td>
                     </tr>
                 }

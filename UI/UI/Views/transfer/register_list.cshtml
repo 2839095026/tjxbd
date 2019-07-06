@@ -88,16 +88,17 @@
             </p>*@
         <p>
             &nbsp;&nbsp;总数：@ViewBag.count 例 &nbsp;&nbsp;&nbsp;当前第 @ViewBag.index 页 /每页显示 @ViewBag.pagesize 条 &nbsp;&nbsp;&nbsp;共 @ViewBag.pages 页 &nbsp;&nbsp;&nbsp;
-            <a href="?pageIndex=@(ViewBag.index>1?ViewBag.index-1:1)&firstKindId=@Request.QueryString["firstKindId"]&secondKindId=@Request.QueryString["secondKindId"]&thirdKindId=@Request.QueryString["thirdKindId"]&MajorKindId=@Request.QueryString["MajorKindId"]">上一页</a> &nbsp;&nbsp;&nbsp;
-            <a href="?pageIndex=@(ViewBag.index<ViewBag.pages?ViewBag.index+1:ViewBag.pages==0?1:ViewBag.pages)&firstKindId=@Request.QueryString["firstKindId"]&secondKindId=@Request.QueryString["secondKindId"]&thirdKindId=@Request.QueryString["thirdKindId"]">下一页</a> &nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 id="currPage" size=1> 页&nbsp;&nbsp;<img src="../../../images/go.bmp" id="goPage" width=18 height=18 border=0>
-    </form>
+            <a href="?pageIndex=@(ViewBag.index>1?ViewBag.index-1:1)&firstKindId=@Request.QueryString["firstKindId"]&secondKindId=@Request.QueryString["secondKindId"]&thirdKindId=@Request.QueryString["thirdKindId"]&startDate=@Request.QueryString["startDate"]&endDate=@Request.QueryString["endDate"]">上一页</a> &nbsp;&nbsp;&nbsp;
+            <a href="?pageIndex=@(ViewBag.index<ViewBag.pages?ViewBag.index+1:ViewBag.pages==0?1:ViewBag.pages)&firstKindId=@Request.QueryString["firstKindId"]&secondKindId=@Request.QueryString["secondKindId"]&thirdKindId=@Request.QueryString["thirdKindId"]&startDate=@Request.QueryString["startDate"]&endDate=@Request.QueryString["endDate"]">下一页</a> &nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 id="currPage" size=1> 页&nbsp;&nbsp;<img src="../../../images/go.bmp" id="goPage" width=18 height=18 border=0>
+   </p>
+             </form>
     <script type="text/javascript">
         $(function () {
             $("#goPage").click(function () {
                 var pageSize=@ViewBag.pages;
                 var goIndex=$('#currPage').val();
                 if(goIndex<= pageSize&&goIndex>=1){
-                    location.href="?pageIndex="+goIndex+"&firstKindId=@Request.QueryString["firstKindId"]&secondKindId=@Request.QueryString["secondKindId"]&thirdKindId=@Request.QueryString["thirdKindId"]";
+                    location.href="?pageIndex="+goIndex+"&firstKindId=@Request.QueryString["firstKindId"]&secondKindId=@Request.QueryString["secondKindId"]&thirdKindId=@Request.QueryString["thirdKindId"]&startDate=@Request.QueryString["startDate"]&endDate=@Request.QueryString["endDate"]";
                 }else{
                     alert('目标页面不存在')
                 }

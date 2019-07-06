@@ -67,18 +67,66 @@ namespace UI.Controllers
             return Content(JsonConvert.SerializeObject(dt));
         }
 
-
-        public ActionResult register_list()//主页的分页
+        public ActionResult register_list()
         {
-            int index = Request.QueryString["pageIndex"] != null && Request.QueryString["pageIndex"] != "" ? int.Parse(Request.QueryString["pageIndex"]) : 1;
+            string firstKindId = Request.QueryString["firstKindId"];
+            string secondKindId = Request.QueryString["secondKindId"];
+            string thirdKindId = Request.QueryString["thirdKindId"];
+            string startDate = Request.QueryString["startDate"];
+            string endDate = Request.QueryString["endDate"];
+            string pageIndex = Request.QueryString["pageIndex"];
+            if (pageIndex == "" || pageIndex == null)
+            {
+                pageIndex = "1";
+            }
+            int pageIndexInt = int.Parse(pageIndex);
+            int pageSize = 1;
             int count = 0;
-            List< human_file> list = HB.FenYe(index, 1, out count);
-            ViewBag.count = count;
-            ViewBag.index = index;
-            ViewBag.pageSize = (count - 1) / 1 + 1;
+           
+            List<human_file> data = HB.FindAll();
+          
+            if (!CheckString(firstKindId))
+            {
+                data = data.Where(e => e.first_kind_id.Trim().Equals(firstKindId)).ToList();
+            }
+            if (!CheckString(secondKindId))
+            {
+                data = data.Where(e => e.second_kind_id.Equals(secondKindId)).ToList();
+            }
+            if (!CheckString(thirdKindId))
+            {
+                data = data.Where(e => e.third_kind_id.Equals(thirdKindId)).ToList();
+            }
+            if (!CheckString(startDate))
+            {
+                data = data.Where(e => e.regist_time >= DateTime.Parse(startDate)).ToList();
+            }
+            if (!CheckString(endDate))
+            {
+                data = data.Where(e => e.regist_time < DateTime.Parse(endDate).AddDays(1)).ToList();
+            }
 
-            return View(list);
+            ViewBag.count = data.Count();
+            data = data.Skip((pageIndexInt - 1) * pageSize).Take(pageSize).ToList();
+            ViewBag.data = data;
+            ViewBag.index = pageIndexInt;
+            ViewBag.pages = (ViewBag.count - 1) / pageSize + 1;
+            ViewBag.pagesize = pageSize;
+            return View(data);
         }
+        //public ActionResult register_list()//主页的分页
+        //{
+
+        //    int index = Request.QueryString["pageIndex"] != null && Request.QueryString["pageIndex"] != "" ? int.Parse(Request.QueryString["pageIndex"]) : 1;
+        //    int count = 0;
+        //    List< human_file> list = HB.FenYe(index, 1, out count);
+        //    ViewBag.count = count;
+        //    ViewBag.index = index;
+        //    ViewBag.pageSize = (count - 1) / 1 + 1;
+
+        //    return View(list);
+        //}
+
         public ActionResult GetXinChou()//获取新薪酬
         {
             DataTable dt = ss.XinChou("GetXinChou");
@@ -108,7 +156,7 @@ namespace UI.Controllers
             //major_change list = Mb.SelectWhere(t.mch_id).FirstOrDefault();
             //list.change_reason = t.change_reason;
             //list.check_status = t.check_status = 1;
-            t.check_status = 1;
+            t.check_status = 0;
             t.regist_time = DateTime.Now;
             if (Mb.Add(t) > 0)
             {
@@ -149,11 +197,11 @@ namespace UI.Controllers
         public ActionResult check(major_change t, int stus, int id)
         {
             major_change list = Mb.SelectWhere(t.mch_id).FirstOrDefault();
-           t.regist_time=DateTime.Now;
-            t.check_time= DateTime.Now;
+            list.regist_time=DateTime.Now;
+            list.check_time= DateTime.Now;
             if (stus > 0)
             {
-                t.check_status =1;
+                list.check_status =1;
             }
             else
             {             
@@ -179,11 +227,47 @@ namespace UI.Controllers
             return View();
         }
    
-        public ActionResult list(string id)
+        public ActionResult list()
         {
-           //List<major_change> list = Mb.SelectWhereType(id);
-            List<human_file> list = HB.FindAll();
-            return View(list);
+            string firstKindId = Request.QueryString["firstKindId"];
+            string secondKindId = Request.QueryString["secondKindId"];
+            string thirdKindId = Request.QueryString["thirdKindId"];
+            string MajorKindId = Request.QueryString["MajorKindId"];
+            string MajorId = Request.QueryString["MajorId"];
+            string startDate = Request.QueryString["startDate"];
+            string endDate = Request.QueryString["endDate"];
+            List<human_file> data = HB.FindAll();   
+            if (!CheckString(firstKindId))
+            {
+                data = data.Where(e => e.first_kind_id.Trim().Equals(firstKindId)).ToList();
+            }
+            if (!CheckString(secondKindId))
+            {
+                data = data.Where(e => e.second_kind_id.Equals(secondKindId)).ToList();
+            }
+            if (!CheckString(thirdKindId))
+            {
+                data = data.Where(e => e.third_kind_id.Equals(thirdKindId)).ToList();
+            }
+            if (!CheckString(MajorKindId))
+            {
+                data = data.Where(e => e.human_major_kind_id.Equals(MajorKindId)).ToList();
+            }
+            if (!CheckString(MajorId))
+            {
+                data = data.Where(e => e.human_major_id.Equals(MajorId)).ToList();
+            }
+            if (!CheckString(startDate))
+            {
+                data = data.Where(e => e.regist_time > DateTime.Parse(startDate)).ToList();
+            }
+            if (!CheckString(endDate))
+            {
+                data = data.Where(e => e.regist_time < DateTime.Parse(endDate)).ToList();
+            }
+            //List<major_change> list = Mb.SelectWhereType(id);
+          
+            return View(data);
       
         }
         public ActionResult detail(string id)
@@ -193,8 +277,16 @@ namespace UI.Controllers
             ViewBag.st2 = Mb.SelectWhere(hh.human_id).LastOrDefault();
             return View();
         }
-      
-      
+
+        public bool CheckString(string str)
+        {
+            if (str == "" || str == null)
+            {
+                return true;
+            }
+            return false;
+
+        }
 
 
 
