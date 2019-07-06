@@ -25,7 +25,7 @@
             </tr>
             <tr>
                 <td align="right">
-                    <input type="button" value="提 交" onclick="check()" class="BUTTON_STYLE1">
+                    <input type="button" value="提 交"  id="putData" class="BUTTON_STYLE1">
                     <input type="reset" value="返 回" class="BUTTON_STYLE1">
                 </td>
             </tr>
@@ -93,7 +93,7 @@
                     <textarea name="remark" rows="4" class="TEXTAREA_STYLE1"></textarea>
                 </td>
             </tr>
-            <tr class="TD_STYLE1">
+            <tr class="TD_STYLE1" id="th">
                 <td align="center">
                     序号
                 </td>
@@ -108,49 +108,72 @@
                 </td>
             </tr>
             <tbody>
-                @{
-                        int i = 1;
-                        foreach (var item in Model) {
-                <tr class="TD_STYLE2">
-                    <td align="center">
-                        @item.item_id
-                        <input type="hidden" name="ssd[@{@(i-1)}].item_id" value="@item.item_id">
+                <tr id="check" >
+                    <td class="TD_STYLE1">
+                        请选择薪酬项目
                     </td>
-                    <td colspan="3">
-                        @item.item_name
-                        <input type="hidden" id="details@{@i}" name="ssd[@{@(i-1)}].item_name" value="@item.item_name">
+                    <td class="TD_STYLE2" width="20%" style="padding-left:40px; border-top:1px solid;" height="100px;">
+                        <input type="checkbox" name="checked" id="checked" />全选
                     </td>
-                    <td>
-                        <input type="text" id="salary@{@i}" value="0.00" name="ssd[@{@(i-1)}].salary"
-                               onkeyup="countMoney(@Model.Count, 'salary@{@i}')" class="INPUT_STYLE2">
-                    </td>
-                    <td colspan="3">
-                        &nbsp;
-                    </td>
+                    <td colspan="6" style="border-left:0px;" height="100px;">
+                        <center>
+                            <fieldset>
+                                @foreach (var item1 in Model)
+                                {
+                                    <input type="checkbox" name="check" class="checkbox" item_name="@item1.item_name" item_id="@item1.item_id" />@item1.item_name
+                                }
+                            </fieldset>
+                            <br/>
+                            <input type="button" value="确定" id="sure" />
+                        </center>
+</td>
                 </tr>
-
-                        i++;
-                    } }
             </tbody>
         </table>
         <p>
             &nbsp;
         </p>
     </form>
+
     <script type="text/javascript">
-        function check() {
-            var designer = document.getElementById("designer");
-            var standardName = document.getElementById("standardName");
-            if (designer.value.length <= 0) {
-                alert("制定人不可为空!!!");
-                return;
-            }
-            if (standardName.value.length <= 0) {
-                alert("薪酬标准名称不可为空!!!");
-                return;
-            }
-            document.forms[0].submit();
-        }
+        $(function(){
+            $("#th").hide();
+            $("#checked").change(function(){
+                if ($(this).get(0).checked!=false) {
+                    $(".checkbox").attr("checked","checked");
+                }
+                else{
+                    $(".checkbox").removeAttr("checked");
+                }
+            });
+            $("#sure").click(function(){
+                $("#check").hide();
+                $("#th").show();
+                var checkList = $("input[name='check']:checked");
+                checkList.each(function (i) {
+                    var item_id=$(this).attr("item_id");
+                    var item_name = $(this).attr("item_name");
+                    var tr = '<tr class="TD_STYLE2"><td align="center">' + item_id + '<input type="hidden" name="ssd[' + i + '].item_id" value="' + item_id + '"></td><td colspan="3">' + item_name + '<input type="hidden" id="details' + (i + 1) + '" name="ssd[' + i + '].item_name" value="' + item_name + '"></td><td><input type="text" id="salary' + (i + 1) + '" value="0.00" name="ssd[' + i + '].salary"onkeyup="countMoney(' + checkList.length+ ', \'salary' + (i + 1) + '\')" class="INPUT_STYLE2"></td><td colspan="3">&nbsp;</td></tr>';
+                    $("#stable>tbody:first-child").append(tr);
+                });
+            });
+            $('#putData').click(function () {
+                var designer = document.getElementById("designer");
+                var standardName = document.getElementById("standardName");
+                if (designer.value.length <= 0) {
+                    alert("制定人不可为空!!!");
+                    return;
+                }
+                if (standardName.value.length <= 0) {
+                    alert("薪酬标准名称不可为空!!!");
+                    return;
+                }
+                document.forms[0].submit();
+            });
+
+        })
+      
+            
         function countMoney(obj, o) {
 
             if (isNaN(document.getElementById(o).value) || document.getElementById(o).value < 0) {

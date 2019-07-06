@@ -105,12 +105,9 @@
                 <td class="TD_STYLE1">
                     <span>姓名</span>
                 </td>
-                @foreach (Entity.salary_item item in ViewBag.item)
-                {
-                    <td class="TD_STYLE1" width="4%">
-                        @item.item_name
-                    </td>
-                }
+                <td class="TD_STYLE1" width="7%">
+                    工资详情
+                </td>
                 <td class="TD_STYLE1" width="7%">
                     奖励金额
                 </td>
@@ -155,18 +152,16 @@
                     if (details.Count > 0 && salaryItem[K].item_id == details[reader].item_id)
                     {
                         sum += details[reader].salary.HasValue == true ? (double)details[reader].salary : 0.0;
-                        <td>@((double)details[reader].salary)</td>
                         if (reader < details.Count - 1)
                         {
                             reader++;
                         }
                     }
-                    else
-                    {
-                        <td>0.0 </td>
-                    }
                 }
             }
+            <td>
+                <a href="../list/@sg.salary_standard_id">工资详情</a>
+            </td>
             <td>
                 <input type="hidden" id="salaryStandardSum@{@i}" name="grantDetails[@{@(i - 1)}].salary_standard_sum" value="@sum" />
                 <input type="text" name="grantDetails[@{@(i - 1)}].bouns_sum" id="bounsSum@{@i}" value="@(item.bouns_sum.HasValue ? (double)item.bouns_sum: 0.0)" onkeyup="onKeyPress('@{@i}')" class="INPUT_STYLE2" />
