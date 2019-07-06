@@ -81,14 +81,14 @@
             </tr>
 
 
-            
+
 
             @{
                 foreach (var item in Model)
                 {
                     <tr>
                         <td class="TD_STYLE2">
-                            @Html.ActionLink(item.res_id.ToString(), "resumeselect", new {id=item.res_id })
+                            @Html.ActionLink(item.res_id.ToString(), "resumeselect", new { id = item.res_id })
                         </td>
                         <td class="TD_STYLE2">
                             @item.human_name
@@ -118,19 +118,24 @@
 
         </table>
         <p>
-            &nbsp;&nbsp;总数：@(ViewBag.count) 例 &nbsp;&nbsp;&nbsp;当前第@(ViewBag.index) 页 /每页显示 @(ViewBag.pages) 条 &nbsp;&nbsp;&nbsp;共 @( ViewBag.pages) 页 &nbsp;&nbsp;&nbsp;
-            <a href="?pageindex=@(ViewBag.index>1?ViewBag.index-1:1)&keyWrods=@(Context.Request.QueryString["keyWrods"])&startTime=@(Context.Request.QueryString["startTime"])&endTime=@(Context.Request.QueryString["endTime"])&mkid=@(Context.Request.QueryString["mkid"].Replace(" ","+"))&mid=@(Context.Request.QueryString["mid"].Replace(" ","+"))&status=@(Context.Request.QueryString["status"])">上一页</a> &nbsp;&nbsp;&nbsp;
-            <a href="?pageindex=@(ViewBag.index<ViewBag.pages?ViewBag.index+1:ViewBag.pages)&keyWrods=@(Context.Request.QueryString["keyWrods"])&startTime=@(Context.Request.QueryString["startTime"])&endTime=@(Context.Request.QueryString["endTime"])&mkid=@(Context.Request.QueryString["mkid"].Replace(" ","+"))&mid=@(Context.Request.QueryString["mid"].Replace(" ","+"))&status=@(Context.Request.QueryString["status"])">下一页</a> &nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 id="currPage" size=1> 页&nbsp;&nbsp;<input type=image src="../../../images/go.bmp" onclick="tj()" width=18 height=18 border=0>
+
+            &nbsp;&nbsp;总数：@(ViewBag.count) 例 &nbsp;&nbsp;&nbsp;
+            当前第@(ViewBag.index) 页
+            /每页显示 @(ViewBag.pageSize) 条 &nbsp;&nbsp;&nbsp;
+            共 @(ViewBag.countPages)页 &nbsp;&nbsp;&nbsp;
+            <a href="?pageindex=@(ViewBag.index>1?ViewBag.index-1:1)&keyWrods=@(Context.Request.QueryString["keyWrods"])&startTime=@(Context.Request.QueryString["startTime"])&endTime=@(Context.Request.QueryString["endTime"])&mkid=@(Context.Request.QueryString["mkid"]!=""&& Context.Request.QueryString["mkid"]!=null? Context.Request.QueryString["mkid"].Replace(" ","+"):"")&mid=@(Context.Request.QueryString["mid"]!=null&& Context.Request.QueryString["mid"]!=""? Context.Request.QueryString["mid"].Replace(" ","+"):"")&status=@(Context.Request.QueryString["status"])">上一页</a> &nbsp;&nbsp;&nbsp;
+            <a href="?pageindex=@(ViewBag.index<ViewBag.countPages?ViewBag.index+1:ViewBag.countPages)&keyWrods=@(Context.Request.QueryString["keyWrods"])&startTime=@(Context.Request.QueryString["startTime"])&endTime=@(Context.Request.QueryString["endTime"])&mkid=@(Context.Request.QueryString["mkid"]!=""&& Context.Request.QueryString["mkid"]!=null? Context.Request.QueryString["mkid"].Replace(" ","+"):"")&mid=@(Context.Request.QueryString["mid"]!=null&& Context.Request.QueryString["mid"]!=""? Context.Request.QueryString["mid"].Replace(" ","+"):"")&status=@(Context.Request.QueryString["status"])">下一页</a> &nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 id="currPage" size=1> 页&nbsp;&nbsp;<input type=image src="../../../images/go.bmp" onclick="tj()" width=18 height=18 border=0>
+        </p>
     </form>
 
     <script>
         function tj() {
-            var count=@(ViewBag.pages);
+            var count=@(ViewBag.countPages);
             if($('#currPage').val()>count){
                 alert('目标页不存在')
                 return
             }
-            var url = '?pageindex=' + $('#currPage').val() + '&keyWrods=@(Context.Request.QueryString["keyWrods"])&startTime=@(Context.Request.QueryString["startTime"])&endTime=@(Context.Request.QueryString["endTime"])&mkid=@(Context.Request.QueryString["mkid"].Replace(" ","+"))&mid=@(Context.Request.QueryString["mid"].Replace(" ","+"))';
+            var url = '?pageindex=' + $('#currPage').val() + '&keyWrods=@(Context.Request.QueryString["keyWrods"])&startTime=@(Context.Request.QueryString["startTime"])&endTime=@(Context.Request.QueryString["endTime"])&mkid=@(Context.Request.QueryString["mkid"]!=""&& Context.Request.QueryString["mkid"]!=null? Context.Request.QueryString["mkid"].Replace(" ","+"):"")&mid=@(Context.Request.QueryString["mid"]!=null&& Context.Request.QueryString["mid"]!=""? Context.Request.QueryString["mid"].Replace(" ","+"):"")';
             location.href=url
         }
     </script>

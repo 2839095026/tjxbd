@@ -28,7 +28,17 @@ namespace DAO
         public List<engage_resume> seachEngageResume(int pageInxex, int pageSize, string mkid, string mid, out int count, string keyWords, string startTime, string EndTime,int status)
         {
             var data = FindAll();
-            data = data.Where(e => e.human_major_kind_id == mkid && e.human_major_id == mid&&e.check_status == status).ToList();
+
+            data = data.Where(e => e.check_status == status).ToList();
+            if (mkid != null && mkid != "")
+            {
+                data = data.Where(e => e.human_major_kind_id == mkid).ToList();
+            }
+            if (mid != null && mid != "")
+            {
+                data = data.Where(e => e.human_major_id == mid).ToList();
+            }
+           
             if (keyWords != null && keyWords != "")
             {
                 data = data.Where(e => e.human_name.Contains(keyWords)&& e.human_telephone.Contains(keyWords)&& e.human_idcard.Contains(keyWords)).ToList();

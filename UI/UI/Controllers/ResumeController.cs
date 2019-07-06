@@ -104,8 +104,10 @@ namespace UI.Controllers
             int pageSize = 1;
             ViewData.Model = EngageResumeBll.seachEngageResume(pageindexi, pageSize, mkid, mid, out count, keyWrods, startTime, endTime,int.Parse(status));
             ViewBag.count = count;
+            int pages = (count - 1) / pageSize + 1;
             ViewBag.index = pageindexi;
-            ViewBag.pages = (count - 1) / pageSize + 1;
+            ViewBag.pageSize = pageSize;
+            ViewBag.countPages = pages;
             if (status.Equals("1"))
             {
                 return View("validlist");
