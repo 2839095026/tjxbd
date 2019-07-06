@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    <form method="post" action="check_list">
+    <form method="get" action="check_list">
         <table width="100%">
             <tr>
                 <td style="text-align:left;">
@@ -105,10 +105,10 @@
                     <a style="color: navy;font-weight: bold" href="javascript:doPage(1)">首页</a>
 
                     <a style="color: navy;font-weight: bold"
-                       href="javascript:doPage(@ViewBag.index>1?@ViewBag.index-1:1)">上一页</a>
+                       href="javascript:doPage(@(ViewBag.index>1?ViewBag.index-1:1))">上一页</a>
 
                     <a style="color: navy;font-weight: bold"
-                       href="javascript:doPage(@ViewBag.index<@ViewBag.pageSize?@ViewBag.index+1:@ViewBag.pageSize)">下一页</a>
+                       href="javascript:doPage(@(ViewBag.index<ViewBag.pageSize?ViewBag.index+1:ViewBag.pageSize))">下一页</a>
 
                     <a style="color: navy;font-weight: bold"
                        href="javascript:doPage(@ViewBag.pageSize)">末页</a>

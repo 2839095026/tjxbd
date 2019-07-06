@@ -14,7 +14,7 @@
           type="text/css"></link>
 </head>
 <body>
-    <form action="/transfer/register_list" method="get" >
+    <form action="/transfer/register_list" method="get">
         <font color="black"> 您在做的业务是-人力资源-调动管理-调动登记列表 </font>
         <br /><br /><br />
 
@@ -52,43 +52,64 @@
                     <td class="TD_STYLE2">@dr.salary_standard_name</td>
                     <td class="TD_STYLE2">@dr.human_name</td>
                     <td class="TD_STYLE2">
-                     <a href="/transfer/register/@dr.huf_id">调动</a> 
+                        <a href="/transfer/register/@dr.huf_id">调动</a>
                     </td>
                 </tr>
             }
 
         </table>
-        <p style="text-align:center;">
-            &nbsp;&nbsp;总数：
-            <font style="color: maroon;font-weight: bold;">@ViewBag.count</font>
-            &nbsp;&nbsp;&nbsp;
-            每页显示 <font style="color: maroon;font-weight: bold;">1</font>
-            条
-            &nbsp;&nbsp;&nbsp;
-            当前第 <font style="color: maroon;font-weight: bold;">@ViewBag.index</font>
-            页
-            &nbsp;&nbsp;&nbsp;共
-            <font style="color: maroon;font-weight: bold;">@ViewBag.pageSize</font>
-            页
-            <a style="color: navy;font-weight: bold" href="javascript:doPage(1)">首页</a>
+        @*<p style="text-align:center;">
+                &nbsp;&nbsp;总数：
+                <font style="color: maroon;font-weight: bold;">@ViewBag.count</font>
+                &nbsp;&nbsp;&nbsp;
+                每页显示 <font style="color: maroon;font-weight: bold;">1</font>
+                条
+                &nbsp;&nbsp;&nbsp;
+                当前第 <font style="color: maroon;font-weight: bold;">@ViewBag.index</font>
+                页
+                &nbsp;&nbsp;&nbsp;共
+                <font style="color: maroon;font-weight: bold;">@ViewBag.pageSize</font>
+                页
+                <a style="color: navy;font-weight: bold" href="javascript:doPage(1)">首页</a>
 
-            <a style="color: navy;font-weight: bold"
-               href="javascript:doPage(@(ViewBag.index>1?ViewBag.index-1:1))">上一页</a>
+                <a style="color: navy;font-weight: bold"
+                   href="@(ViewBag.index>1?ViewBag.index-1:1)&firstKindId=Request.QueryString['firstKindId']&secondKindId=Request.QueryString['secondKindId']&thirdKindId=Request.QueryString['thirdKindId'];">上一页</a>
 
-            <a style="color: navy;font-weight: bold"
-               href="javascript:doPage(@(ViewBag.index<@ViewBag.pageSize?@ViewBag.index+1:@ViewBag.pageSize))">下一页</a>
+                <a style="color: navy;font-weight: bold"
+                   href="@(ViewBag.index<@ViewBag.pageSize?@ViewBag.index+1:@ViewBag.pageSize)&firstKindId=Request.QueryString['firstKindId']&secondKindId=Request.QueryString['secondKindId']&thirdKindId=Request.QueryString['thirdKindId']">下一页</a>
 
-            <a style="color: navy;font-weight: bold"
-               href="javascript:doPage(@ViewBag.pageSize)">末页</a>
-            &nbsp;&nbsp;&nbsp;跳到第
-            <input id=page type=text value="1" class=input1 size=1>
-            页&nbsp;&nbsp;
-            <input type="image" onclick="dopagebybutton()" src="../../images/go.bmp" width=18 height=18 border=0>
-            <input type="hidden" name="pageIndex" id="startpage" value="1">
-        </p>
-        
-        </form>
-        <script type="text/javascript">
+                <a style="color: navy;font-weight: bold"
+                   href="javascript:doPage(@ViewBag.pageSize)">末页</a>
+                &nbsp;&nbsp;&nbsp;跳到第
+                <input id=page type=text value="1" class=input1 size=1>
+                页&nbsp;&nbsp;
+                <input type="image" onclick="dopagebybutton()" src="../../images/go.bmp" width=18 height=18 border=0>
+                <input type="hidden" name="pageIndex" id="startpage" value="1">
+            </p>*@
+        <p>
+            &nbsp;&nbsp;总数：@ViewBag.count 例 &nbsp;&nbsp;&nbsp;当前第 @ViewBag.index 页 /每页显示 @ViewBag.pagesize 条 &nbsp;&nbsp;&nbsp;共 @ViewBag.pages 页 &nbsp;&nbsp;&nbsp;
+            <a href="?pageIndex=@(ViewBag.index>1?ViewBag.index-1:1)&firstKindId=@Request.QueryString["firstKindId"]&secondKindId=@Request.QueryString["secondKindId"]&thirdKindId=@Request.QueryString["thirdKindId"]&MajorKindId=@Request.QueryString["MajorKindId"]">上一页</a> &nbsp;&nbsp;&nbsp;
+            <a href="?pageIndex=@(ViewBag.index<ViewBag.pages?ViewBag.index+1:ViewBag.pages==0?1:ViewBag.pages)&firstKindId=@Request.QueryString["firstKindId"]&secondKindId=@Request.QueryString["secondKindId"]&thirdKindId=@Request.QueryString["thirdKindId"]">下一页</a> &nbsp;&nbsp;&nbsp;跳到第 <input name=page type=text class=input1 id="currPage" size=1> 页&nbsp;&nbsp;<img src="../../../images/go.bmp" id="goPage" width=18 height=18 border=0>
+    </form>
+    <script type="text/javascript">
+        $(function () {
+            $("#goPage").click(function () {
+                var pageSize=@ViewBag.pages;
+                var goIndex=$('#currPage').val();
+                if(goIndex<= pageSize&&goIndex>=1){
+                    location.href="?pageIndex="+goIndex+"&firstKindId=@Request.QueryString["firstKindId"]&secondKindId=@Request.QueryString["secondKindId"]&thirdKindId=@Request.QueryString["thirdKindId"]";
+                }else{
+                    alert('目标页面不存在')
+                }
+            });
+
+
+        })
+
+
+    </script>
+
+        @*<script type="text/javascript">
             function dopagebybutton() {
                 var reg = /^[0-9]*[1-9][0-9]*$/;
                 if (reg.test(document.getElementById("page").value)) {
@@ -106,6 +127,6 @@
             document.forms[0].submit();
 
         }
-        </script>
+        </script>*@
         </body>
     </html>

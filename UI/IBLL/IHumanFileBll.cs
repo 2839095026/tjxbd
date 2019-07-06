@@ -26,7 +26,7 @@ namespace IBLL
         /// <param name="count"></param>
         /// <returns></returns>
         List<human_file> FindCheckList(int pageInxex, int pageSize, out int count);
-        List<human_file> FindAllHumanFileByState(int pageInxex, int pageSize, out int count, Expression<Func<human_file, bool>> where);
+        //List<human_file> FindAllHumanFileByState(int pageInxex, int pageSize, out int count, Expression<Func<human_file, bool>> where);
 
         DataTable Selectfirst(string fileName);
         DataTable SelectSecond(string id, string fileName);

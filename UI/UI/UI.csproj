@@ -507,6 +507,11 @@
     <Content Include="images\tuopu_32.gif" />
     <Content Include="images\tuopu_33.gif" />
     <Content Include="images\tuopu_34.gif" />
+    <Content Include="images\upload\acc\bt00000000001\1 %281%29.jpg" />
+    <Content Include="images\upload\acc\bt00000000001\1 %2851%29.jpg" />
+    <Content Include="images\upload\bt00000000001.jpg" />
+    <Content Include="images\upload\image\bt00000000001.jpg" />
+    <Content Include="images\upload\image\bt00101010009.jpg" />
     <Content Include="javascript\calendar-ch.js" />
     <Content Include="javascript\calendar\cal.js" />
     <Content Include="javascript\calendar\calendar-win2k-cold-1.css" />
@@ -1104,6 +1109,8 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\power\right_add.cshtml" />
+    <Content Include="Views\power\right_list_information.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1173,9 +1180,7 @@
     <Content Include="Views\power\user_edit.cshtml" />
     <Content Include="Views\power\user_add.cshtml" />
     <Content Include="Views\power\right_list.cshtml" />
-    <Content Include="Views\power\right_add.cshtml" />
     <Content Include="Views\power\success.cshtml" />
-    <Content Include="Views\power\right_list_information.cshtml" />
     <Content Include="Views\transfer\register_locate.cshtml" />
     <Content Include="Views\transfer\register_list.cshtml" />
     <Content Include="Views\transfer\register.cshtml" />
@@ -1234,13 +1239,13 @@
     <Content Include="Views\salaryCriterion\salarystandard_query_list.cshtml" />
     <Content Include="Views\salaryCriterion\salarystandard_query_locate.cshtml" />
     <Content Include="Views\salaryCriterion\salarystandard_register_success.cshtml" />
+    <Content Include="Views\salaryGrant\list.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Filter\" />
+    <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\Api\" />
-    <Folder Include="Views\index\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -4,40 +4,40 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d21179f3be124a8d95ea3abdaf53f509" Name="Diagram1" ZoomLevel="89">
-        <EntityTypeShape EntityType="HR_DBModel.bonus" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HR_DBModel.config_file_first_kind" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HR_DBModel.config_file_second_kind" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HR_DBModel.config_file_third_kind" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HR_DBModel.config_major" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HR_DBModel.config_major_kind" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HR_DBModel.config_primary_key" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HR_DBModel.config_public_char" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HR_DBModel.config_question_first_kind" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HR_DBModel.config_question_second_kind" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HR_DBModel.engage_answer" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HR_DBModel.engage_answer_details" Width="1.5" PointX="8.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HR_DBModel.engage_exam" Width="1.5" PointX="8.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HR_DBModel.engage_exam_details" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HR_DBModel.engage_interview" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HR_DBModel.engage_major_release" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HR_DBModel.engage_resume" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HR_DBModel.engage_subjects" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HR_DBModel.human_file" Width="1.5" PointX="12.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HR_DBModel.human_file_dig" Width="1.5" PointX="6.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HR_DBModel.salary_grant" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HR_DBModel.salary_grant_details" Width="1.5" PointX="14.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HR_DBModel.salary_standard" Width="1.5" PointX="14.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HR_DBModel.salary_standard_details" Width="1.5" PointX="14.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HR_DBModel.training" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HR_DBModel.users" Width="1.5" PointX="16.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HR_DBModel.Permissions" Width="1.5" PointX="17.375" PointY="8.75" />
-        <EntityTypeShape EntityType="HR_DBModel.RolePermissions" Width="1.5" PointX="17.375" PointY="11.75" />
-        <EntityTypeShape EntityType="HR_DBModel.Roles" Width="1.5" PointX="17.375" PointY="14.75" />
-        <EntityTypeShape EntityType="HR_DBModel.salary_item" Width="1.5" PointX="15.375" PointY="17.75" />
-        <AssociationConnector Association="HR_DBModel.FK_users_Roles" />
-        <EntityTypeShape EntityType="HR_DBModel.users_roles" Width="1.5" PointX="17.375" PointY="17.75" />
-        <EntityTypeShape EntityType="HR_DBModel.major_change" Width="1.5" PointX="3.375" PointY="13.75" />
+      <Diagram DiagramId="d21179f3be124a8d95ea3abdaf53f509" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="HR_DBModel.bonus" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="HR_DBModel.config_file_first_kind" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="HR_DBModel.config_file_second_kind" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="HR_DBModel.config_file_third_kind" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="HR_DBModel.config_major" Width="1.5" PointX="6.75" PointY="4.75" />
+        <EntityTypeShape EntityType="HR_DBModel.config_major_kind" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="HR_DBModel.config_primary_key" Width="1.5" PointX="6.75" PointY="7.75" />
+        <EntityTypeShape EntityType="HR_DBModel.config_public_char" Width="1.5" PointX="2.75" PointY="8.75" />
+        <EntityTypeShape EntityType="HR_DBModel.config_question_first_kind" Width="1.5" PointX="8.75" PointY="3.75" />
+        <EntityTypeShape EntityType="HR_DBModel.config_question_second_kind" Width="1.5" PointX="8.75" PointY="6.75" />
+        <EntityTypeShape EntityType="HR_DBModel.engage_answer" Width="1.5" PointX="8.75" PointY="9.75" />
+        <EntityTypeShape EntityType="HR_DBModel.engage_answer_details" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="HR_DBModel.engage_exam" Width="1.5" PointX="10.75" PointY="3.75" />
+        <EntityTypeShape EntityType="HR_DBModel.engage_exam_details" Width="1.5" PointX="4.75" PointY="10.75" />
+        <EntityTypeShape EntityType="HR_DBModel.engage_interview" Width="1.5" PointX="10.75" PointY="7.75" />
+        <EntityTypeShape EntityType="HR_DBModel.engage_major_release" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="HR_DBModel.engage_resume" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="HR_DBModel.engage_subjects" Width="1.5" PointX="12.75" PointY="12.75" />
+        <EntityTypeShape EntityType="HR_DBModel.human_file" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="HR_DBModel.human_file_dig" Width="1.5" PointX="2.75" PointY="14.75" />
+        <EntityTypeShape EntityType="HR_DBModel.major_change" Width="1.5" PointX="4.75" PointY="14.75" />
+        <EntityTypeShape EntityType="HR_DBModel.Permissions" Width="1.5" PointX="6.75" PointY="14.75" />
+        <EntityTypeShape EntityType="HR_DBModel.RolePermissions" Width="1.5" PointX="8.75" PointY="14.75" />
+        <EntityTypeShape EntityType="HR_DBModel.Roles" Width="1.5" PointX="0.75" PointY="1.125" />
+        <EntityTypeShape EntityType="HR_DBModel.salary_grant" Width="1.5" PointX="14.75" PointY="14.75" />
+        <EntityTypeShape EntityType="HR_DBModel.salary_grant_details" Width="1.5" PointX="16.75" PointY="0.75" />
+        <EntityTypeShape EntityType="HR_DBModel.salary_item" Width="1.5" PointX="16.75" PointY="4.75" />
+        <EntityTypeShape EntityType="HR_DBModel.salary_standard" Width="1.5" PointX="16.75" PointY="7.75" />
+        <EntityTypeShape EntityType="HR_DBModel.salary_standard_details" Width="1.5" PointX="16.75" PointY="12.75" />
+        <EntityTypeShape EntityType="HR_DBModel.training" Width="1.5" PointX="16.75" PointY="15.75" />
+        <EntityTypeShape EntityType="HR_DBModel.users" Width="1.5" PointX="3" PointY="0.875" />
+        <EntityTypeShape EntityType="HR_DBModel.users_roles" Width="1.5" PointX="6.75" PointY="17.75" />
+        <AssociationConnector Association="HR_DBModel.FK_users_Roles1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

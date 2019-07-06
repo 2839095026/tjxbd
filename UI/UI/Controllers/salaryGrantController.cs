@@ -84,6 +84,12 @@ namespace UI.Controllers
             return View();
         }
 
+        //薪酬详情
+        public ActionResult list(string id)
+        {
+            return View(details.SelectWhere(id));
+        }
+        
         public string NextNumber(string BaseNumber)
         {
             string NewNumber = "";//新值

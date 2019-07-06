@@ -24,6 +24,7 @@
                     for (var i = 0; i < result.length; i++) {
                         $("#firstKindId").append('<option value=' + result[i].new_first_kind_id + '>' + result[i].new_first_kind_name + '</option>');
                     }
+                    $("#firstKindId").change();
                 }
             })
             //获取二级机构
@@ -37,6 +38,7 @@
                         for (var i = 0; i < result.length; i++) {
                             $("#secondKindId").append('<option value=' + result[i].new_second_kind_id + '>' + result[i].new_second_kind_name + '</option>');
                         }
+                        $("#secondKindId").change();
                     }
                 })
                 //获取三级机构
