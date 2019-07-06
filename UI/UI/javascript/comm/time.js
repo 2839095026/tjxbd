@@ -1,3 +1,6 @@
+function bb(startTime) {
+    WdatePicker({ dateFmt: 'yyyy-MM', isShowToday: false, isShowClear: false });
+}
 function aa(startTime) {
 			displayDatePicker(startTime,false,"ymd","");
 		}
