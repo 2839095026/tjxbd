@@ -1,0 +1,11 @@
+﻿1>------ 已启动生成: 项目: IDAO, 配置: Debug Any CPU ------
+2>------ 已启动生成: 项目: IBLL, 配置: Debug Any CPU ------
+1>  IDAO -> Z:\Y2\Repos\tjxbd2\UI\IDAO\bin\Debug\IDAO.dll
+2>  IBLL -> Z:\Y2\Repos\tjxbd2\UI\IBLL\bin\Debug\IBLL.dll
+3>------ 已启动生成: 项目: DAO, 配置: Debug Any CPU ------
+3>  DAO -> Z:\Y2\Repos\tjxbd2\UI\DAO\bin\Debug\DAO.dll
+4>------ 已启动生成: 项目: BLL, 配置: Debug Any CPU ------
+4>  BLL -> Z:\Y2\Repos\tjxbd2\UI\BLL\bin\Debug\BLL.dll
+5>------ 已启动生成: 项目: UI, 配置: Debug Any CPU ------
+5>  UI -> Z:\Y2\Repos\tjxbd2\UI\UI\bin\UI.dll
+========== 生成: 成功 5 个，失败 0 个，最新 2 个，跳过 0 个 ==========
