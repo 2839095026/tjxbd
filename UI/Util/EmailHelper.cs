@@ -20,7 +20,7 @@ namespace Util
         /// <param name="title">标题</param>
         /// <param name="body">内容</param>
         /// <param name="Email">目标邮箱</param>
-        public void SendEmail(string title,string body,string Email)
+        public static void SendEmail(string title,string body,string Email)
         {
             MailMessage msg = new MailMessage();
             msg.Subject = title;
