@@ -71,7 +71,10 @@ namespace UI.Controllers
         /// <returns></returns>
         public ActionResult humanAdd(Entity.human_file humanFile)
         {
-            string lastCode = HumanFileBll.FindAll().OrderBy(e => e.huf_id).LastOrDefault().human_id;
+            Entity.salary_standard standard = SalaryStandardBll.FindAll().Where(e => e.standard_id == humanFile.salary_standard_id).ToList().FirstOrDefault();
+            humanFile.salary_sum = standard.salary_sum;
+            Entity.human_file file = HumanFileBll.FindAll().OrderBy(e => e.huf_id).LastOrDefault();
+            string lastCode =file!=null?file.human_id:"";
             humanFile.human_id = GetHumanId(lastCode);
             humanFile.check_status = 0;
             humanFile.file_chang_amount = 0;
@@ -259,7 +262,11 @@ namespace UI.Controllers
 
         public ActionResult ChangeHumanFile(Entity.human_file humanFile,string flage)
         {
+            
+            Entity.salary_standard standard=  SalaryStandardBll.FindAll().Where(e => e.standard_id == humanFile.salary_standard_id).ToList().FirstOrDefault();
             Entity.human_file changeObjc= HumanFileBll.FindHumanFileByHumanId(humanFile.human_id);
+            changeObjc.salary_sum = standard.salary_sum;
+            changeObjc.check_time = humanFile.check_time;
             changeObjc.human_pro_designation = humanFile.human_pro_designation;
             changeObjc.human_name = humanFile.human_name;
             changeObjc.human_sex = humanFile.human_sex;
@@ -411,7 +418,7 @@ namespace UI.Controllers
             //else
             //{
                 List<Entity.human_file> data = HumanFileBll.FindAll();
-                data=data.Where(e => e.human_file_status.Equals(false)|| e.human_file_status.HasValue==false).ToList();
+                data=data.Where(e => e.human_file_status.Equals(false)|| e.human_file_status==false).ToList();
                 if (!CheckString(firstKindId))
                 {
                   data=  data.Where(e => e.first_kind_id.Equals(firstKindId)).ToList();
@@ -508,7 +515,7 @@ namespace UI.Controllers
             //else
             //{
             List<Entity.human_file> data = HumanFileBll.FindAll();
-            data = data.Where(e => e.human_file_status.Equals(false)||e.human_file_status.HasValue==false).ToList();
+            data = data.Where(e => e.human_file_status.Equals(false)||e.human_file_status==false).ToList();
             if (!CheckString(firstKindId))
             {
                 data = data.Where(e => e.first_kind_id.Equals(firstKindId)).ToList();

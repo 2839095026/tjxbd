@@ -369,7 +369,7 @@
           <Property Name="lastly_change_time" Type="datetime" />
           <Property Name="delete_time" Type="datetime" />
           <Property Name="recovery_time" Type="datetime" />
-          <Property Name="human_file_status" Type="bit" />
+          <Property Name="human_file_status" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="human_file_dig">
           <Key>
@@ -1091,7 +1091,7 @@
           <Property Name="lastly_change_time" Type="DateTime" Precision="3" />
           <Property Name="delete_time" Type="DateTime" Precision="3" />
           <Property Name="recovery_time" Type="DateTime" Precision="3" />
-          <Property Name="human_file_status" Type="Boolean" />
+          <Property Name="human_file_status" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="human_file_dig">
           <Key>

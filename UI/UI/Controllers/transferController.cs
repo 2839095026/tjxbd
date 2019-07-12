@@ -83,19 +83,19 @@ namespace UI.Controllers
             int pageSize = 1;
             int count = 0;
            
-            List<human_file> data = HB.FindAll();
+            List<human_file> data = HB.FindAll().Where(e=>e.human_file_status==false &&e.check_status==1).ToList();
           
             if (!CheckString(firstKindId))
             {
-                data = data.Where(e => e.first_kind_id.Trim().Equals(firstKindId)).ToList();
+                data = data.Where(e => e.first_kind_id.Trim().Equals(firstKindId.Trim())).ToList();
             }
             if (!CheckString(secondKindId))
             {
-                data = data.Where(e => e.second_kind_id.Equals(secondKindId)).ToList();
+                data = data.Where(e => e.second_kind_id.Equals(secondKindId.Trim())).ToList();
             }
             if (!CheckString(thirdKindId))
             {
-                data = data.Where(e => e.third_kind_id.Equals(thirdKindId)).ToList();
+                data = data.Where(e => e.third_kind_id.Equals(thirdKindId.Trim())).ToList();
             }
             if (!CheckString(startDate))
             {
@@ -187,7 +187,7 @@ namespace UI.Controllers
         [HttpGet]
         public ActionResult check(int id)//调动审核的显示
         {
-            ViewBag.st = Mb.SelectWhere(id).FirstOrDefault();
+            ViewBag.st = Mb.SelectWhere(id).OrderBy(e=>e.mch_id).LastOrDefault();
             ViewBag.id = id;
             List<major_change> list = Mb.FindAll();
 
@@ -196,7 +196,7 @@ namespace UI.Controllers
         [HttpPost]
         public ActionResult check(major_change t, int stus, int id)
         {
-            major_change list = Mb.SelectWhere(t.mch_id).FirstOrDefault();
+            major_change list = Mb.SelectWhere(t.mch_id).OrderBy(e => e.mch_id).LastOrDefault();
             list.regist_time=DateTime.Now;
             list.check_time= DateTime.Now;
             if (stus > 0)
@@ -236,10 +236,10 @@ namespace UI.Controllers
             string MajorId = Request.QueryString["MajorId"];
             string startDate = Request.QueryString["startDate"];
             string endDate = Request.QueryString["endDate"];
-            List<human_file> data = HB.FindAll();   
+            List<human_file> data = HB.FindAll().Where(e => e.human_file_status == false && e.check_status==1).ToList();   
             if (!CheckString(firstKindId))
             {
-                data = data.Where(e => e.first_kind_id.Trim().Equals(firstKindId)).ToList();
+                data = data.Where(e => e.first_kind_id.Trim().Equals(firstKindId.Trim())).ToList();
             }
             if (!CheckString(secondKindId))
             {

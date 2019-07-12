@@ -343,7 +343,7 @@
                         @{
                             foreach (Entity.salary_standard item in ViewBag.salary_standard)
                             {
-                                <option value="@item.standard_id">@item.standard_name</option>
+                                <option value="@item.standard_id" @(Model != null ? Model.salary_standard_id == item.standard_id ? "selected" : "" : "")>@item.standard_name</option>
                             }
                         }
                     </select>
@@ -375,7 +375,8 @@
                     复核时间
                 </td>
                 <td class="TD_STYLE2">
-                    <input type="text" name="humanFile.regist_time"
+                    
+                    <input type="text" name="humanFile.check_time"
                            id="create_time" readonly="readonly"
                            class="INPUT_STYLE2" >
                 </td>

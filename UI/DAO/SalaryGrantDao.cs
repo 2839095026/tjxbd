@@ -17,6 +17,7 @@ namespace DAO
         public List<salary_grant> FenYe2<K>(int pageIndex, int pageSize, out int Count, string salary_grant_id, string primarKey, string startDate, string endDate)
         {
             var indexlist = from s in GetAdt() select s;
+            indexlist = indexlist.Where(p => p.check_status == 1);
             if (!string.IsNullOrEmpty(salary_grant_id))
             {
                 indexlist = indexlist.Where(p => p.salary_standard_id.Contains(salary_grant_id));

@@ -81,60 +81,60 @@
             });
 
         });
-        $(function () {
+        //$(function () {
 
-            //获取一级机构
-            $.post("/api/GetConfigFileFirstKind", function (data) {
-                console.log("加载一级分类")
-                var firstSelect = $("#firstKindId");
-                firstSelect.empty();
-                //firstSelect.append('<option value="">--请选择--</option>')
-                for (i in data) {
-                    firstSelect.append('<option value="' + data[i].first_kind_id + '">' + data[i].first_kind_name + '</option>')
-                }
-                $("#firstKindId").change();
+        //    //获取一级机构
+        //    $.post("/api/GetConfigFileFirstKind", function (data) {
+        //        console.log("加载一级分类")
+        //        var firstSelect = $("#firstKindId");
+        //        firstSelect.empty();
+        //        //firstSelect.append('<option value="">--请选择--</option>')
+        //        for (i in data) {
+        //            firstSelect.append('<option value="' + data[i].first_kind_id + '">' + data[i].first_kind_name + '</option>')
+        //        }
+        //        $("#firstKindId").change();
 
-            }, "json")
-
-
-
-            //获取二级机构
-            $("#firstKindId").change(function () {
-                console.log("加载二级分类")
-                $.post("/api/GetConfigFileSecondKindByFKID?fkid=" + $(this).val(), function (data) {
-                    var secondSelect = $("#secondKindId");
-                    secondSelect.empty();
-                    //secondSelect.append('<option value="">--请选择--</option>')
-                    for (i in data) {
-                        secondSelect.append('<option value="' + data[i].second_kind_id + '">' + data[i].second_kind_name + '</option>')
-                    }
-                    $("#secondKindId").change();
-                }, "json")
-            });
-            //获取三级机构
-            $("#secondKindId").change(function () {
-                console.log("加载三级分类")
-                $.post("/api/GetConfigFileThirdKindBySKID?skid=" + $(this).val(), function (data) {
-
-                    var thirdSelect = $("#thirdKindId");
-                    thirdSelect.empty();
-                    //thirdSelect.append('<option value="">--请选择--</option>')
-                    for (i in data) {
-                        thirdSelect.append('<option value="' + data[i].third_kind_id + '">' + data[i].third_kind_name + '</option>')
-                    }
-                    $("#thirdKindId").change();
-                }, "json")
+        //    }, "json")
 
 
-            });
 
-            $("#thirdKindId").change(function () {
-                var thirdText = $("#thirdKindId").find("option:selected").text();
+        //    //获取二级机构
+        //    $("#firstKindId").change(function () {
+        //        console.log("加载二级分类")
+        //        $.post("/api/GetConfigFileSecondKindByFKID?fkid=" + $(this).val(), function (data) {
+        //            var secondSelect = $("#secondKindId");
+        //            secondSelect.empty();
+        //            //secondSelect.append('<option value="">--请选择--</option>')
+        //            for (i in data) {
+        //                secondSelect.append('<option value="' + data[i].second_kind_id + '">' + data[i].second_kind_name + '</option>')
+        //            }
+        //            $("#secondKindId").change();
+        //        }, "json")
+        //    });
+        //    //获取三级机构
+        //    $("#secondKindId").change(function () {
+        //        console.log("加载三级分类")
+        //        $.post("/api/GetConfigFileThirdKindBySKID?skid=" + $(this).val(), function (data) {
 
-                $("#thirdKindName").val(thirdText);
+        //            var thirdSelect = $("#thirdKindId");
+        //            thirdSelect.empty();
+        //            //thirdSelect.append('<option value="">--请选择--</option>')
+        //            for (i in data) {
+        //                thirdSelect.append('<option value="' + data[i].third_kind_id + '">' + data[i].third_kind_name + '</option>')
+        //            }
+        //            $("#thirdKindId").change();
+        //        }, "json")
 
-            });
-        });
+
+        //    });
+
+        //    $("#thirdKindId").change(function () {
+        //        var thirdText = $("#thirdKindId").find("option:selected").text();
+
+        //        $("#thirdKindName").val(thirdText);
+
+        //    });
+        //});
     </script>
 </head>
 <body>
@@ -239,7 +239,8 @@
             </td>
             <td class="TD_STYLE2">
                 <select style="width:160px" name="new_first_kind_id" readonly="readonly"  id="firstKindId" size="1" class="SELECT_STYLE2">   
-                </select>
+                    <option value="@aa.new_first_kind_id">@aa.new_first_kind_name</option>
+                 </select>
 
             </td>
             <td class="TD_STYLE1" width="12%">
@@ -247,6 +248,7 @@
             </td>
             <td class="TD_STYLE2">
                 <select style="width:160px" name="new_second_kind_id" id="secondKindId" size="1" class="SELECT_STYLE2" readonly="readonly">
+                    <option value="@aa.new_second_kind_id">@aa.new_second_kind_name</option>
                 </select>
             </td>
             <td class="TD_STYLE1" width="12%">
@@ -254,7 +256,7 @@
             </td>
             <td class="TD_STYLE2">
                 <select style="width:160px" name="new_third_kind_id" id="thirdKindId" size="1" class="SELECT_STYLE2" readonly="readonly">
-             
+                    <option value="@aa.new_third_kind_id">@aa.new_third_kind_name</option>
                 </select>
             </td>
             <td class="TD_STYLE1" width="8%"></td>
@@ -266,7 +268,7 @@
             </td>
             <td class="TD_STYLE2">
                 <select name="mc.newMajorKindId" class="INPUT_STYLE2" id="majorKindId" readonly="readonly">
-                    
+                    <option value="@aa.major_kind_id">@aa.major_kind_name</option>
                 </select>
             </td>
             <td class="TD_STYLE1" width="12%">
@@ -274,7 +276,8 @@
             </td>
             <td class="TD_STYLE2">
                 <select name="mc.newMajorId" class="INPUT_STYLE2" id="majorId" readonly="readonly">
-                 
+                    <option value="@aa.major_id">@aa.major_name</option>
+
                 </select>
             </td>
             <td class="TD_STYLE1">

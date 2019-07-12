@@ -43,7 +43,7 @@ namespace UI.Controllers
                 ViewBag.submitType = 3;
                 ViewBag.list = third.FindAll();
             }
-            ViewBag.human = bll.FindAll();
+            ViewBag.human = bll.FindAll().Where(e => e.human_file_status == false);
             return View();
         }
 
@@ -77,7 +77,7 @@ namespace UI.Controllers
             users s = Session["user"] as users;
             ViewBag.user = s.u_name;
             ViewBag.details = details.FindAll();
-            ViewBag.human = bll.FindAll();
+            ViewBag.human = bll.FindAll().Where(e=>e.human_file_status==false);
             ViewBag.item = item.FindAll().OrderBy(e => e.item_id).ToList();
             ViewBag.submitType = Request.QueryString["submitType"];
             ViewBag.id = Request.QueryString["id"];

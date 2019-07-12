@@ -6,6 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-trasitional.dtd">
 <html>
 <head>
+    <script src="~/javascript/DatePicker/WdatePicker.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet"
           href="../../css/table.css" type="text/css" />
@@ -187,10 +188,10 @@
                 </td>
                 <td width="84%" class="TD_STYLE2">
                     <input type="text" name="startDate" readonly
-                           style="width: 14%" class="INPUT_STYLE2" id="date_start">
+                           style="width: 14%" class="INPUT_STYLE2"onclick=" WdatePicker();" id="date_start">
                     至
                     <input type="text" name="endDate" readonly="readonly"
-                           style="width: 14%" class="INPUT_STYLE2" id="date_end">
+                           style="width: 14%" class="INPUT_STYLE2" id="date_end" onclick=" WdatePicker();">
                 </td>
             </tr>
         </table>

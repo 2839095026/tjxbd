@@ -20,60 +20,62 @@
     <script type="text/javascript" src="../../javascript/comm/time.js"></script>
     <link rel="stylesheet" href="../../css/cwcalendar.css" type="text/css"></link> 
     <script type="text/javascript">
+     
+
         $(function () {
+
             //获取一级机构
-            $.ajax({
-                url: "/transfer/GetFirstKid",
-                data: "",
-                type: "get",
-                success: function (data) {
-                    var result = eval("(" + data + ")");
-                    for (var i = 0; i < result.length; i++) {
-                        $("#firstKindId").append('<option value=' + result[i].first_kind_id + '>' + result[i].first_kind_name + '</option>');
-                    }
-                
+            $.post("/api/GetConfigFileFirstKind", function (data) {
+                console.log("加载一级分类")
+                var firstSelect = $("#firstKindId");
+                firstSelect.empty();
+                firstSelect.append('<option value="">--请选择--</option>')
+                for (i in data) {
+                    firstSelect.append('<option value="' + data[i].first_kind_id + '">' + data[i].first_kind_name + '</option>')
                 }
-            })
+                $("#firstKindId").change();
+
+            }, "json")
+
+
+
             //获取二级机构
             $("#firstKindId").change(function () {
-                $.ajax({
-                    url: "/transfer/GetSecondKid?id="+$(this).val(),
-                    data: "",
-                    type: "get",
-                    success: function (data) {
-                        var result = eval("(" + data + ")");
-                        for (var i = 0; i < result.length; i++) {
-                            $("#secondKindId").append('<option value=' + result[i].second_kind_id + '>' + result[i].second_kind_name + '</option>');
-                        }
-                      
+                console.log("加载二级分类")
+                $.post("/api/GetConfigFileSecondKindByFKID?fkid=" + $(this).val(), function (data) {
+                    var secondSelect = $("#secondKindId");
+                    secondSelect.empty();
+                    secondSelect.append('<option value="">--请选择--</option>')
+                    for (i in data) {
+                        secondSelect.append('<option value="' + data[i].second_kind_id + '">' + data[i].second_kind_name + '</option>')
                     }
-                })
-                //获取三级机构
-                $("#secondKindId").change(function () {
-                    $.ajax({
-                        url: "/transfer/GetThirdKid?id=" + $(this).val(),
-                        data: "",
-                        type: "get",
-                        success: function (data) {
-                            var result = eval("(" + data + ")");
-                            for (var i = 0; i < result.length; i++) {
-                                $("#thirdKindId").append('<option value=' + result[i].third_kind_id + '>' + result[i].third_kind_name + '</option>');
-                            }
-                         
-                        }
-                        
-                    })
-                })
+                    $("#secondKindId").change();
+                }, "json")
             });
-        
-            //$(function () {
-            //    $("#btncx").click(function () {
-            //        location.href = '/transfer/register_list/'
-            //    })
+            //获取三级机构
+            $("#secondKindId").change(function () {
+                console.log("加载三级分类")
+                $.post("/api/GetConfigFileThirdKindBySKID?skid=" + $(this).val(), function (data) {
 
-            //})
-           
-        })
+                    var thirdSelect = $("#thirdKindId");
+                    thirdSelect.empty();
+                    thirdSelect.append('<option value="">--请选择--</option>')
+                    for (i in data) {
+                        thirdSelect.append('<option value="' + data[i].third_kind_id + '">' + data[i].third_kind_name + '</option>')
+                    }
+                    $("#thirdKindId").change();
+                }, "json")
+
+
+            });
+
+            $("#thirdKindId").change(function () {
+                var thirdText = $("#thirdKindId").find("option:selected").text();
+
+                $("#thirdKindName").val(thirdText);
+
+            });
+        });
     </script>
 </head>
 <body>

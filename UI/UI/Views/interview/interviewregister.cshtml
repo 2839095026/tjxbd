@@ -2,6 +2,7 @@
 @{
     Layout = null;
     ViewBag.Title = "interviewregister";
+    Entity.users loginUser = Session["user"] as Entity.users;
 }
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-trasitional.dtd">
@@ -404,7 +405,7 @@
                         面试人
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="text" name="engageInterview.register" value="zhangsan" class="INPUT_STYLE2" />
+                        <input type="text" name="engageInterview.register" value="@loginUser.u_name" class="INPUT_STYLE2" />
                     </td>
                     <td class="TD_STYLE1">
                         面试时间

@@ -30,9 +30,10 @@
                     <input type="hidden" name="id" value="@Request.QueryString["hid"]"/>
                 </td>
                 <td width="41%" align="right">
-                    @**@
-                    <input type="button" value="上传附件" onclick="location.href='register_choose_attachment?hid=@Request.QueryString["hid"]'" class="BUTTON_STYLE1"  />
+               
+                    <input type="button" value="上传附件" onclick="location.href='/humanResources/register_choose_attachment?hid=@Request.QueryString["hid"]'" class="BUTTON_STYLE1"  />
                     <input type="submit" value="完成" class="BUTTON_STYLE1" />
+                    <input type="button" value="查看" onclick="location.href = '/humanResources/query_list_information/@Request.QueryString["hid"]'"  class="BUTTON_STYLE1" />
                 </td>
             </tr>
         </table>
