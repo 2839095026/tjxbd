@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDAO", "IDAO\IDAO.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAO", "DAO\DAO.csproj", "{6669F596-89A5-48E5-AAB2-5981CB23F1D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Util", "Util\Util.csproj", "{D2E547E2-D51B-4DA4-9BDA-2C1BF5CA5119}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{6669F596-89A5-48E5-AAB2-5981CB23F1D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6669F596-89A5-48E5-AAB2-5981CB23F1D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6669F596-89A5-48E5-AAB2-5981CB23F1D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2E547E2-D51B-4DA4-9BDA-2C1BF5CA5119}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2E547E2-D51B-4DA4-9BDA-2C1BF5CA5119}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2E547E2-D51B-4DA4-9BDA-2C1BF5CA5119}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2E547E2-D51B-4DA4-9BDA-2C1BF5CA5119}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

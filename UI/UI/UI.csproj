@@ -1281,6 +1281,10 @@
       <Project>{b6cb28a8-0d24-4a75-b1a3-2d1b41884a95}</Project>
       <Name>IocContainer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Util\Util.csproj">
+      <Project>{d2e547e2-d51b-4da4-9bda-2c1bf5ca5119}</Project>
+      <Name>Util</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
