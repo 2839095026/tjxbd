@@ -1,4 +1,4 @@
-﻿
+﻿ 
 @{
     Layout = null;
 }
@@ -38,9 +38,9 @@
     <script type="text/javascript"
             src="../../javascript/human_check.js">
     </script>
-    <script type="text/javascript"
+    @*<script type="text/javascript"
             src="../../javascript/human_input_check.js">
-    </script>
+    </script>*@
 </head>
 <body>
 
@@ -56,6 +56,8 @@
             </tr>
             <tr>
                 <td align="right">
+                    <input type="button" value="文件修改" class="BUTTON_STYLE1" onclick="location.href = '../register_choose_picture?hid=@Request.QueryString["hId"]'" />
+
                     <input type="submit" value="确认变更" class="BUTTON_STYLE1" />
                     <input type="reset" value="清除" class="BUTTON_STYLE1">
                     <input type="button" value="返回" class="BUTTON_STYLE1"
@@ -416,7 +418,7 @@
                     档案附件
                 </td>
                 <td colspan="7" class="TD_STYLE2">
-                    <a href="javascript:winopenm('query.jsp?filename=')">@Model.attachment_name</a>
+                    <a href="\images\upload\acc\bt00000000001\@Model.attachment_name">@Model.attachment_name</a>
                 </td>
             </tr>
             <tr>

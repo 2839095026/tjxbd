@@ -4,12 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Entity;
+using System.Transactions;
 namespace UI.Controllers
 {
     public class interviewController : Controller
     {
         IBLL.IEngageInterviewBll EngageInterviewBll = IocContainer.IocCreate.CreateBll<IBLL.IEngageInterviewBll>("EngageInterviewBll");
         IBLL.IEngageResumeBll EngageResumeBll = IocContainer.IocCreate.CreateBll<IBLL.IEngageResumeBll>("EngageResumeBll");
+        IBLL.IUsersBll UsersBll = IocContainer.IocCreate.CreateBll<IBLL.IUsersBll>("UsersBll");
 
         // GET: interview
         public ActionResult Index()
@@ -90,6 +92,8 @@ namespace UI.Controllers
         /// <returns></returns>
         public ActionResult interviewsift(string id)
         {
+
+             ViewBag.users = UsersBll.FindAll();
             Entity.engage_resume rs= EngageResumeBll.FindAResume(id);
 
             ViewBag.resume =rs;
@@ -105,8 +109,42 @@ namespace UI.Controllers
         /// <returns></returns>
         public ActionResult changResume(Entity.engage_resume engageResume)
         {
+            if (engageResume.interview_status == 4)
+            {
+                using(TransactionScope ts=new TransactionScope())
+                {
+                    int count = 1; int ok =0;
+                   List<Entity.engage_interview> deliv=  EngageInterviewBll.FindEngageInterviewByResID(engageResume.res_id.ToString());
+                    count += deliv.Count;
+                    if (EngageResumeBll.Del(engageResume) > 0)
+                    {
+                        ok++;
+                    }
+                    foreach (var item in deliv)
+                    {
+                        if (EngageInterviewBll.Del(item) > 0)
+                        {
+                            ok++;
+                        }
+                    }
+                    if (count == ok)
+                    {
+                        ts.Complete();
+                        return Content("<script>alert('筛选提交成功');location.href='/interview/siftlist'</script>");
+                    }
+                    else
+                    {
+                        return Content("<script>alert('筛选提交失败');history.back()</script>");
+                    }
 
-             engage_resume en=EngageResumeBll.FindAResume(engageResume.res_id.ToString());
+
+                }
+
+
+
+            }
+
+            engage_resume en=EngageResumeBll.FindAResume(engageResume.res_id.ToString());
             en.register = engageResume.register;
 
             en.regist_time = engageResume.regist_time;

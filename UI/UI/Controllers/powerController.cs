@@ -60,8 +60,23 @@ namespace UI.Controllers
         [HttpPost]
         public ActionResult user_add(users t)
         {
+
             if (usersBll.Add(t) > 0)
             {
+                //using (ConnectionMultiplexer redis = await ConnectionMultiplexer.ConnectAsync("127.0.0.1:6379"))
+                //{
+                //    //连接哪个数据库:默认是db0
+                //    IDatabase db = redis.GetDatabase();
+                //    users p = new users()
+                //    {
+                //        u_name = textBox1.Text,
+                //        u_email = textBox2.Text,
+                //        u_password = Guid.NewGuid().ToString().Substring(0, 6)
+                //    };
+                //    await db.ListLeftPushAsync("d", JsonConvert.SerializeObject(p));
+
+
+                //}
                 return Content("<script>alert('添加成功');window.location.href='/power/user_list'</script>");
             }
             else

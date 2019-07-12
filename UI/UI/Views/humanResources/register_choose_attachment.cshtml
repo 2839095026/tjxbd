@@ -31,6 +31,8 @@
                 <td width="41%" align="right">
                     <input type="button" value="上传图片" class="BUTTON_STYLE1" onclick="location.href='register_choose_picture?hid=@Request.QueryString["hid"]'" />
                     <input type="submit" value="完成" class="BUTTON_STYLE1" />
+                    <input type="button" value="查看" onclick="location.href = '/humanResources/query_list_information/@Request.QueryString["hid"]'" class="BUTTON_STYLE1" />
+
                 </td>
             </tr>
         </table>

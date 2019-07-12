@@ -99,6 +99,7 @@
                             {
                                 if (item.salary_standard_id.Equals(item2.standard_id))
                                 {
+                                    salary_standard_id = item2.standard_id;
                                     paid_salary_sum += item.paid_salary_sum.HasValue == true ? (double)item.paid_salary_sum : 0.0;
                                     salary_sum += (double)item.salary_sum;
                                     ssd.Add(item2);
@@ -113,6 +114,7 @@
                                 {
                                     if (item.salary_standard_id.Equals(item2.standard_id))
                                     {
+                                        salary_standard_id = item2.standard_id;
                                         paid_salary_sum += item.paid_salary_sum.HasValue == true ? (double)item.paid_salary_sum : 0.0;
                                         salary_sum += (double)item.salary_sum;
                                         ssd.Add(item2);

@@ -75,6 +75,6 @@ namespace Entity
         public Nullable<System.DateTime> lastly_change_time { get; set; }
         public Nullable<System.DateTime> delete_time { get; set; }
         public Nullable<System.DateTime> recovery_time { get; set; }
-        public Nullable<bool> human_file_status { get; set; }
+        public bool human_file_status { get; set; }
     }
 }

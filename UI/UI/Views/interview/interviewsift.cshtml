@@ -2,7 +2,9 @@
     Layout = null;
     ViewBag.Title = "interviewsift";
     Entity.engage_resume resume = ViewBag.resume as Entity.engage_resume;
-    List<Entity.engage_interview> interViewList= ViewBag.engageInterviewList as List<Entity.engage_interview>;
+    List<Entity.users> users = ViewBag.users as List<Entity.users>;
+    List<Entity.engage_interview> interViewList = ViewBag.engageInterviewList as List<Entity.engage_interview>;
+    Entity.users loginUesr = Session["user"] as Entity.users;
 }
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-trasitional.dtd">
 <html>
@@ -194,7 +196,6 @@
             <tr>
                 <td align="right">
                     <input type="radio" name="engageResume.interview_status" value="1" onclick="mians()">建议面试
-                    <input type="radio" name="engageResume.interview_status" value="2" onclick="bis()">建议笔试
                     <input type="radio" name="engageResume.interview_status" value="3" checked="checked" onclick="luy()">建议录用
                     <input type="radio" name="engageResume.interview_status" value="4" onclick="del()">删除简历
                     <input type="submit" value="确认" class="BUTTON_STYLE1"
@@ -407,7 +408,10 @@
                     推荐人
                 </td>
                 <td class="TD_STYLE2">
-                    <input type="text"  value="@resume.pass_checker" readonly="readonly" class="INPUT_STYLE2">
+
+                    <input type="text" value="@resume.pass_checker" readonly="readonly" class="INPUT_STYLE2">
+                
+
                 </td>
                 <td class="TD_STYLE1">
                     <span style="font-size: 10.5pt; font-family: 宋体;"></span>
@@ -535,8 +539,18 @@
                     筛选人
                 </td>
                 <td class="TD_STYLE2">
-                    <input type="text" name="engageResume.checker" value="@interViewList.LastOrDefault().checker" class="INPUT_STYLE2" />
+                    @*<input type="text" value="" class="INPUT_STYLE2" />*@
+                    <select  name="engageResume.checker">
+                        @{
 
+                            foreach (var item in users)
+                            {
+                                <option value="@item.u_name" @(loginUesr.u_name==item.u_name?"selected":"")>@item.u_name</option>
+                            }
+                        }
+
+
+                    </select>
                 </td>
                 <td class="TD_STYLE1">
                     筛选时间

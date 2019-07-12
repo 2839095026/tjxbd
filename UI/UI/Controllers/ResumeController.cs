@@ -240,6 +240,8 @@ namespace UI.Controllers
                 case 1:
                     return "建议面试";
                 case 2:
+                    return "建议笔试";
+                case 3:
                     return "建议录用";
                 case 4:
                     return "删除简历";

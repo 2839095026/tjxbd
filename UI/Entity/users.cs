@@ -19,6 +19,7 @@ namespace Entity
         public string u_true_name { get; set; }
         public string u_password { get; set; }
         public int RoleID { get; set; }
+        public string u_email { get; set; }
     
         public virtual Roles Roles { get; set; }
     }

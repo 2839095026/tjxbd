@@ -382,18 +382,19 @@ $(function () {
                 </td>
                 <td class="TD_STYLE2">
                     <select name="humanFile.salary_standard_id" id="salaryStandardId" class="SELECT_STYLE1">
-                       @{ 
+                        <option value="">--请选择--</option>
+                        @{ 
                            foreach (Entity.salary_standard item in ViewBag.salary_standard)
                            {
                                <option value="@item.standard_id">@item.standard_name</option>
                            }
                        }
                     </select>
-                    <input type="hidden" name="salary_standard_name" id="salaryStandardName" value=""/>
+                    <input type="hidden" name="humanFile.salary_standard_name" id="salaryStandardName" value=""/>
                     <script>
 $(function () {
     $("#salaryStandardId").change(function () {
-        $("#firstKindName").val($("#salaryStandardId option:selected").text())
+        $("#salaryStandardName").val($("#salaryStandardId option:selected").text())
 
     })})</script>
 

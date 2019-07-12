@@ -16,7 +16,7 @@ namespace Entity
     public partial class HR_DBEntities1 : DbContext
     {
         public HR_DBEntities1()
-            : base("name=HR_DBEntities")
+            : base("name=HR_DBEntities1")
         {
         }
     
