@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Transactions;
+using StackExchange.Redis;
 
 namespace UI.Controllers
 {
@@ -58,25 +59,30 @@ namespace UI.Controllers
             return View(list);
         }
         [HttpPost]
-        public ActionResult user_add(users t)
+        public async System.Threading.Tasks.Task<ActionResult> user_add(users t)
         {
 
             if (usersBll.Add(t) > 0)
             {
-                //using (ConnectionMultiplexer redis = await ConnectionMultiplexer.ConnectAsync("127.0.0.1:6379"))
-                //{
-                //    //连接哪个数据库:默认是db0
-                //    IDatabase db = redis.GetDatabase();
-                //    users p = new users()
-                //    {
-                //        u_name = textBox1.Text,
-                //        u_email = textBox2.Text,
-                //        u_password = Guid.NewGuid().ToString().Substring(0, 6)
-                //    };
-                //    await db.ListLeftPushAsync("d", JsonConvert.SerializeObject(p));
+                using (ConnectionMultiplexer redis = await ConnectionMultiplexer.ConnectAsync("127.0.0.1:6379"))
+                {
+                    //连接哪个数据库:默认是db0
+                    IDatabase db = redis.GetDatabase();
 
+                    users p = new users()
+                    {
+                        u_name = t.u_name,
+                        u_email = t.u_email,
+                        u_password = t.u_password
+                    };
+                    await db.ListLeftPushAsync("d", JsonConvert.SerializeObject(p));
 
-                //}
+                    RedisValue zhi = await db.ListRightPopAsync("d");
+                 Entity.users aa= JsonConvert.DeserializeObject<users>(zhi.ToString());
+                    Util.EmailHelper.SendEmail("hr管理系统", "这是你登录这个软件的密码" +aa.u_password, aa.u_email);
+
+                }
+
                 return Content("<script>alert('添加成功');window.location.href='/power/user_list'</script>");
             }
             else
