@@ -611,6 +611,7 @@
           <Property Name="u_true_name" Type="varchar" MaxLength="60" Nullable="false" />
           <Property Name="u_password" Type="varchar" MaxLength="60" Nullable="false" />
           <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="u_email" Type="varchar" MaxLength="60" />
         </EntityType>
         <!--生成过程中发现错误:
 警告 6002: 表/视图“HR_DB.dbo.users_roles”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
@@ -1335,6 +1336,7 @@
           <Property Name="u_password" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="RoleID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Roles" Relationship="HR_DBModel.FK_users_Roles1" FromRole="users" ToRole="Roles" />
+          <Property Name="u_email" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="users_roles">
           <Key>
@@ -1997,6 +1999,7 @@
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="HR_DBModel.users">
               <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="u_email" ColumnName="u_email" />
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
                 <ScalarProperty Name="u_password" ColumnName="u_password" />
                 <ScalarProperty Name="u_true_name" ColumnName="u_true_name" />
