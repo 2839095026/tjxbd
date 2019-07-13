@@ -85,6 +85,8 @@ namespace UI.Controllers
             old.pass_passComment = engageResume.pass_passComment;
             old.interview_status = engageResume.interview_status;
             if (EngageResumeBll.Change(old)>0) {
+                Util.EmailHelper.SendEmail("hr管理系统", "尊敬的" + old.human_name + "先生/女士 您已被我公司录用", old.human_email);
+
                 return Content("<script>alert('提交成功');location.href='/employ/check_list';</script>");
             }
             else

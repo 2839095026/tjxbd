@@ -308,7 +308,6 @@ namespace UI.Controllers
             }
             if (HumanFileBll.Change(changeObjc)>0)
             {
-                
                 return Content("<script>alert('"+msg+"成功！');location.href='/humanResources/check_list';</script>");
 
             }

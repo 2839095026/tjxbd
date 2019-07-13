@@ -5,15 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Mail;
 using System.Net;
-
+using System.Threading;
 namespace Util
 {
     public class EmailHelper
     {
-        public static string formMail = "2839095026@qq.com";
-        public static string stmpHost = "smtp.qq.com";
-        public static string stmpName = "2839095026@qq.com";
-        public static string stmpPass = "hdmjpretgevqddcg";
+        private static string formMail = "2839095026@qq.com";
+        private static string stmpHost = "smtp.qq.com";
+        private static string stmpName = "2839095026@qq.com";
+        private static string stmpPass = "hdmjpretgevqddcg";
         /// <summary>
         /// 发送邮件
         /// </summary>
@@ -22,15 +22,20 @@ namespace Util
         /// <param name="Email">目标邮箱</param>
         public static void SendEmail(string title,string body,string Email)
         {
-            MailMessage msg = new MailMessage();
-            msg.Subject = title;
-            msg.Body = body;
-            msg.From = new MailAddress(formMail);
-            msg.To.Add(new MailAddress(Email));
-            SmtpClient c = new SmtpClient(stmpHost);
-            c.Port = 465;
-            c.Credentials = new NetworkCredential(stmpName,stmpPass);
-            c.Send(msg);
+            Thread th = new Thread(()=> {
+                MailMessage msg = new MailMessage();
+                msg.Subject = title;
+                msg.Body = body;
+                msg.From = new MailAddress(formMail);
+                msg.To.Add(new MailAddress(Email));
+                SmtpClient c = new SmtpClient(stmpHost);
+                c.Port =25;
+                c.Credentials = new NetworkCredential(stmpName, stmpPass);
+                c.Send(msg);
+            });
+            th.IsBackground = false;
+            th.Start();
+           
         }
 
 
